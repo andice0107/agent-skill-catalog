@@ -6,6 +6,13 @@
       "action": "建立",
       "skills": [],
       "summary": "建立 Agent 技能總覽目錄，收錄共用庫、Claude 雲端、Claude 本機、Gemini、Codex 本機的全部技能。"
+    },
+    {
+      "date": "2026-11-10",
+      "agent": "opencode",
+      "action": "更新",
+      "skills": ["third-party-software-update"],
+      "summary": "補充 Windows 支援：winget／scoop／Chocolatey／pip／npm／登錄檔，並說明版本未知的項目改標「需人工確認」。"
     }
   ]
 }
