@@ -1,0 +1,775 @@
+{
+  "version": 1,
+  "updated": "2026-11-10",
+  "agents": {
+    "shared": { "label": "共用庫（Codex／OpenCode）", "where": "GitHub codex-worklogs/skills/" },
+    "claude-cloud": { "label": "Claude 雲端", "where": "claude.ai 技能" },
+    "claude-local": { "label": "Claude 本機", "where": "~/.claude/skills/" },
+    "gemini": { "label": "Gemini", "where": "Gemini Gems（備份在 Drive「Gemini Backup」）" },
+    "codex-local": { "label": "Codex 本機", "where": "~/.codex 或 ~/.agents 的本機技能" }
+  },
+  "categories": [
+    "國語生字與語詞學習單",
+    "成語教學",
+    "造句教學",
+    "考試與題庫",
+    "特教：社會技巧、溝通訓練與 IEP",
+    "簡報製作",
+    "互動測驗平台",
+    "貼圖與生活",
+    "工作流程與電腦維護"
+  ],
+  "skills": [
+    {
+      "id": "character-typo-detective-worksheet",
+      "zh": "生字錯別字偵探學習單",
+      "en": "character-typo-detective-worksheet",
+      "category": "國語生字與語詞學習單",
+      "functions": ["Word 學習單"],
+      "scenarios": ["生字教學", "形近字辨識"],
+      "purpose": "用課文生字、詞語與形近字寫一篇生活化短文，把要考的字換成錯字，讓學生當偵探找錯、改正。",
+      "when": "上完一課生字後，想讓學生練習分辨形近字、找出錯字時。",
+      "effect": "一頁式可編輯 Word 學習單，含短文與田字格「辦案區」。",
+      "audience": "國小國語（資源班）學生；教師出題使用",
+      "triggers": ["錯別字偵探", "找錯字學習單"],
+      "agents": [
+        { "agent": "shared", "name": "character-typo-detective-worksheet", "status": "啟用" },
+        { "agent": "gemini", "name": "生字錯別字偵探學習單生成器", "status": "啟用" }
+      ],
+      "related": ["correct-hanzi-worksheet"],
+      "status": "啟用",
+      "updated": "2026-11-10"
+    },
+    {
+      "id": "correct-hanzi-worksheet",
+      "zh": "填入正確的國字／語詞學習單",
+      "en": "correct-hanzi-worksheet",
+      "category": "國語生字與語詞學習單",
+      "functions": ["Word 學習單"],
+      "scenarios": ["生字教學", "形近字辨識"],
+      "purpose": "把生字和形近字教材依原本順序做成填空題，學生從選項中選出正確的字或語詞。",
+      "when": "有生字、形近字教材（文字、截圖、PDF 或 Word），要做形近字填空練習時；只要抄寫或找錯字時不適用。",
+      "effect": "橫式、可編輯的 Word 填空學習單，可選逐題或短文格式，題組不拆開。",
+      "audience": "國小國語（資源班）學生；教師出題使用",
+      "triggers": ["填入正確的國字", "形近字填空", "語詞填空學習單"],
+      "agents": [
+        { "agent": "shared", "name": "correct-hanzi-worksheet", "status": "啟用" },
+        { "agent": "gemini", "name": "從生字及形近字教材填入正確的國字語詞學習單", "status": "啟用" }
+      ],
+      "related": ["character-typo-detective-worksheet", "hanzi-similar-polyphone-material"],
+      "status": "啟用",
+      "updated": "2026-11-10"
+    },
+    {
+      "id": "chinese-word-card-data",
+      "zh": "國語語詞卡資料檔",
+      "en": "chinese-word-card-data",
+      "category": "國語生字與語詞學習單",
+      "functions": ["教材資料整理"],
+      "scenarios": ["生字教學", "語詞教學"],
+      "purpose": "依課次順序整理生字、語詞、形近字與生活化短例句，產出固定格式的資料檔，給語詞卡或其他工具使用。",
+      "when": "要做圖文語詞卡、或要把一課的語詞整理成工具可讀的資料時；不負責生圖。",
+      "effect": "固定格式的語詞資料檔（例如 master_data.txt）。",
+      "audience": "教師備課使用",
+      "triggers": ["語詞卡資料", "生字語詞資料檔"],
+      "agents": [
+        { "agent": "shared", "name": "chinese-word-card-data", "status": "啟用" },
+        { "agent": "gemini", "name": "mandarin-vocab-master-data（國語語詞例句資料檔）", "status": "啟用" }
+      ],
+      "related": [],
+      "status": "啟用",
+      "updated": "2026-11-10"
+    },
+    {
+      "id": "hanzi-similar-polyphone-material",
+      "zh": "國語生字形近字多音字教材整理",
+      "en": "hanzi-similar-polyphone-material",
+      "enNote": "原無英文名，此為建議英文名",
+      "category": "國語生字與語詞學習單",
+      "functions": ["Word 教材"],
+      "scenarios": ["生字教學", "形近字辨識", "多音字教學"],
+      "purpose": "把一課生字整理成「生字／形近字／多音字」區間式教材：每個語詞附解釋、《註》與《造句》，再接字音字形選擇題。",
+      "when": "說「整理某年級國語第某課生字形近字教材」時；不用於出學習單、簡報或題庫轉檔。",
+      "effect": "區間式 Word 教材＋字音字形選擇題題庫。",
+      "audience": "教師備課；國小國語學生閱讀",
+      "triggers": ["生字形近字教材", "多音字教材整理"],
+      "agents": [
+        { "agent": "shared", "name": "國語生字形近字多音字教材整理", "status": "啟用" }
+      ],
+      "related": ["chengyu-sentence-material", "correct-hanzi-worksheet"],
+      "status": "啟用",
+      "updated": "2026-11-10"
+    },
+    {
+      "id": "zhuyin-hanzi-tracing-pdf",
+      "zh": "國字注音描寫字 PDF",
+      "en": "zhuyin-hanzi-tracing-pdf",
+      "category": "國語生字與語詞學習單",
+      "functions": ["PDF 處理", "描寫字"],
+      "scenarios": ["生字教學", "注音教學", "習寫練習"],
+      "purpose": "在國字／注音習作指定頁的空白田字格與拼音格畫上虛線描寫字，字形照課本示範字。",
+      "when": "學生需要先描寫再獨立書寫，或要把甲乙本、習寫簿做成描寫版時。",
+      "effect": "直式 A4 描寫版 PDF。",
+      "audience": "低年級或書寫困難學生；教師準備使用",
+      "triggers": ["描寫字", "虛線描寫", "甲乙本描寫"],
+      "agents": [
+        { "agent": "shared", "name": "zhuyin-hanzi-tracing-pdf", "status": "啟用" },
+        { "agent": "claude-cloud", "name": "zhuyin-hanzi-tracing-pdf", "status": "啟用" },
+        { "agent": "gemini", "name": "甲乙本描寫字版生成技能", "status": "啟用" }
+      ],
+      "related": [],
+      "status": "啟用",
+      "updated": "2026-11-10"
+    },
+    {
+      "id": "guoyu-review-worksheet",
+      "zh": "國小國語期中期末複習學習單生成技能",
+      "en": "guoyu-review-worksheet",
+      "enNote": "原無英文名，此為建議英文名",
+      "category": "考試與題庫",
+      "functions": ["Word 學習單"],
+      "scenarios": ["期中期末考前", "生字教學"],
+      "purpose": "為識字、理解較弱的學生做考前複習單：以書寫國字、字音、字義、簡單造詞造句為主，每天涵蓋全部課次。",
+      "when": "期中、期末考前一到兩週，要讓學生在家自己完成複習時。",
+      "effect": "每天一份 Word 複習單＋教師解答＋部件／筆順核對圖。",
+      "audience": "國小資源班學生；教師與家長",
+      "triggers": ["期中複習單", "期末複習學習單"],
+      "agents": [
+        { "agent": "shared", "name": "國小國語期中期末複習學習單生成技能", "status": "啟用" },
+        { "agent": "claude-cloud", "name": "國小國語期中期末複習學習單生成技能", "status": "啟用" }
+      ],
+      "related": ["guoyu-exam-paper"],
+      "status": "啟用",
+      "updated": "2026-11-10"
+    },
+    {
+      "id": "guoyu-exam-paper",
+      "zh": "國小國語期中期末試卷命題",
+      "en": "guoyu-exam-paper",
+      "category": "考試與題庫",
+      "functions": ["Word 試卷"],
+      "scenarios": ["期中期末考前", "評量命題"],
+      "purpose": "為資源班／個學學生出國語期中、期末試卷：先問範圍與學生程度、交命題規劃，再依老師出過的題型分程度出卷。",
+      "when": "要出資源班國語定期評量試卷時。",
+      "effect": "直式 B4 Word 試卷＋答案卷，可分程度。",
+      "audience": "國小資源班學生；教師命題使用",
+      "triggers": ["出期中考卷", "期末試卷命題"],
+      "agents": [
+        { "agent": "claude-cloud", "name": "guoyu-exam-paper（國小國語期中期末試卷命題技能）", "status": "啟用" }
+      ],
+      "related": ["guoyu-review-worksheet", "publisher-question-bank-converter"],
+      "status": "啟用",
+      "updated": "2026-11-10"
+    },
+    {
+      "id": "exam-board-html",
+      "zh": "考試資訊看板網頁",
+      "en": "exam-board-html",
+      "category": "考試與題庫",
+      "functions": ["網頁工具"],
+      "scenarios": ["期中期末考前", "班級公告"],
+      "purpose": "把學校的考程公告（Word、PDF、圖片）轉成定期評量資訊看板，先問要顯示哪些年級。",
+      "when": "上傳學校考試資訊檔案時，就算沒附文字說明也會詢問是否生成。",
+      "effect": "可直接編輯、含現在時間與倒數計時器的 HTML 看板。",
+      "audience": "全班學生與家長；教師投影使用",
+      "triggers": ["考試看板", "考程公告"],
+      "agents": [
+        { "agent": "shared", "name": "exam-board-html", "status": "啟用" },
+        { "agent": "claude-cloud", "name": "exam-board-html", "status": "啟用" }
+      ],
+      "related": [],
+      "status": "啟用",
+      "updated": "2026-11-10"
+    },
+    {
+      "id": "publisher-question-bank-converter",
+      "zh": "書商題庫分析與轉換",
+      "en": "publisher-question-bank-converter",
+      "enNote": "原無英文名，此為建議英文名",
+      "category": "考試與題庫",
+      "functions": ["題庫轉換"],
+      "scenarios": ["評量命題", "互動測驗準備"],
+      "purpose": "分析書商命題光碟匯出的 Word、Excel、CSV 題庫，辨識題型與題組，轉成國語出題工具能直接載入的 JSON。",
+      "when": "要把書商題庫匯入自己的出題工具時；一般文件摘要不適用。",
+      "effect": "出題工具可載入的 JSON 題庫。",
+      "audience": "教師備課使用",
+      "triggers": ["書商題庫轉檔", "題庫轉 JSON"],
+      "agents": [
+        { "agent": "shared", "name": "書商題庫分析與轉換", "status": "啟用" }
+      ],
+      "related": ["guoyu-exam-paper"],
+      "status": "啟用",
+      "updated": "2026-11-10"
+    },
+    {
+      "id": "chengyu-four-panel-comic",
+      "zh": "成語四格漫畫",
+      "en": "chengyu-four-panel-comic",
+      "category": "成語教學",
+      "functions": ["圖片／漫畫生成", "可列印教學圖"],
+      "scenarios": ["成語教學"],
+      "purpose": "把成語畫成 A3 橫式四格漫畫：先確認成語、年段與時空背景，提出分鏡，確認後生成無字畫面，再用正確繁中與注音排版。",
+      "when": "提到成語漫畫、成語四格、成語圖解或成語教學圖時。",
+      "effect": "A3 橫式 2×2 四格教學圖（PNG／PDF），含標題注音、對白、意涵、例句。",
+      "audience": "國小學生；教師上課使用",
+      "triggers": ["成語漫畫", "成語四格", "成語圖解"],
+      "agents": [
+        { "agent": "shared", "name": "chengyu-four-panel-comic", "status": "啟用" },
+        { "agent": "claude-cloud", "name": "chengyu-four-panel-comic", "status": "啟用" },
+        { "agent": "gemini", "name": "idiom-four-panel-comic（成語四格漫畫）", "status": "啟用" }
+      ],
+      "related": ["idiom-comic-teaching-presentation", "sentence-comic-worksheet"],
+      "status": "啟用",
+      "updated": "2026-11-10"
+    },
+    {
+      "id": "idiom-word-cloud-worksheet",
+      "zh": "成語文字雲學習單",
+      "en": "idiom-word-cloud-worksheet",
+      "category": "成語教學",
+      "functions": ["Word 學習單"],
+      "scenarios": ["成語教學"],
+      "purpose": "把指定成語做成彩色文字雲成語池，加上約 400 字的挖空短文，讓學生選成語填入。",
+      "when": "說成語文字雲、或提供成語要做挖空文章時；一般詞語不適用。",
+      "effect": "可編輯的 Word 文字雲學習單。",
+      "audience": "國小學生；教師出題使用",
+      "triggers": ["成語文字雲"],
+      "agents": [
+        { "agent": "shared", "name": "idiom-word-cloud-worksheet", "status": "啟用" },
+        { "agent": "gemini", "name": "成語文字雲學習單", "status": "啟用" }
+      ],
+      "related": ["chengyu-sentence-material"],
+      "status": "啟用",
+      "updated": "2026-11-10"
+    },
+    {
+      "id": "chengyu-sentence-material",
+      "zh": "成語造句教材整理",
+      "en": "chengyu-sentence-material",
+      "enNote": "原無英文名，此為建議英文名",
+      "category": "成語教學",
+      "functions": ["Word 教材"],
+      "scenarios": ["成語教學", "造句教學"],
+      "purpose": "把一課的成語與成詞整理成一則一區間：解釋、《註》、相似／相反成語與兩句造句，再接成語選擇題。每次都會先問學生程度。",
+      "when": "整理一課成語造句教材時；不用於生字、學習單出題或簡報。",
+      "effect": "區間式 Word 教材＋成語選擇題。",
+      "audience": "教師備課；國小學生閱讀",
+      "triggers": ["成語造句教材"],
+      "agents": [
+        { "agent": "shared", "name": "成語造句教材整理", "status": "啟用" }
+      ],
+      "related": ["hanzi-similar-polyphone-material", "idiom-word-cloud-worksheet"],
+      "status": "啟用",
+      "updated": "2026-11-10"
+    },
+    {
+      "id": "idiom-comic-teaching-presentation",
+      "zh": "成語漫畫教學簡報",
+      "en": "idiom-comic-teaching-presentation",
+      "category": "成語教學",
+      "functions": ["簡報"],
+      "scenarios": ["成語教學"],
+      "purpose": "製作含解釋、例句、四格漫畫與課堂引導的成語教學簡報。",
+      "when": "成語補充、課文語詞或造句教學要用簡報上課時。",
+      "effect": "繁體中文成語教學簡報。",
+      "audience": "國小學生；教師上課使用",
+      "triggers": ["成語簡報", "成語漫畫簡報"],
+      "agents": [
+        { "agent": "shared", "name": "idiom-comic-teaching-presentation", "status": "啟用" }
+      ],
+      "related": ["chengyu-four-panel-comic", "idiom-layered-teaching-presentation"],
+      "status": "啟用",
+      "updated": "2026-11-10"
+    },
+    {
+      "id": "idiom-layered-teaching-presentation",
+      "zh": "成語分層教學簡報",
+      "en": "idiom-layered-teaching-presentation",
+      "category": "成語教學",
+      "functions": ["簡報"],
+      "scenarios": ["成語教學", "差異化教學"],
+      "purpose": "成語大圖、逐字釋義配圖，加上初、中、高三層生活例句，每層各有情境圖。",
+      "when": "要依學生程度分層講解成語、拆字語義時。",
+      "effect": "文字可編輯、適合投影的 PowerPoint。",
+      "audience": "不同程度的國小學生；教師上課使用",
+      "triggers": ["成語分層簡報"],
+      "agents": [
+        { "agent": "shared", "name": "idiom-layered-teaching-presentation", "status": "啟用" }
+      ],
+      "related": ["idiom-comic-teaching-presentation"],
+      "status": "啟用",
+      "updated": "2026-11-10"
+    },
+    {
+      "id": "idiom-visual-card",
+      "zh": "成語資訊卡",
+      "en": "idiom-visual-card",
+      "category": "成語教學",
+      "functions": ["圖片／漫畫生成", "圖卡"],
+      "scenarios": ["成語教學", "差異化教學"],
+      "purpose": "16:9 方格手帳筆記風格的成語卡：四字逐一拆解、初中高三層例句、全圖注音。",
+      "when": "要做一張成語重點整理圖卡時。",
+      "effect": "16:9 成語資訊圖卡。",
+      "audience": "國小學生",
+      "triggers": ["成語資訊卡"],
+      "agents": [
+        { "agent": "gemini", "name": "idiom-visual-card（成語資訊卡）", "status": "啟用" }
+      ],
+      "related": ["idiom-rich-card", "idiom-flow-card"],
+      "status": "啟用",
+      "updated": "2026-11-10"
+    },
+    {
+      "id": "idiom-rich-card",
+      "zh": "成語教學圖卡（資訊豐富版）",
+      "en": "idiom-rich-card",
+      "category": "成語教學",
+      "functions": ["圖片／漫畫生成", "圖卡"],
+      "scenarios": ["成語教學", "差異化教學"],
+      "purpose": "固定六框版面的成語圖卡，依年段調整文字量，含四字拆解、語意檢核與角色情境對話。",
+      "when": "要一張資訊較完整的成語教學圖卡時。",
+      "effect": "六框成語教學圖卡。",
+      "audience": "國小學生",
+      "triggers": ["成語教學圖卡"],
+      "agents": [
+        { "agent": "gemini", "name": "idiom-rich-card（成語教學圖卡資訊豐富版）", "status": "啟用" }
+      ],
+      "related": ["idiom-visual-card", "idiom-flow-card"],
+      "status": "啟用",
+      "updated": "2026-11-10"
+    },
+    {
+      "id": "idiom-flow-card",
+      "zh": "圖解成語學習卡（仙姑凱西版）",
+      "en": "idiom-flow-card",
+      "category": "成語教學",
+      "functions": ["圖片／漫畫生成", "圖卡"],
+      "scenarios": ["成語教學"],
+      "purpose": "五單元多宮格流動版型，用綠、黃、紅三色引導：字義拆解、原典情境、生活句與內心獨白。",
+      "when": "要用故事流程講解成語時。",
+      "effect": "多宮格成語學習卡。",
+      "audience": "國小學生",
+      "triggers": ["圖解成語學習卡", "仙姑凱西版"],
+      "agents": [
+        { "agent": "gemini", "name": "idiom-flow-card（圖解成語學習卡－仙姑凱西版）", "status": "啟用" }
+      ],
+      "related": ["idiom-visual-card", "idiom-rich-card"],
+      "status": "啟用",
+      "updated": "2026-11-10"
+    },
+    {
+      "id": "sentence-comic-worksheet",
+      "zh": "四格漫畫造句學習單",
+      "en": "sentence-comic-worksheet",
+      "category": "造句教學",
+      "functions": ["圖片／漫畫生成", "Word 學習單"],
+      "scenarios": ["造句教學", "語詞教學", "成語教學"],
+      "purpose": "把情境句做成因果完整的原創四格漫畫，再配上造句學習單，圖文分開。",
+      "when": "造句、語詞或成語要用情境圖引導時；不仿製既有角色或動漫 IP。",
+      "effect": "A3 橫式 2×2 四格漫畫＋可列印造句學習單。",
+      "audience": "國小學生；教師上課使用",
+      "triggers": ["漫畫造句", "四格造句學習單"],
+      "agents": [
+        { "agent": "shared", "name": "sentence-comic-worksheet", "status": "啟用" },
+        { "agent": "gemini", "name": "四格漫畫造句學習單", "status": "啟用" }
+      ],
+      "related": ["chengyu-four-panel-comic"],
+      "status": "啟用",
+      "updated": "2026-11-10"
+    },
+    {
+      "id": "special-education-social-skills-interactive-generator",
+      "zh": "特需社會技巧互動遊戲題組生成器",
+      "en": "special-education-social-skills-interactive-generator",
+      "category": "特教：社會技巧、溝通訓練與 IEP",
+      "functions": ["互動遊戲題組"],
+      "scenarios": ["社會技巧課", "課堂互動遊戲"],
+      "purpose": "為 ASD、ADHD、情障等特殊需求學生出社會技巧情境題：先列候選主題並確認上課人數，再出 T1～T7 一日時間軸題庫。",
+      "when": "準備社會技巧課的互動遊戲或情境演練時。",
+      "effect": "一日時間軸題庫（題數＝人數×2），含正向與危機情境、雙軌評分與下課結算。",
+      "audience": "國小特殊需求學生；特教教師上課使用",
+      "triggers": ["社會技巧命題", "社會互動題組"],
+      "agents": [
+        { "agent": "shared", "name": "特需社會技巧互動遊戲題組生成器", "status": "啟用" },
+        { "agent": "claude-cloud", "name": "special-education-social-skills-interactive-generator", "status": "啟用" },
+        { "agent": "gemini", "name": "special-education-social-skills-interactive-generator", "status": "啟用" },
+        { "agent": "gemini", "name": "special-ed-social-skills-interactive-generator（重複版）", "status": "暫停", "note": "Gemini 已停用此重複版，避免和正式版衝突" }
+      ],
+      "related": ["special-education-communication-training-interactive-generator"],
+      "status": "啟用",
+      "updated": "2026-11-10"
+    },
+    {
+      "id": "special-education-communication-training-interactive-generator",
+      "zh": "特需溝通訓練互動遊戲題組生成器",
+      "en": "special-education-communication-training-interactive-generator",
+      "category": "特教：社會技巧、溝通訓練與 IEP",
+      "functions": ["互動遊戲題組"],
+      "scenarios": ["溝通訓練課", "課堂互動遊戲"],
+      "purpose": "出溝通訓練情境題：音量、聽不清楚時澄清、結構化表達、對話修復、語用分寸。先確認主題與人數再出題。",
+      "when": "準備溝通訓練課的互動遊戲或情境演練時。",
+      "effect": "T1～T7 一日時間軸題庫，含雙軌評分。",
+      "audience": "國小特殊需求學生；特教教師上課使用",
+      "triggers": ["溝通訓練命題", "溝通互動題組"],
+      "agents": [
+        { "agent": "shared", "name": "特需溝通訓練互動遊戲題組生成器", "status": "啟用" },
+        { "agent": "claude-cloud", "name": "special-education-communication-training-interactive-generator", "status": "啟用" }
+      ],
+      "notes": "Gemini 目前只有這個技能的命題指南，還沒有建成技能。",
+      "related": ["special-education-social-skills-interactive-generator"],
+      "status": "啟用",
+      "updated": "2026-11-10"
+    },
+    {
+      "id": "generate-iep",
+      "zh": "IEP 生成",
+      "en": "generate-iep",
+      "category": "特教：社會技巧、溝通訓練與 IEP",
+      "functions": ["Word 文件"],
+      "scenarios": ["IEP 撰寫", "校務文件"],
+      "purpose": "依學校固定的七大項樣版，彙整學生鑑定、評量、觀察與課表資料，生成或修訂 IEP。",
+      "when": "建立、補寫或檢核學生個別化教育計畫時。",
+      "effect": "格式不跑版的完整 IEP 文件。",
+      "audience": "特教教師；IEP 會議成員",
+      "triggers": ["寫 IEP", "修訂 IEP"],
+      "agents": [
+        { "agent": "shared", "name": "generate-iep", "status": "啟用" }
+      ],
+      "notes": "牽涉學生個資，產出與資料不上 GitHub。",
+      "related": [],
+      "status": "啟用",
+      "updated": "2026-11-10"
+    },
+    {
+      "id": "teacher-ppt-zh-tw",
+      "zh": "教師繁中簡報",
+      "en": "teacher-ppt-zh-tw",
+      "category": "簡報製作",
+      "functions": ["簡報"],
+      "scenarios": ["上課簡報", "校務簡報"],
+      "purpose": "為教學與校務情境製作視覺一致的圖片式 PowerPoint，支援多種風格、樣張確認、講稿與逐頁修訂。",
+      "when": "需要 .pptx 簡報時（研習、親師座談、課堂）。",
+      "effect": "繁體中文 .pptx 簡報＋講稿。",
+      "audience": "教師、家長、同事",
+      "triggers": ["做 PPT", "教學簡報"],
+      "agents": [
+        { "agent": "shared", "name": "teacher-ppt-zh-tw", "status": "啟用" }
+      ],
+      "related": ["teaching-html-slides", "yaml-image-deck"],
+      "status": "啟用",
+      "updated": "2026-11-10"
+    },
+    {
+      "id": "teaching-html-slides",
+      "zh": "HTML 教學簡報",
+      "en": "teaching-html-slides",
+      "category": "簡報製作",
+      "functions": ["簡報", "網頁工具"],
+      "scenarios": ["上課簡報"],
+      "purpose": "把教材、講義或課程大綱做成可以正式上課的網頁簡報。",
+      "when": "想用瀏覽器上課、要互動或動畫時；只要 PPT 檔時不適用。",
+      "effect": "HTML 簡報網頁。",
+      "audience": "學生；教師上課使用",
+      "triggers": ["網頁簡報", "HTML 簡報"],
+      "agents": [
+        { "agent": "shared", "name": "teaching-html-slides", "status": "啟用" }
+      ],
+      "related": ["teacher-ppt-zh-tw"],
+      "status": "啟用",
+      "updated": "2026-11-10"
+    },
+    {
+      "id": "yaml-image-deck",
+      "zh": "YAML 圖片式簡報",
+      "en": "yaml-image-deck",
+      "category": "簡報製作",
+      "functions": ["簡報", "圖片／漫畫生成"],
+      "scenarios": ["上課簡報", "校務簡報"],
+      "purpose": "用固定的設計規格（YAML）產出風格一致的整頁圖片簡報，先做一張黃金樣張鎖定風格。",
+      "when": "要 NotebookLM 風全圖簡報、或多頁風格必須一致時。",
+      "effect": "整頁圖片式 PPTX。",
+      "audience": "教師、學生",
+      "triggers": ["YAML 圖片簡報", "全圖簡報"],
+      "agents": [
+        { "agent": "shared", "name": "yaml-image-deck", "status": "啟用" },
+        { "agent": "claude-local", "name": "claude-yaml-image-deck（Claude 專用版）", "status": "啟用", "note": "改用 Canva 生圖或程式畫圖，以 pptx 技能封裝" }
+      ],
+      "related": ["teacher-ppt-zh-tw"],
+      "status": "啟用",
+      "updated": "2026-11-10"
+    },
+    {
+      "id": "kahoot-quiz-creator",
+      "zh": "Kahoot 出題",
+      "en": "kahoot-quiz-creator",
+      "category": "互動測驗平台",
+      "functions": ["互動測驗平台"],
+      "scenarios": ["課堂互動遊戲", "形成性評量"],
+      "purpose": "把教材轉成 Kahoot 題目，用本機 Kahoot 工具建立草稿；明確同意後才發布。",
+      "when": "要用 Kahoot 上課搶答時。",
+      "effect": "Kahoot 草稿或已發布測驗＋題庫 JSON。",
+      "audience": "學生；教師上課使用",
+      "triggers": ["Kahoot 出題"],
+      "agents": [
+        { "agent": "shared", "name": "kahoot-quiz-creator（內含 kahoot_quiz_creator 工具）", "status": "啟用" }
+      ],
+      "related": ["wordwall-activity-creator", "wayground-math-quiz"],
+      "status": "啟用",
+      "updated": "2026-11-10"
+    },
+    {
+      "id": "wordwall-activity-creator",
+      "zh": "Wordwall 活動建立",
+      "en": "wordwall-activity-creator",
+      "category": "互動測驗平台",
+      "functions": ["互動測驗平台"],
+      "scenarios": ["課堂互動遊戲", "回家作業"],
+      "purpose": "把教材整理成題庫，在 Wordwall 建立活動、指派作業與匯出成績；每一步外部動作都先確認。",
+      "when": "要用 Wordwall 做配對、分類、轉盤等遊戲或作業時。",
+      "effect": "Wordwall 活動網址、題庫檔與執行摘要。",
+      "audience": "學生；教師上課使用",
+      "triggers": ["Wordwall 出題", "建立 Wordwall 遊戲"],
+      "agents": [
+        { "agent": "shared", "name": "wordwall-activity-creator", "status": "啟用" },
+        { "agent": "claude-local", "name": "claude-wordwall-activity-creator（Claude 專用版）", "status": "啟用", "note": "使用 Claude 自己的工具安裝位置" }
+      ],
+      "related": ["kahoot-quiz-creator"],
+      "status": "啟用",
+      "updated": "2026-11-10"
+    },
+    {
+      "id": "wayground-math-quiz",
+      "zh": "Wayground 數學測驗",
+      "en": "wayground-math-quiz",
+      "category": "互動測驗平台",
+      "functions": ["互動測驗平台", "圖片／漫畫生成"],
+      "scenarios": ["數學教學", "形成性評量"],
+      "purpose": "把 Word／PDF 數學考卷或原創圖像題做成 Wayground 測驗，含準確的圖形、圖片選項與答案平衡檢查。",
+      "when": "說「把考卷變成 Wayground」「出 Wayground 數學題目」時。",
+      "effect": "Wayground 測驗（quiz.json 預覽、分享包或發布）。",
+      "audience": "學生；教師上課使用",
+      "triggers": ["Wayground 測驗", "考卷變 Wayground"],
+      "agents": [
+        { "agent": "shared", "name": "wayground-math-quiz", "status": "啟用" }
+      ],
+      "related": ["kahoot-quiz-creator"],
+      "status": "啟用",
+      "updated": "2026-11-10"
+    },
+    {
+      "id": "family-pet-sticker-generator-pro-v2",
+      "zh": "家庭與寵物貼圖生成器 Pro v2",
+      "en": "family-pet-sticker-generator-pro-v2",
+      "category": "貼圖與生活",
+      "functions": ["圖片／漫畫生成", "貼圖"],
+      "scenarios": ["家庭生活"],
+      "purpose": "依私人參考照片，生成家人與兩隻寵物犬風格一致的 Q 版聊天貼圖，依台詞換主題。",
+      "when": "要做家庭或寵物的聊天貼圖時；不適用公開肖像或其他插畫。",
+      "effect": "1:1 正方形繁中貼圖（成品私有，不上 GitHub）。",
+      "audience": "家人",
+      "triggers": ["家庭貼圖", "寵物貼圖"],
+      "agents": [
+        { "agent": "shared", "name": "family-pet-sticker-generator-pro-v2", "status": "啟用" },
+        { "agent": "gemini", "name": "family-pet-sticker-generator-pro-v2", "status": "啟用" }
+      ],
+      "related": ["original-theme-sticker-designer"],
+      "status": "啟用",
+      "updated": "2026-11-10"
+    },
+    {
+      "id": "original-theme-sticker-designer",
+      "zh": "原創主題貼圖設計",
+      "en": "original-theme-sticker-designer",
+      "category": "貼圖與生活",
+      "functions": ["圖片／漫畫生成", "貼圖"],
+      "scenarios": ["家庭生活", "班級經營"],
+      "purpose": "沒有參考照片時，從文字設計原創角色貼圖：先核准角色與主視覺，再生成、驗收與私有歸檔。",
+      "when": "想要新主題或新角色的貼圖時；家人與寵物肖像請用家庭貼圖。",
+      "effect": "原創主題貼圖組。",
+      "audience": "使用者本人、家人或班級",
+      "triggers": ["原創貼圖", "主題貼圖"],
+      "agents": [
+        { "agent": "shared", "name": "original-theme-sticker-designer", "status": "啟用" }
+      ],
+      "related": ["family-pet-sticker-generator-pro-v2"],
+      "status": "啟用",
+      "updated": "2026-11-10"
+    },
+    {
+      "id": "shared-travel-calendar-sync",
+      "zh": "旅遊行程日曆同步",
+      "en": "shared-travel-calendar-sync",
+      "category": "貼圖與生活",
+      "functions": ["日曆"],
+      "scenarios": ["家庭生活", "旅遊規劃"],
+      "purpose": "解析旅遊行程表、住宿與費用備忘，排進指定的共用 Google 日曆。",
+      "when": "有旅遊行程要排進家人共用日曆時。",
+      "effect": "Google 日曆上的行程事件。",
+      "audience": "家人",
+      "triggers": ["行程排進日曆", "旅遊日曆"],
+      "agents": [
+        { "agent": "gemini", "name": "shared-travel-calendar-sync", "status": "啟用" }
+      ],
+      "related": [],
+      "status": "啟用",
+      "updated": "2026-11-10"
+    },
+    {
+      "id": "match-my-writing-style",
+      "zh": "模仿我的寫作風格",
+      "en": "match-my-writing-style",
+      "category": "貼圖與生活",
+      "functions": ["寫作"],
+      "scenarios": ["公文與信件", "日常回覆"],
+      "purpose": "建立個人寫作風格卡，讓回覆、文章與公務草稿貼近你的語氣、用詞與標點習慣。",
+      "when": "要代擬信件、公文、貼文，希望像你自己寫的時。",
+      "effect": "風格卡＋符合個人語氣的草稿。",
+      "audience": "使用者本人",
+      "triggers": ["用我的語氣寫", "模仿我的寫作風格"],
+      "agents": [
+        { "agent": "gemini", "name": "match-my-writing-style", "status": "啟用" }
+      ],
+      "related": [],
+      "status": "啟用",
+      "updated": "2026-11-10"
+    },
+    {
+      "id": "startup-sync",
+      "zh": "開工同步",
+      "en": "startup-sync",
+      "category": "工作流程與電腦維護",
+      "functions": ["日誌同步"],
+      "scenarios": ["開工"],
+      "purpose": "開啟共享工作日誌，恢復既有專案的工作脈絡。",
+      "when": "說「開工」、要接續專案或檢查目前進度時；建立新專案不適用。",
+      "effect": "最新進度、未完成事項與下一步。",
+      "audience": "所有 agent；使用者",
+      "triggers": ["開工"],
+      "agents": [
+        { "agent": "shared", "name": "startup-sync", "status": "啟用" },
+        { "agent": "claude-local", "name": "claude-worklog（Claude 專用版，含開工與收工）", "status": "啟用" }
+      ],
+      "related": ["shutdown-sync"],
+      "status": "啟用",
+      "updated": "2026-11-10"
+    },
+    {
+      "id": "shutdown-sync",
+      "zh": "收工同步",
+      "en": "shutdown-sync",
+      "category": "工作流程與電腦維護",
+      "functions": ["日誌同步"],
+      "scenarios": ["收工"],
+      "purpose": "整理、備份並推送工作日誌，準備安全交接。",
+      "when": "說「收工」或要求同步本次進度時；「封存」不會觸發。",
+      "effect": "GitHub 與 Drive 兩端的工作日誌更新。",
+      "audience": "所有 agent；使用者",
+      "triggers": ["收工"],
+      "agents": [
+        { "agent": "shared", "name": "shutdown-sync", "status": "啟用" },
+        { "agent": "claude-cloud", "name": "shutdown-sync-hearthbot（claude.ai 專案版）", "status": "啟用" },
+        { "agent": "claude-local", "name": "claude-worklog（Claude 專用版，含開工與收工）", "status": "啟用" }
+      ],
+      "related": ["startup-sync", "wrap-up"],
+      "status": "啟用",
+      "updated": "2026-11-10"
+    },
+    {
+      "id": "wrap-up",
+      "zh": "封存交接摘要",
+      "en": "wrap-up",
+      "category": "工作流程與電腦維護",
+      "functions": ["日誌同步"],
+      "scenarios": ["收工"],
+      "purpose": "把目前任務濃縮成可以接續的交接摘要。",
+      "when": "只在明確說「封存」時；說「收工」不會觸發。",
+      "effect": "交接摘要。",
+      "audience": "所有 agent；使用者",
+      "triggers": ["封存"],
+      "agents": [
+        { "agent": "shared", "name": "wrap-up", "status": "啟用" }
+      ],
+      "related": ["shutdown-sync"],
+      "status": "啟用",
+      "updated": "2026-11-10"
+    },
+    {
+      "id": "cross-device-worklog",
+      "zh": "跨裝置工作日誌",
+      "en": "cross-device-worklog",
+      "category": "工作流程與電腦維護",
+      "functions": ["日誌同步"],
+      "scenarios": ["開工", "換電腦"],
+      "purpose": "Codex 在不同電腦說「打開工作日誌」時，讀取最新進度並同步共用技能。",
+      "when": "在新的或另一台電腦接續工作時。",
+      "effect": "本機技能與日誌和 GitHub 一致。",
+      "audience": "Codex；使用者",
+      "triggers": ["打開工作日誌"],
+      "agents": [
+        { "agent": "shared", "name": "cross-device-worklog", "status": "啟用" },
+        { "agent": "claude-local", "name": "claude-worklog（Claude 專用版）", "status": "啟用" }
+      ],
+      "related": ["startup-sync"],
+      "status": "啟用",
+      "updated": "2026-11-10"
+    },
+    {
+      "id": "project-init-sync",
+      "zh": "專案初始化同步",
+      "en": "project-init-sync",
+      "category": "工作流程與電腦維護",
+      "functions": ["專案管理"],
+      "scenarios": ["新專案"],
+      "purpose": "初始化或補齊教學工具專案的工作模式與工作區。",
+      "when": "說「新專案初始化」、或要把工作模式套到既有專案時。",
+      "effect": "建立好的專案工作區與規則。",
+      "audience": "所有 agent；使用者",
+      "triggers": ["新專案初始化"],
+      "agents": [
+        { "agent": "shared", "name": "project-init-sync", "status": "啟用" },
+        { "agent": "codex-local", "name": "codex-workspace（Codex 專案工作區）", "status": "啟用" }
+      ],
+      "related": [],
+      "status": "啟用",
+      "updated": "2026-11-10"
+    },
+    {
+      "id": "codex-desktop-local-file-triage",
+      "zh": "本機檔案整理",
+      "en": "codex-desktop-local-file-triage",
+      "category": "工作流程與電腦維護",
+      "functions": ["電腦維護"],
+      "scenarios": ["電腦整理"],
+      "purpose": "推測為盤點、分類 Codex 桌面版的本機檔案。",
+      "when": "待確認。",
+      "effect": "待確認。",
+      "audience": "使用者",
+      "triggers": [],
+      "agents": [
+        { "agent": "codex-local", "name": "codex-desktop-local-file-triage", "status": "待確認", "note": "資料夾在，但找不到 SKILL.md，用途依名稱推測" }
+      ],
+      "related": ["third-party-software-update"],
+      "status": "待確認",
+      "updated": "2026-11-10"
+    },
+    {
+      "id": "third-party-software-update",
+      "zh": "第三方軟體更新盤點",
+      "en": "third-party-software-update",
+      "category": "工作流程與電腦維護",
+      "functions": ["電腦維護"],
+      "scenarios": ["電腦整理"],
+      "purpose": "盤點電腦上可更新的軟體，分成建議更新、需人工確認、不建議、已最新；依指示更新並回報，最後清理安裝檔。",
+      "when": "說「檢查有沒有更新」「把軟體更新到最新」「更新檔清一清」時。",
+      "effect": "更新清單、更新進度回報與清理結果。",
+      "audience": "使用者",
+      "triggers": ["檢查更新", "軟體更新"],
+      "agents": [
+        { "agent": "shared", "name": "third-party-software-update", "status": "啟用" }
+      ],
+      "related": [],
+      "status": "啟用",
+      "updated": "2026-11-10"
+    }
+  ]
+}

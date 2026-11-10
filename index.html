@@ -1,0 +1,363 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Agent 技能總覽目錄</title>
+<style>
+:root{
+  --bg:#f6f4ef; --panel:#ffffff; --ink:#1f2328; --muted:#5f6670; --line:#e2ded5;
+  --accent:#2f6f5e; --accent-soft:#e3efe9; --warn:#a15c00; --warn-soft:#fbefdc;
+  --stop:#a33a3a; --stop-soft:#f8e3e3; --chip:#f0ede6; --shadow:0 1px 3px rgba(0,0,0,.06);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#16181b; --panel:#1f2226; --ink:#e7e9ec; --muted:#9aa1aa; --line:#30343a;
+    --accent:#6fc2a9; --accent-soft:#1e3530; --warn:#e3a54c; --warn-soft:#3a2d18;
+    --stop:#e58585; --stop-soft:#3a2222; --chip:#2a2e33; --shadow:none;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#16181b; --panel:#1f2226; --ink:#e7e9ec; --muted:#9aa1aa; --line:#30343a;
+  --accent:#6fc2a9; --accent-soft:#1e3530; --warn:#e3a54c; --warn-soft:#3a2d18;
+  --stop:#e58585; --stop-soft:#3a2222; --chip:#2a2e33; --shadow:none;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 "Microsoft JhengHei","PingFang TC","Noto Sans TC",system-ui,sans-serif}
+header{padding:20px 16px 8px;max-width:1200px;margin:0 auto}
+h1{margin:0;font-size:1.6rem}
+.sub{color:var(--muted);font-size:.92rem}
+.stats{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.stat{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:6px 12px;font-size:.9rem}
+.stat b{font-size:1.1rem;color:var(--accent)}
+main{max-width:1200px;margin:0 auto;padding:0 16px 40px}
+.bar{position:sticky;top:0;z-index:5;background:var(--bg);padding:10px 0;border-bottom:1px solid var(--line)}
+.search{display:flex;gap:8px;flex-wrap:wrap}
+.search input{flex:1;min-width:200px;padding:10px 12px;font-size:1rem;border:1px solid var(--line);border-radius:10px;background:var(--panel);color:var(--ink)}
+button,select{font:inherit;color:inherit}
+.btn{padding:8px 12px;border:1px solid var(--line);border-radius:10px;background:var(--panel);cursor:pointer}
+.btn:hover{border-color:var(--accent)}
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+.tab{padding:6px 12px;border-radius:999px;border:1px solid var(--line);background:var(--panel);cursor:pointer;font-size:.92rem}
+.tab[aria-selected="true"]{background:var(--accent);color:#fff;border-color:var(--accent)}
+.filters{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:8px;margin-top:10px}
+.filters select{width:100%;padding:8px;border:1px solid var(--line);border-radius:10px;background:var(--panel)}
+.active-filters{margin-top:8px;font-size:.9rem;color:var(--muted)}
+.chip{display:inline-block;background:var(--chip);border-radius:999px;padding:1px 10px;margin:2px 4px 2px 0;font-size:.82rem;cursor:pointer;border:1px solid transparent}
+.chip:hover{border-color:var(--accent)}
+.chip.agent{background:var(--accent-soft);color:var(--accent)}
+.badge{display:inline-block;border-radius:6px;padding:0 8px;font-size:.8rem;font-weight:bold}
+.st-啟用{background:var(--accent-soft);color:var(--accent)}
+.st-暫停{background:var(--warn-soft);color:var(--warn)}
+.st-待確認{background:var(--warn-soft);color:var(--warn)}
+.st-已移除{background:var(--stop-soft);color:var(--stop)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:12px;margin-top:14px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px;box-shadow:var(--shadow);cursor:pointer;display:flex;flex-direction:column;gap:6px}
+.card:hover{border-color:var(--accent)}
+.card h3{margin:0;font-size:1.08rem}
+.en{color:var(--muted);font-size:.82rem;font-family:Consolas,monospace;word-break:break-all}
+.card p{margin:0;font-size:.93rem}
+.muted{color:var(--muted)}
+table{width:100%;border-collapse:collapse;margin-top:14px;background:var(--panel);font-size:.92rem}
+th,td{border-bottom:1px solid var(--line);padding:8px;text-align:left;vertical-align:top}
+th{position:sticky;top:0;background:var(--panel);cursor:pointer;white-space:nowrap}
+tbody tr{cursor:pointer}
+tbody tr:hover{background:var(--chip)}
+.table-wrap{overflow-x:auto}
+.group{margin-top:18px}
+.group h2{font-size:1.1rem;margin:0 0 6px;padding-bottom:4px;border-bottom:2px solid var(--accent)}
+.group ul{margin:0;padding-left:20px}
+.group li{margin:3px 0;cursor:pointer}
+.group li:hover{color:var(--accent)}
+.matrix td,.matrix th{text-align:center}
+.matrix td:first-child,.matrix th:first-child{text-align:left}
+dialog{border:none;border-radius:16px;padding:0;max-width:720px;width:calc(100% - 32px);background:var(--panel);color:var(--ink)}
+dialog::backdrop{background:rgba(0,0,0,.45)}
+.dlg-head{padding:16px 18px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
+.dlg-body{padding:12px 18px 18px;max-height:70vh;overflow:auto}
+.dlg-body h4{margin:12px 0 2px;font-size:.95rem;color:var(--accent)}
+.dlg-body p{margin:0}
+.empty{padding:30px;text-align:center;color:var(--muted)}
+.finder{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;margin-top:14px}
+.finder button{padding:12px;text-align:left;border:1px solid var(--line);border-radius:12px;background:var(--panel);cursor:pointer}
+.finder button:hover{border-color:var(--accent)}
+.finder b{display:block}
+footer{max-width:1200px;margin:0 auto;padding:16px;color:var(--muted);font-size:.85rem}
+@media print{.bar,footer,.btn{display:none}.card{break-inside:avoid}}
+</style>
+</head>
+<body>
+<header>
+  <h1>Agent 技能總覽目錄</h1>
+  <div class="sub">我所有 agent（共用庫、Claude、Gemini、Codex）可以用的技能，一頁查完。資料更新：<span id="updated">—</span></div>
+  <div class="stats" id="stats"></div>
+</header>
+<main>
+  <div class="bar">
+    <div class="search">
+      <input id="q" type="search" placeholder="搜尋：中文名、英文名、用途、觸發詞、對象…（例：成語、期中、Wordwall）" autocomplete="off">
+      <button class="btn" id="reset" type="button">清除篩選</button>
+      <button class="btn" id="theme" type="button" title="切換深淺色">深／淺色</button>
+    </div>
+    <div class="tabs" role="tablist" id="tabs"></div>
+    <div class="filters">
+      <select id="f-category"><option value="">全部分類</option></select>
+      <select id="f-function"><option value="">全部功能</option></select>
+      <select id="f-scenario"><option value="">全部使用情境</option></select>
+      <select id="f-agent"><option value="">全部 agent</option></select>
+      <select id="f-status"><option value="">全部狀態</option></select>
+    </div>
+    <div class="active-filters" id="count"></div>
+  </div>
+  <section id="view"></section>
+</main>
+<footer>
+  技能有新增、更新、暫停或移除時，所有 agent 依 <a href="UPDATE_RULES.md">更新原則</a> 即時更新本目錄。英文名標「建議」者，表示原技能只有中文名稱。
+</footer>
+
+<dialog id="dlg">
+  <div class="dlg-head">
+    <div><h3 id="d-title" style="margin:0"></h3><div class="en" id="d-en"></div></div>
+    <div style="display:flex;gap:6px">
+      <button class="btn" id="d-copy" type="button">複製連結</button>
+      <button class="btn" id="d-close" type="button">關閉</button>
+    </div>
+  </div>
+  <div class="dlg-body" id="d-body"></div>
+</dialog>
+
+<script>
+(() => {
+  const VIEWS = [
+    ["cards","卡片"],["table","表格"],["byCategory","分類索引"],["byFunction","功能索引"],
+    ["byScenario","使用情境索引"],["byAudience","對象索引"],["finder","我想要…"],
+    ["matrix","Agent 對照"],["names","中英名稱對照"],["log","更新紀錄"]
+  ];
+  const FINDER = [
+    ["出一份學習單","Word 學習單"],["整理教材","Word 教材"],["做簡報","簡報"],["畫圖或漫畫","圖片／漫畫生成"],
+    ["課堂互動遊戲","課堂互動遊戲"],["考前準備","期中期末考前"],["特教課","社會技巧課"],["開工／收工","日誌同步"],["整理電腦","電腦維護"]
+  ];
+  let DATA = null, LOG = [], state = { q:"", view:"cards", category:"", function:"", scenario:"", agent:"", status:"", sort:"category" };
+  const $ = s => document.querySelector(s);
+  const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+  const agentLabel = k => (DATA.agents[k] && DATA.agents[k].label) || k;
+
+  function store(key, val){ try{ localStorage.setItem(key, val); }catch(e){} }
+  function load(key){ try{ return localStorage.getItem(key); }catch(e){ return null; } }
+
+  function readHash(){
+    const p = new URLSearchParams(location.hash.slice(1));
+    for (const k of ["q","view","category","function","scenario","agent","status"]) if (p.has(k)) state[k] = p.get(k);
+    return p.get("skill");
+  }
+  function writeHash(skill){
+    const p = new URLSearchParams();
+    for (const k of ["q","category","function","scenario","agent","status"]) if (state[k]) p.set(k, state[k]);
+    if (state.view !== "cards") p.set("view", state.view);
+    if (skill) p.set("skill", skill);
+    history.replaceState(null, "", p.toString() ? "#" + p.toString() : location.pathname);
+  }
+
+  function haystack(s){
+    return [s.zh, s.en, s.id, s.category, s.purpose, s.when, s.effect, s.audience, s.notes,
+      ...(s.functions||[]), ...(s.scenarios||[]), ...(s.triggers||[]),
+      ...(s.agents||[]).flatMap(a => [a.name, agentLabel(a.agent), a.note])].join(" ").toLowerCase();
+  }
+  function filtered(){
+    const terms = state.q.trim().toLowerCase().split(/\s+/).filter(Boolean);
+    return DATA.skills.filter(s =>
+      (!state.category || s.category === state.category) &&
+      (!state.function || (s.functions||[]).includes(state.function)) &&
+      (!state.scenario || (s.scenarios||[]).includes(state.scenario)) &&
+      (!state.agent || (s.agents||[]).some(a => a.agent === state.agent)) &&
+      (!state.status || s.status === state.status || (s.agents||[]).some(a => a.status === state.status)) &&
+      terms.every(t => s._hay.includes(t)));
+  }
+  const uniq = arr => [...new Set(arr)].sort((a,b) => a.localeCompare(b, "zh-Hant"));
+
+  function fillSelect(id, values, labelFn){
+    const el = $(id); const keep = el.options[0].outerHTML;
+    el.innerHTML = keep + values.map(v => `<option value="${esc(v)}">${esc(labelFn ? labelFn(v) : v)}</option>`).join("");
+  }
+
+  function chips(list, kind){
+    return (list||[]).map(v => `<span class="chip" data-filter="${kind}" data-value="${esc(v)}">${esc(v)}</span>`).join("");
+  }
+  function agentChips(s){
+    const seen = new Set();
+    return (s.agents||[]).filter(a => !seen.has(a.agent) && seen.add(a.agent))
+      .map(a => `<span class="chip agent" data-filter="agent" data-value="${esc(a.agent)}">${esc(agentLabel(a.agent))}</span>`).join("");
+  }
+  const badge = st => `<span class="badge st-${esc(st)}">${esc(st)}</span>`;
+
+  function card(s){
+    return `<article class="card" data-skill="${esc(s.id)}">
+      <div style="display:flex;justify-content:space-between;gap:6px"><h3>${esc(s.zh)}</h3>${badge(s.status)}</div>
+      <div class="en">${esc(s.en)}${s.enNote ? "（建議）" : ""}</div>
+      <p>${esc(s.purpose)}</p>
+      <p class="muted"><b>使用時機：</b>${esc(s.when)}</p>
+      <div>${agentChips(s)}</div>
+      <div>${chips(s.functions,"function")}${chips(s.scenarios,"scenario")}</div>
+    </article>`;
+  }
+
+  function groupBy(list, keyFn){
+    const m = new Map();
+    for (const s of list) for (const k of [].concat(keyFn(s))) { if (!m.has(k)) m.set(k, []); m.get(k).push(s); }
+    return m;
+  }
+  function groupsView(list, keyFn, order){
+    const m = groupBy(list, keyFn);
+    const keys = order ? order.filter(k => m.has(k)).concat([...m.keys()].filter(k => !order.includes(k))) : uniq([...m.keys()]);
+    if (!keys.length) return empty();
+    return keys.map(k => `<div class="group"><h2>${esc(k)}（${m.get(k).length}）</h2><ul>${
+      m.get(k).map(s => `<li data-skill="${esc(s.id)}"><b>${esc(s.zh)}</b> <span class="en">${esc(s.en)}</span> — ${esc(s.purpose)}</li>`).join("")
+    }</ul></div>`).join("");
+  }
+  const empty = () => `<div class="empty">找不到符合的技能，換個關鍵字或清除篩選試試。</div>`;
+
+  function sortList(list){
+    const by = state.sort;
+    const cats = DATA.categories;
+    return [...list].sort((a,b) => {
+      if (by === "category") return (cats.indexOf(a.category) - cats.indexOf(b.category)) || a.zh.localeCompare(b.zh,"zh-Hant");
+      if (by === "en") return a.en.localeCompare(b.en);
+      if (by === "updated") return (b.updated||"").localeCompare(a.updated||"");
+      if (by === "agents") return b.agents.length - a.agents.length;
+      return a.zh.localeCompare(b.zh, "zh-Hant");
+    });
+  }
+
+  function render(){
+    const list = sortList(filtered());
+    $("#count").textContent = `符合 ${list.length} ／ 共 ${DATA.skills.length} 個技能` +
+      (["category","function","scenario","agent","status"].some(k => state[k]) || state.q ? "（已套用篩選）" : "");
+    for (const [k,id] of [["category","#f-category"],["function","#f-function"],["scenario","#f-scenario"],["agent","#f-agent"],["status","#f-status"]]) $(id).value = state[k];
+    document.querySelectorAll(".tab").forEach(t => t.setAttribute("aria-selected", t.dataset.view === state.view));
+    const v = $("#view");
+    switch (state.view) {
+      case "cards": v.innerHTML = list.length ? `<div class="grid">${list.map(card).join("")}</div>` : empty(); break;
+      case "table": v.innerHTML = list.length ? `<div class="table-wrap"><table><thead><tr>
+          <th data-sort="zh">中文名稱</th><th data-sort="en">英文名稱</th><th data-sort="category">分類</th>
+          <th>用途</th><th>對象</th><th data-sort="agents">誰有</th><th>狀態</th><th data-sort="updated">更新</th></tr></thead><tbody>${
+          list.map(s => `<tr data-skill="${esc(s.id)}"><td><b>${esc(s.zh)}</b></td><td class="en">${esc(s.en)}</td><td>${esc(s.category)}</td>
+          <td>${esc(s.purpose)}</td><td>${esc(s.audience)}</td><td>${agentChips(s)}</td><td>${badge(s.status)}</td><td>${esc(s.updated)}</td></tr>`).join("")
+        }</tbody></table></div><p class="muted">點欄位標題可排序。</p>` : empty(); break;
+      case "byCategory": v.innerHTML = groupsView(list, s => s.category, DATA.categories); break;
+      case "byFunction": v.innerHTML = groupsView(list, s => s.functions); break;
+      case "byScenario": v.innerHTML = groupsView(list, s => s.scenarios); break;
+      case "byAudience": v.innerHTML = groupsView(list, s => s.audience.split(/[；;]/).map(x => x.trim()).filter(Boolean)); break;
+      case "finder": v.innerHTML = `<p class="muted">不知道技能叫什麼？從想做的事開始選。</p><div class="finder">${
+          FINDER.map(([label, val]) => {
+            const kind = DATA.skills.some(s => (s.functions||[]).includes(val)) ? "function" : "scenario";
+            const n = DATA.skills.filter(s => (s[kind === "function" ? "functions" : "scenarios"]||[]).includes(val)).length;
+            return `<button type="button" data-filter="${kind}" data-value="${esc(val)}" data-goto="cards"><b>${esc(label)}</b><span class="muted">${n} 個技能</span></button>`;
+          }).join("")}</div>`; break;
+      case "matrix": {
+        const keys = Object.keys(DATA.agents);
+        v.innerHTML = list.length ? `<div class="table-wrap"><table class="matrix"><thead><tr><th>技能</th>${keys.map(k => `<th>${esc(agentLabel(k))}</th>`).join("")}</tr></thead><tbody>${
+          list.map(s => `<tr data-skill="${esc(s.id)}"><td><b>${esc(s.zh)}</b></td>${keys.map(k => {
+            const vs = s.agents.filter(a => a.agent === k);
+            return `<td>${vs.map(a => a.status === "啟用" ? "✓" : esc(a.status)).join(" / ")}</td>`;
+          }).join("")}</tr>`).join("")
+        }</tbody></table></div><p class="muted">✓＝可用；其他文字為該版本的狀態。各 agent 的版本名稱點技能可看。</p>` : empty(); break;
+      }
+      case "names": v.innerHTML = list.length ? `<div class="table-wrap"><table><thead><tr><th>中文名稱</th><th>英文名稱</th><th>各 agent 裡的名稱</th></tr></thead><tbody>${
+          list.map(s => `<tr data-skill="${esc(s.id)}"><td><b>${esc(s.zh)}</b></td><td class="en">${esc(s.en)}${s.enNote ? "（建議）" : ""}</td><td>${
+            s.agents.map(a => `${esc(agentLabel(a.agent))}：${esc(a.name)}`).join("<br>")}</td></tr>`).join("")
+        }</tbody></table></div>` : empty(); break;
+      case "log": v.innerHTML = LOG.length ? `<div class="table-wrap"><table><thead><tr><th>日期</th><th>動作</th><th>agent</th><th>內容</th></tr></thead><tbody>${
+          LOG.map(e => `<tr><td>${esc(e.date)}</td><td>${esc(e.action)}</td><td>${esc(e.agent)}</td><td>${esc(e.summary)}${
+            (e.skills||[]).length ? "<br>" + e.skills.map(id => `<span class="chip" data-skill="${esc(id)}">${esc((DATA.skills.find(s => s.id === id)||{}).zh || id)}</span>`).join("") : ""}</td></tr>`).join("")
+        }</tbody></table></div>` : `<div class="empty">尚無更新紀錄。</div>`; break;
+    }
+    writeHash();
+  }
+
+  function openSkill(id){
+    const s = DATA.skills.find(x => x.id === id); if (!s) return;
+    $("#d-title").innerHTML = `${esc(s.zh)} ${badge(s.status)}`;
+    $("#d-en").textContent = s.en + (s.enNote ? `（${s.enNote}）` : "");
+    const rel = (s.related||[]).map(r => DATA.skills.find(x => x.id === r)).filter(Boolean);
+    $("#d-body").innerHTML = `
+      <h4>分類</h4><p>${esc(s.category)}</p>
+      <h4>用途</h4><p>${esc(s.purpose)}</p>
+      <h4>使用時機</h4><p>${esc(s.when)}</p>
+      <h4>會有什麼效果（產出）</h4><p>${esc(s.effect)}</p>
+      <h4>對象</h4><p>${esc(s.audience)}</p>
+      ${(s.triggers||[]).length ? `<h4>怎麼叫它（觸發詞）</h4><p>${s.triggers.map(t => `「${esc(t)}」`).join("、")}</p>` : ""}
+      <h4>功能／情境</h4><div>${chips(s.functions,"function")}${chips(s.scenarios,"scenario")}</div>
+      <h4>哪些 agent 有（各自的版本）</h4>
+      <div class="table-wrap"><table><thead><tr><th>agent</th><th>名稱</th><th>狀態</th><th>說明</th></tr></thead><tbody>${
+        s.agents.map(a => `<tr><td>${esc(agentLabel(a.agent))}</td><td class="en">${esc(a.name)}</td><td>${badge(a.status)}</td><td>${esc(a.note||"")}</td></tr>`).join("")
+      }</tbody></table></div>
+      ${s.notes ? `<h4>備註</h4><p>${esc(s.notes)}</p>` : ""}
+      ${rel.length ? `<h4>相關技能</h4><div>${rel.map(r => `<span class="chip" data-skill="${esc(r.id)}">${esc(r.zh)}</span>`).join("")}</div>` : ""}
+      <h4>最後更新</h4><p>${esc(s.updated)}</p>`;
+    writeHash(s.id);
+    if (!$("#dlg").open) $("#dlg").showModal();
+  }
+
+  function setFilter(kind, value){
+    state[kind] = state[kind] === value ? "" : value;
+    if ($("#dlg").open) $("#dlg").close();
+    render();
+  }
+
+  document.addEventListener("click", e => {
+    const f = e.target.closest("[data-filter]");
+    if (f) { e.stopPropagation(); if (f.dataset.goto) state.view = f.dataset.goto; setFilter(f.dataset.filter, f.dataset.value); return; }
+    const th = e.target.closest("th[data-sort]");
+    if (th) { state.sort = th.dataset.sort; render(); return; }
+    const sk = e.target.closest("[data-skill]");
+    if (sk) openSkill(sk.dataset.skill);
+  });
+
+  async function init(){
+    const t = load("theme"); if (t) document.documentElement.dataset.theme = t;
+    try {
+      const [skills, log] = await Promise.all([
+        fetch("data/skills.json", {cache:"no-store"}).then(r => r.json()),
+        fetch("data/changelog.json", {cache:"no-store"}).then(r => r.json()).catch(() => ({entries:[]}))
+      ]);
+      DATA = skills; LOG = (log.entries||[]).slice().sort((a,b) => b.date.localeCompare(a.date));
+    } catch (err) {
+      $("#view").innerHTML = `<div class="empty">讀不到技能資料（data/skills.json）。若直接開本機檔案，請改用網址或本機伺服器開啟。</div>`;
+      return;
+    }
+    DATA.skills.forEach(s => s._hay = haystack(s));
+    $("#updated").textContent = DATA.updated;
+    const versions = DATA.skills.reduce((n,s) => n + s.agents.length, 0);
+    const paused = DATA.skills.filter(s => s.status !== "啟用").length;
+    $("#stats").innerHTML = `<div class="stat"><b>${DATA.skills.length}</b> 個技能</div><div class="stat"><b>${versions}</b> 個 agent 版本</div>` +
+      `<div class="stat"><b>${DATA.categories.length}</b> 個分類</div><div class="stat"><b>${paused}</b> 個非啟用</div>`;
+    $("#tabs").innerHTML = VIEWS.map(([k,l]) => `<button class="tab" role="tab" type="button" data-view="${k}">${l}</button>`).join("");
+    document.querySelectorAll(".tab").forEach(b => b.addEventListener("click", () => { state.view = b.dataset.view; render(); }));
+    fillSelect("#f-category", DATA.categories);
+    fillSelect("#f-function", uniq(DATA.skills.flatMap(s => s.functions||[])));
+    fillSelect("#f-scenario", uniq(DATA.skills.flatMap(s => s.scenarios||[])));
+    fillSelect("#f-agent", Object.keys(DATA.agents), agentLabel);
+    fillSelect("#f-status", uniq(DATA.skills.flatMap(s => [s.status, ...s.agents.map(a => a.status)])));
+    for (const [k,id] of [["category","#f-category"],["function","#f-function"],["scenario","#f-scenario"],["agent","#f-agent"],["status","#f-status"]])
+      $(id).addEventListener("change", e => { state[k] = e.target.value; render(); });
+    let timer; $("#q").addEventListener("input", e => { clearTimeout(timer); timer = setTimeout(() => { state.q = e.target.value; render(); }, 120); });
+    $("#reset").addEventListener("click", () => { Object.assign(state, {q:"",category:"",function:"",scenario:"",agent:"",status:""}); $("#q").value = ""; render(); });
+    $("#theme").addEventListener("click", () => {
+      const dark = getComputedStyle(document.documentElement).getPropertyValue("--bg").trim() === "#16181b";
+      document.documentElement.dataset.theme = dark ? "light" : "dark"; store("theme", document.documentElement.dataset.theme);
+    });
+    $("#d-close").addEventListener("click", () => $("#dlg").close());
+    $("#dlg").addEventListener("close", () => writeHash());
+    $("#d-copy").addEventListener("click", async () => {
+      try { await navigator.clipboard.writeText(location.href); $("#d-copy").textContent = "已複製"; setTimeout(() => $("#d-copy").textContent = "複製連結", 1500); } catch(e) {}
+    });
+    document.addEventListener("keydown", e => { if (e.key === "/" && document.activeElement !== $("#q")) { e.preventDefault(); $("#q").focus(); } });
+    const skill = readHash(); $("#q").value = state.q;
+    render();
+    if (skill) openSkill(skill);
+  }
+  init();
+})();
+</script>
+</body>
+</html>
