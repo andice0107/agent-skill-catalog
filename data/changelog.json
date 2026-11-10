@@ -13,6 +13,13 @@
       "action": "更新",
       "skills": ["third-party-software-update"],
       "summary": "補充 Windows 支援：winget／scoop／Chocolatey／pip／npm／登錄檔，並說明版本未知的項目改標「需人工確認」。"
+    },
+    {
+      "date": "2026-11-10",
+      "agent": "claude-cloud",
+      "action": "新增",
+      "skills": ["web-image-gen", "chengyu-four-panel-comic"],
+      "summary": "新增網頁生圖通用技能（Gemini 圖片生成器／教材圖片產生器／Canva，全程由 agent 執行）；成語四格漫畫改為引用它產圖。"
     }
   ]
 }

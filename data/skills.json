@@ -17,7 +17,8 @@
     "簡報製作",
     "互動測驗平台",
     "貼圖與生活",
-    "工作流程與電腦維護"
+    "工作流程與電腦維護",
+    "圖片生成"
   ],
   "skills": [
     {
@@ -208,7 +209,7 @@
       "category": "成語教學",
       "functions": ["圖片／漫畫生成", "可列印教學圖"],
       "scenarios": ["成語教學"],
-      "purpose": "把成語畫成 A3 橫式四格漫畫：先確認成語、年段與時空背景，提出分鏡，確認後生成無字畫面，再用正確繁中與注音排版。",
+      "purpose": "把成語畫成 A3 橫式四格漫畫：先確認成語、年段與時空背景，提出分鏡，確認後依網頁生圖通用技能生成無字畫面，再用正確繁中與注音排版。",
       "when": "提到成語漫畫、成語四格、成語圖解或成語教學圖時。",
       "effect": "A3 橫式 2×2 四格教學圖（PNG／PDF），含標題注音、對白、意涵、例句。",
       "audience": "國小學生；教師上課使用",
@@ -218,7 +219,7 @@
         { "agent": "claude-cloud", "name": "chengyu-four-panel-comic", "status": "啟用" },
         { "agent": "gemini", "name": "idiom-four-panel-comic（成語四格漫畫）", "status": "啟用" }
       ],
-      "related": ["idiom-comic-teaching-presentation", "sentence-comic-worksheet"],
+      "related": ["idiom-comic-teaching-presentation", "sentence-comic-worksheet", "web-image-gen"],
       "status": "啟用",
       "updated": "2026-11-10"
     },
@@ -768,6 +769,26 @@
         { "agent": "shared", "name": "third-party-software-update", "status": "啟用" }
       ],
       "related": [],
+      "status": "啟用",
+      "updated": "2026-11-10"
+    },
+    {
+      "id": "web-image-gen",
+      "zh": "網頁生圖通用技能",
+      "en": "web-image-gen",
+      "category": "圖片生成",
+      "functions": ["圖片／漫畫生成"],
+      "scenarios": ["成語教學", "造句教學", "上課簡報", "家庭生活"],
+      "purpose": "給沒有內建生圖能力的 agent 用：依環境選 Gemini 生圖網站（自動化或點擊操作）或 Canva，寫無字英文提示詞、批次生成、取回圖檔並逐張驗收。生圖全程由 agent 執行，使用者只驗收成品。",
+      "when": "任何任務需要產圖時（成語漫畫、造句漫畫、簡報插圖、貼圖等），由該任務的技能呼叫或直接使用。",
+      "effect": "依代碼命名的原圖檔（A1.jpg…），交回呼叫的任務排版或使用。",
+      "audience": "各 agent；使用者只負責驗收成品",
+      "triggers": ["生圖", "產圖", "批次生圖", "Gemini 圖片生成器", "Canva 生圖"],
+      "agents": [
+        { "agent": "shared", "name": "web-image-gen", "status": "啟用" },
+        { "agent": "claude-cloud", "name": "web-image-gen", "status": "啟用" }
+      ],
+      "related": ["chengyu-four-panel-comic", "family-pet-sticker-generator-pro-v2", "original-theme-sticker-designer", "yaml-image-deck"],
       "status": "啟用",
       "updated": "2026-11-10"
     }
