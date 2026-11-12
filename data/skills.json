@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-11-12",
+  "updated": "2026-11-13",
   "agents": {
     "shared": {
       "label": "共用庫（Codex／OpenCode）",
@@ -1501,6 +1501,50 @@
       "status": "啟用",
       "notes": "已合併 codex-worklogs#139。自備 Canva 首幀跳過 Colab 生圖階段、Claude 雲端版可否執行，尚未驗證。",
       "updated": "2026-11-12"
+    },
+    {
+      "id": "guoyu-game-builder",
+      "zh": "國語教學遊戲產生器",
+      "en": "guoyu-game-builder",
+      "category": "國語生字與語詞學習單",
+      "functions": [
+        "互動遊戲生成",
+        "題庫整理",
+        "目錄建置"
+      ],
+      "scenarios": [
+        "生字教學",
+        "形近字與多音字教學",
+        "成語教學",
+        "複習考",
+        "課堂互動遊戲"
+      ],
+      "purpose": "把某一課（或複習考範圍）的書商教材（生字表、字音字形、字義、語句練習、成語、部件）整理成題庫，產生畫面與玩法固定的單一 HTML 國語遊戲，含目錄、自動注音、教育部部首核對部件拆法；只換題庫，不改遊戲。",
+      "when": "使用者要把某課或複習考的國語教材做成課堂互動遊戲網頁時。題目一律出自書商教材，自行補的內容標「自補」請老師檢查。",
+      "effect": "含目錄的單一 HTML 遊戲檔（字族果園、部件補字、部件拼字、形近字、多音字、語詞拼句子、成語、字字小火車、闖關四選一）、題庫 txt、核對表與自補清單。",
+      "audience": "國小國語教師與學生",
+      "triggers": [
+        "國語遊戲",
+        "國語教學遊戲",
+        "生字遊戲",
+        "複習考遊戲",
+        "部件拼字",
+        "目錄"
+      ],
+      "agents": [
+        {
+          "agent": "claude-cloud",
+          "name": "guoyu-game-builder",
+          "status": "啟用"
+        }
+      ],
+      "related": [
+        "hanzi-similar-polyphone-material",
+        "zhuyin-hanzi-tracing-pdf"
+      ],
+      "status": "啟用",
+      "notes": "2026-11-13 建立，試做康軒一上第1課，僅單機版；多人連線版、筆順寫字尚未做；iPad 實機尚未測試。技能檔放在 Claude 專案資料夾，另存為 claude.ai 技能。",
+      "updated": "2026-11-13"
     }
   ]
 }
