@@ -11,22 +11,38 @@
       "date": "2026-11-10",
       "agent": "opencode",
       "action": "更新",
-      "skills": ["third-party-software-update"],
+      "skills": [
+        "third-party-software-update"
+      ],
       "summary": "補充 Windows 支援：winget／scoop／Chocolatey／pip／npm／登錄檔，並說明版本未知的項目改標「需人工確認」。"
     },
     {
       "date": "2026-11-10",
       "agent": "claude-cloud",
       "action": "新增",
-      "skills": ["web-image-gen", "chengyu-four-panel-comic"],
+      "skills": [
+        "web-image-gen",
+        "chengyu-four-panel-comic"
+      ],
       "summary": "新增網頁生圖通用技能（Gemini 圖片生成器／教材圖片產生器／Canva，全程由 agent 執行）；成語四格漫畫改為引用它產圖。"
     },
     {
       "date": "2026-11-12",
       "agent": "claude-cloud",
       "action": "新增版本",
-      "skills": ["family-pet-sticker-generator-pro-v2"],
+      "skills": [
+        "family-pet-sticker-generator-pro-v2"
+      ],
       "summary": "新增 OpenCode 專用版：agent 全程代做生圖、無字底圖＋本機字型疊字、視覺模型交叉驗收；並在 agents 清單新增 opencode 代號。"
+    },
+    {
+      "date": "2026-11-12",
+      "agent": "claude-setup-msi",
+      "action": "新增",
+      "skills": [
+        "colab-video-gen"
+      ],
+      "summary": "新增 Colab 影片生成技能（Colab G4 跑 MiniMax H3，腳本審稿、首幀確認、看門狗開機、做完關機），PR 合併前先標待確認。"
     }
   ]
 }
