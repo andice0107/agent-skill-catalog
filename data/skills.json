@@ -1,8 +1,9 @@
 {
   "version": 1,
-  "updated": "2026-11-10",
+  "updated": "2026-11-12",
   "agents": {
     "shared": { "label": "共用庫（Codex／OpenCode）", "where": "GitHub codex-worklogs/skills/" },
+    "opencode": { "label": "OpenCode", "where": "GitHub codex-worklogs/agents/opencode/skills/" },
     "claude-cloud": { "label": "Claude 雲端", "where": "claude.ai 技能" },
     "claude-local": { "label": "Claude 本機", "where": "~/.claude/skills/" },
     "gemini": { "label": "Gemini", "where": "Gemini Gems（備份在 Drive「Gemini Backup」）" },
@@ -571,11 +572,12 @@
       "triggers": ["家庭貼圖", "寵物貼圖"],
       "agents": [
         { "agent": "shared", "name": "family-pet-sticker-generator-pro-v2", "status": "啟用" },
-        { "agent": "gemini", "name": "family-pet-sticker-generator-pro-v2", "status": "啟用" }
+        { "agent": "gemini", "name": "family-pet-sticker-generator-pro-v2", "status": "啟用" },
+        { "agent": "opencode", "name": "family-pet-sticker-generator-opencode（OpenCode 專用版 v1）", "status": "啟用", "note": "執行方式不同：agent 全程代做生圖（Gemini 3.1 Flash、1:1、皮克斯風格、每次重掛參考圖並勾選優先使用）；圖上文字走無字底圖＋Pillow 疊字，字型取自使用者本機字型池並依情緒換字（缺字檢查→候選對照表→視覺模型排序→agent 定稿）；交付前依 agents/opencode/視覺驗收原則.md 跑 L1 程式檢查＋L2 免費視覺模型交叉驗收。角色與隱私規則與共享版相同。" }
       ],
       "related": ["original-theme-sticker-designer"],
       "status": "啟用",
-      "updated": "2026-11-10"
+      "updated": "2026-11-12"
     },
     {
       "id": "original-theme-sticker-designer",

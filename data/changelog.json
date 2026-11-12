@@ -20,6 +20,13 @@
       "action": "新增",
       "skills": ["web-image-gen", "chengyu-four-panel-comic"],
       "summary": "新增網頁生圖通用技能（Gemini 圖片生成器／教材圖片產生器／Canva，全程由 agent 執行）；成語四格漫畫改為引用它產圖。"
+    },
+    {
+      "date": "2026-11-12",
+      "agent": "claude-cloud",
+      "action": "新增版本",
+      "skills": ["family-pet-sticker-generator-pro-v2"],
+      "summary": "新增 OpenCode 專用版：agent 全程代做生圖、無字底圖＋本機字型疊字、視覺模型交叉驗收；並在 agents 清單新增 opencode 代號。"
     }
   ]
 }
