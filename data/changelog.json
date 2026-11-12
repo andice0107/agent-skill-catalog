@@ -43,6 +43,15 @@
         "colab-video-gen"
       ],
       "summary": "新增 Colab 影片生成技能（Colab G4 跑 MiniMax H3，腳本審稿、首幀確認、看門狗開機、做完關機），PR 合併前先標待確認。"
+    },
+    {
+      "date": "2026-11-13",
+      "agent": "claude-cloud-teaching-tools",
+      "action": "新增",
+      "skills": [
+        "guoyu-game-builder"
+      ],
+      "summary": "新增國語教學遊戲產生器技能（教材轉題庫、含目錄與教育部部件核對的單一 HTML 國語遊戲）。"
     }
   ]
 }
