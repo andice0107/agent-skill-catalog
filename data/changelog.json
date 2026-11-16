@@ -88,6 +88,15 @@
         "shutdown-sync"
       ],
       "summary": "收工流程新增『比對技能目錄』步驟（執行 check_sync.mjs，有缺漏或技能增減就走 PR 補登）。"
+    },
+    {
+      "date": "2026-11-16",
+      "agent": "claude-hp-desktop",
+      "action": "新增",
+      "skills": [
+        "windows-system-optimize"
+      ],
+      "summary": "新增 Windows 系統優化技能（空間與效能診斷、低風險直接清理、需確認項目才詢問、啟動項目可還原管理），與系統更新、第三方更新分工。"
     }
   ]
 }
