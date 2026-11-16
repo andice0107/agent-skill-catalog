@@ -14,6 +14,7 @@
 | `data/changelog.json` | 更新紀錄 |
 | `index.html` | 網站本體 |
 | `scripts/validate.mjs` | 格式檢查：`node scripts/validate.mjs` |
+| `scripts/check_sync.mjs` | 漏登檢查：比對共用庫（codex-worklogs）的技能資料夾與本目錄，有缺就報錯：`node scripts/check_sync.mjs [共用庫路徑]` |
 | `UPDATE_RULES.md` | **所有 agent 更新本目錄的原則** |
 
 ## 本機預覽

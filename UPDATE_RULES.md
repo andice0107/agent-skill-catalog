@@ -19,7 +19,7 @@
 | 移除技能 | `status` 改成「已移除」，保留條目，在 `notes` 寫原因與替代技能 |
 | 不確定技能現況 | 標「待確認」，在 `notes` 寫原因 |
 
-開工時也比對一次：自己實際有的技能和目錄不同，就提出更新。
+開工與收工時也比對一次：自己實際有的技能和目錄不同，就提出更新；共用庫可執行 `node scripts/check_sync.mjs` 自動比對。收工技能（shutdown-sync）已內建這一步。
 
 ## 二、更新步驟
 
@@ -31,7 +31,7 @@
    - 沒有中文名稱的技能補中文名稱；沒有英文名稱的補建議英文名，並加 `"enNote": "原無英文名，此為建議英文名"`。
    - `agents` 代號：`shared`（共用庫 Codex／OpenCode）、`claude-cloud`、`claude-local`、`gemini`、`codex-local`。新增 agent 或分類時，同時改最上方的 `agents` 或 `categories`。
 3. 在 `data/changelog.json` 加一筆：`date`、`agent`（識別名）、`action`（新增／更新／暫停／恢復／移除／新增版本）、`skills`（技能 id）、`summary`（一句話）。
-4. 執行 `node scripts/validate.mjs`，必須通過。
+4. 執行 `node scripts/validate.mjs`，必須通過。有 clone 共用庫（預設與本 repo 同層的 `../codex-worklogs`，或用參數／環境變數 `CODEX_WORKLOGS` 指定）時，再執行 `node scripts/check_sync.mjs`，確認共用庫的技能都已登錄；有缺漏就一併補登。只收「技能」，`tools/`、`backups/` 底下的工具與備份不算。
 5. 開分支 `update/<agent識別名>/<YYYYMMDD>-<簡述>`，提交並開 PR。
 6. 向使用者回報改了哪些技能與 PR 連結，請使用者合併；使用者在對話中同意後，agent 才可以代為合併。
 7. 合併後 GitHub Pages 約 1～2 分鐘更新。
