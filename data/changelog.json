@@ -52,6 +52,33 @@
         "guoyu-game-builder"
       ],
       "summary": "新增國語教學遊戲產生器技能（教材轉題庫、含目錄與教育部部件核對的單一 HTML 國語遊戲）。"
+    },
+    {
+      "date": "2026-11-16",
+      "agent": "claude-hp-desktop",
+      "action": "新增",
+      "skills": [
+        "windows-system-update"
+      ],
+      "summary": "新增 Windows 系統更新技能（內建機制盤點與安裝、預設全部處理、需確認項目才詢問、不自動重開機），與第三方軟體更新分開。"
+    },
+    {
+      "date": "2026-11-16",
+      "agent": "claude-hp-desktop",
+      "action": "更新",
+      "skills": [
+        "third-party-software-update"
+      ],
+      "summary": "加入排除名單（Uninstall Tool 不更新）與預設授權原則；說明改與 windows-system-update 分工。"
+    },
+    {
+      "date": "2026-11-16",
+      "agent": "claude-hp-desktop",
+      "action": "新增版本",
+      "skills": [
+        "guoyu-game-builder"
+      ],
+      "summary": "國語教學遊戲產生器已在 GitHub 共用庫，補登 shared 版本列。"
     }
   ]
 }
