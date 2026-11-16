@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-11-13",
+  "updated": "2026-11-16",
   "agents": {
     "shared": {
       "label": "共用庫（Codex／OpenCode）",
@@ -1396,9 +1396,9 @@
         "電腦整理",
         "軟體更新"
       ],
-      "purpose": "盤點電腦上可更新的軟體，分成建議更新、需人工確認、不建議、已最新；macOS 查 brew／pip／npm／appcast，Windows 查 winget／scoop／Chocolatey／pip／npm／登錄檔。依指示更新並回報，最後清理安裝檔。",
-      "when": "說「檢查有沒有更新」「把軟體更新到最新」「更新檔清一清」時；在 Windows 上要盤點已安裝軟體時也適用。",
-      "effect": "更新清單（版本未知者標「需人工確認」）、更新進度回報與清理結果。",
+      "purpose": "盤點電腦上可更新的軟體，分成建議更新、需人工確認、不建議、已最新；macOS 查 brew／pip／npm／appcast，Windows 查 winget／scoop／Chocolatey／pip／npm／登錄檔。沒特別說不要的建議更新項目直接更新，只有發現需確認的項目才詢問；更新時回報進度，最後清理安裝檔。",
+      "when": "說「檢查有沒有更新」「把軟體更新到最新」「更新檔清一清」時；在 Windows 上要盤點已安裝軟體時也適用。 只處理第三方軟體；Windows 系統更新請用 windows-system-update。",
+      "effect": "更新清單（版本未知者標「需人工確認」）、使用者排除的項目列在「已排除」、更新進度回報與清理結果。",
       "audience": "使用者",
       "triggers": [
         "檢查更新",
@@ -1413,9 +1413,12 @@
           "status": "啟用"
         }
       ],
-      "related": [],
+      "related": [
+        "windows-system-update"
+      ],
       "status": "啟用",
-      "updated": "2026-11-10"
+      "updated": "2026-11-16",
+      "notes": "2026-11-16 新增排除名單機制（Uninstall Tool 固定不更新，可用 --exclude 臨時排除）與「預設授權」原則；Windows 系統更新分出為 windows-system-update。"
     },
     {
       "id": "web-image-gen",
@@ -1533,6 +1536,11 @@
       ],
       "agents": [
         {
+          "agent": "shared",
+          "name": "guoyu-game-builder",
+          "status": "啟用"
+        },
+        {
           "agent": "claude-cloud",
           "name": "guoyu-game-builder",
           "status": "啟用"
@@ -1544,7 +1552,45 @@
       ],
       "status": "啟用",
       "notes": "2026-11-13 建立，試做康軒一上第1課，僅單機版；多人連線版、筆順寫字尚未做；iPad 實機尚未測試。技能檔放在 Claude 專案資料夾，另存為 claude.ai 技能。",
-      "updated": "2026-11-13"
+      "updated": "2026-11-16"
+    },
+    {
+      "id": "windows-system-update",
+      "zh": "Windows 系統更新",
+      "en": "windows-system-update",
+      "category": "工作流程與電腦維護",
+      "functions": [
+        "電腦維護",
+        "系統更新"
+      ],
+      "scenarios": [
+        "Windows 更新",
+        "安全性修補",
+        "重開機前後檢查"
+      ],
+      "purpose": "檢查並安裝 Windows 作業系統更新（累積更新、安全性修補、.NET、Defender 定義、驅動程式、功能更新）。用 Windows 內建更新機制唯讀盤點，沒特別說不要的更新直接安裝，只有功能更新、韌體／BIOS、需接受授權條款、選用預覽等需確認的項目才詢問；不自動重開機。",
+      "when": "說「檢查 Windows 更新」「把系統更新裝一裝」「電腦要不要重開機更新」時。第三方軟體更新請用 third-party-software-update。",
+      "effect": "待安裝更新清單（含待重開機狀態與磁碟空間）、逐項安裝回報、是否需要重開機的說明。",
+      "audience": "使用者",
+      "triggers": [
+        "Windows 更新",
+        "系統更新",
+        "安全性修補",
+        "重開機更新"
+      ],
+      "agents": [
+        {
+          "agent": "shared",
+          "name": "windows-system-update",
+          "status": "啟用"
+        }
+      ],
+      "related": [
+        "third-party-software-update"
+      ],
+      "status": "啟用",
+      "notes": "2026-11-16 建立；只處理 Windows 作業系統，與第三方軟體更新分開。安裝需系統管理員，.ps1 腳本須存 UTF-8 BOM。",
+      "updated": "2026-11-16"
     }
   ]
 }
