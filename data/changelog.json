@@ -79,6 +79,15 @@
         "guoyu-game-builder"
       ],
       "summary": "國語教學遊戲產生器已在 GitHub 共用庫，補登 shared 版本列。"
+    },
+    {
+      "date": "2026-11-16",
+      "agent": "claude-hp-desktop",
+      "action": "更新",
+      "skills": [
+        "shutdown-sync"
+      ],
+      "summary": "收工流程新增『比對技能目錄』步驟（執行 check_sync.mjs，有缺漏或技能增減就走 PR 補登）。"
     }
   ]
 }
