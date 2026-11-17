@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-11-16",
+  "updated": "2026-11-17",
   "agents": {
     "shared": {
       "label": "共用庫（Codex／OpenCode）",
@@ -1635,6 +1635,47 @@
       "status": "啟用",
       "notes": "2026-11-16 建立；僅 Windows，Mac 版暫不處理。腳本須存 UTF-8 BOM；DISM 與 Windows.old 清理需管理員。",
       "updated": "2026-11-16"
+    },
+    {
+      "id": "guoyu-writing-practice-sheet",
+      "zh": "國小國語生字語詞習寫單技能",
+      "en": "guoyu-writing-practice-sheet",
+      "category": "國語生字與語詞學習單",
+      "functions": [
+        "PDF 學習單",
+        "描寫字"
+      ],
+      "scenarios": [
+        "生字教學",
+        "語詞習寫",
+        "課後練習"
+      ],
+      "purpose": "依指定課次的生字與語詞，產生 A4 直式 PDF 習寫單：田字格、直行由右往左、標楷體實心字加灰色圓點描寫字、旁注音。",
+      "when": "老師要某一課的生字、語詞習寫單時；發動後先問要哪一種（上生字下語詞、全生字、全語詞每行填滿、每語詞只寫一次），並確認學校、學年、學期、年級、課次與生字語詞注音。",
+      "effect": "可列印 PDF 習寫單（含頁碼、標題、班級姓名欄），每行剛好寫滿；描寫字只做漢字。",
+      "audience": "國小中年級以上學生；教師",
+      "triggers": [
+        "生字語詞習寫單",
+        "習字單",
+        "習寫單"
+      ],
+      "agents": [
+        {
+          "agent": "shared",
+          "name": "國小國語生字語詞習寫單技能",
+          "status": "啟用"
+        },
+        {
+          "agent": "claude-cloud",
+          "name": "國小國語生字語詞習寫單技能",
+          "status": "啟用"
+        }
+      ],
+      "related": [
+        "zhuyin-hanzi-tracing-pdf"
+      ],
+      "status": "啟用",
+      "updated": "2026-11-17"
     }
   ]
 }
