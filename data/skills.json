@@ -192,7 +192,7 @@
     },
     {
       "id": "zhuyin-hanzi-tracing-pdf",
-      "zh": "國字注音描寫字 PDF",
+      "zh": "國字注音描寫字 PDF（一年級寫「注音」描寫字）",
       "en": "zhuyin-hanzi-tracing-pdf",
       "category": "國語生字與語詞學習單",
       "functions": [
@@ -232,7 +232,7 @@
       ],
       "related": [],
       "status": "啟用",
-      "updated": "2026-11-10"
+      "updated": "2026-11-17"
     },
     {
       "id": "guoyu-review-worksheet",
@@ -1638,7 +1638,7 @@
     },
     {
       "id": "guoyu-writing-practice-sheet",
-      "zh": "國小國語生字語詞習寫單技能",
+      "zh": "國小國語生字語詞習寫單技能（自製甲乙本）",
       "en": "guoyu-writing-practice-sheet",
       "category": "國語生字與語詞學習單",
       "functions": [
@@ -1807,7 +1807,7 @@
     },
     {
       "id": "hanzi-trio-worksheet",
-      "zh": "生字三合一學習單",
+      "zh": "生字三合一學習單（部件組字遊戲學習單）",
       "en": "hanzi-trio-worksheet",
       "category": "國語生字與語詞學習單",
       "functions": [

@@ -149,6 +149,17 @@
         "hanzi-trio-worksheet"
       ],
       "summary": "新增生字三合一學習單技能：把字形大小控制、找字、重新組字三個遊戲合成一份 A4 PDF（學生版與教師解答版），沿用字根偵探的部件庫與全字庫正楷體。"
+    },
+    {
+      "date": "2026-11-17",
+      "agent": "opencode",
+      "action": "更新",
+      "skills": [
+        "guoyu-writing-practice-sheet",
+        "zhuyin-hanzi-tracing-pdf",
+        "hanzi-trio-worksheet"
+      ],
+      "summary": "依使用者網站自訂版（my-version.json）寫回 3 個技能的中文名稱：習寫單加註「自製甲乙本」、描寫字加註「一年級寫『注音』描寫字」、三合一加註「部件組字遊戲學習單」；其餘欄位與 my-version.json 均未改動。"
     }
   ]
 }
