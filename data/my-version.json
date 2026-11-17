@@ -1786,7 +1786,53 @@
    ],
    "status": "啟用",
    "updated": "2026-11-17"
+  },
+  {
+   "id": "hanzi-trio-worksheet",
+   "zh": "生字三合一學習單",
+   "en": "hanzi-trio-worksheet",
+   "category": "國語生字與語詞學習單",
+   "functions": [
+    "PDF 學習單",
+    "字形大小控制",
+    "找字",
+    "重新組字"
+   ],
+   "scenarios": [
+    "生字教學",
+    "部件拼字",
+    "書寫練習"
+   ],
+   "purpose": "依老師指定的範圍從教材庫找出本課生字，把「字形大小控制、找字、重新組字」三個遊戲合成一份學習單，並附教師解答版。",
+   "when": "老師要某一課的生字三合一、字形大小控制、重新組字或找字學習單時；技能一開始就會把學期、書商、年級、課次、課名、校名與資源班名稱、第二大題是否印注音提示等全部問完，確認後才產生。",
+   "effect": "A4 直式 PDF（學生版與教師解答版）：第 1 頁為字形大小控制與找字，第 2 頁起為重新組字（全部生字、隨機亂序）；只有第 1 頁有標題與班級姓名列；全字庫正楷體；輕聲在注音正上方；只出 PDF。",
+   "audience": "國小國語（資源班）學生；教師出題使用",
+   "triggers": [
+    "三合一學習單",
+    "字形大小控制",
+    "重新組字",
+    "找字遊戲",
+    "部件拼字學習單"
+   ],
+   "agents": [
+    {
+     "agent": "shared",
+     "name": "hanzi-trio-worksheet",
+     "status": "啟用"
+    },
+    {
+     "agent": "claude-cloud",
+     "name": "hanzi-trio-worksheet",
+     "status": "啟用"
+    }
+   ],
+   "related": [
+    "hanzi-component-detective-worksheet",
+    "hanzi-hide-seek-worksheet"
+   ],
+   "status": "啟用",
+   "updated": "2026-11-17"
   }
  ],
- "savedAt": "2026-11-17T14:16:38.358Z"
+ "savedAt": "2026-11-17T15:28:58.105Z"
 }
