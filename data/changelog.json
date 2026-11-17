@@ -122,6 +122,15 @@
         "skill-catalog-update"
       ],
       "summary": "新增「技能目錄更新」技能與原則：動目錄前必須先啟動，先讀使用者最新編輯版並保護使用者改過的內容。"
+    },
+    {
+      "date": "2026-11-17",
+      "agent": "claude-cloud",
+      "action": "新增",
+      "skills": [
+        "hanzi-hide-seek-worksheet"
+      ],
+      "summary": "新增生字躲貓貓學習單技能：依指定範圍從教材庫找生字語詞，產生遮蔽生字的 A4 PDF（學生版與解答版）。"
     }
   ]
 }
