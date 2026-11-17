@@ -7,7 +7,8 @@
  "deleted": [],
  "edited": [
   "guoyu-writing-practice-sheet",
-  "zhuyin-hanzi-tracing-pdf"
+  "zhuyin-hanzi-tracing-pdf",
+  "hanzi-trio-worksheet"
  ],
  "categories": [
   "國語生字與語詞學習單",
@@ -1789,7 +1790,7 @@
   },
   {
    "id": "hanzi-trio-worksheet",
-   "zh": "生字三合一學習單",
+   "zh": "生字三合一學習單（部件組字遊戲學習單）",
    "en": "hanzi-trio-worksheet",
    "category": "國語生字與語詞學習單",
    "functions": [
@@ -1834,5 +1835,5 @@
    "updated": "2026-11-17"
   }
  ],
- "savedAt": "2026-11-17T15:28:58.105Z"
+ "savedAt": "2026-11-17T15:29:41.184Z"
 }
