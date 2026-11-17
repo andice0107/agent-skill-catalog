@@ -1742,7 +1742,51 @@
    ],
    "status": "啟用",
    "updated": "2026-11-17"
+  },
+  {
+   "id": "hanzi-component-detective-worksheet",
+   "zh": "字根偵探學習單",
+   "en": "hanzi-component-detective-worksheet",
+   "category": "國語生字與語詞學習單",
+   "functions": [
+    "PDF 學習單",
+    "漢字部件",
+    "形近字"
+   ],
+   "scenarios": [
+    "生字教學",
+    "形近字辨析",
+    "部件拼字"
+   ],
+   "purpose": "依老師指定的範圍從教材庫找出生字與例句，做成看注音寫國字、從偵探部件庫（含干擾部件）挑出部件並在田字格寫出正字的學習單。",
+   "when": "老師要某一課（或某學期範圍）的字根偵探、部件偵探學習單時；拿到範圍後會再確認學期、書商、年級、課次、課名、校名與資源班名稱，並讓老師選每頁題數、干擾部件數、部件顏色與傾斜、直式注音、題目打亂等設定。",
+   "effect": "A4 直式 PDF（學生版與教師解答版），只有第 1 頁有標題與班級姓名列；部件與答案字用全字庫正楷體；部件超過 3 個時自動合成，拆不開的字會提醒；只出 PDF。",
+   "audience": "國小國語（資源班）學生；教師出題使用",
+   "triggers": [
+    "字根偵探",
+    "部件偵探",
+    "漢字部件大偵探",
+    "部件拼字學習單"
+   ],
+   "agents": [
+    {
+     "agent": "shared",
+     "name": "hanzi-component-detective-worksheet",
+     "status": "啟用"
+    },
+    {
+     "agent": "claude-cloud",
+     "name": "hanzi-component-detective-worksheet",
+     "status": "啟用"
+    }
+   ],
+   "related": [
+    "hanzi-hide-seek-worksheet",
+    "guoyu-game-builder"
+   ],
+   "status": "啟用",
+   "updated": "2026-11-17"
   }
  ],
- "savedAt": "2026-11-17T10:34:51.777Z"
+ "savedAt": "2026-11-17T14:16:38.358Z"
 }
