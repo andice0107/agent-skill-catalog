@@ -88,7 +88,7 @@ footer{max-width:1200px;margin:0 auto;padding:16px;color:var(--muted);font-size:
 .btn.danger{color:var(--stop)}
 .btn.small{padding:3px 9px;font-size:.85rem}
 #t-state{font-size:.88rem;color:var(--muted);margin-left:4px}
-#notice .note{margin-top:8px;padding:8px 12px;border-radius:10px;background:var(--warn-soft);color:var(--warn);font-size:.92rem}
+#notice .note,#notice2 .note{margin-top:8px;padding:8px 12px;border-radius:10px;background:var(--warn-soft);color:var(--warn);font-size:.92rem}
 .form label{display:block;margin:10px 0 2px;font-weight:bold;font-size:.92rem;color:var(--accent)}
 .form input[type=text],.form textarea,.form select,.m-input{width:100%;padding:8px 10px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink);font:inherit}
 .form textarea{min-height:64px;resize:vertical}
@@ -133,6 +133,7 @@ footer{max-width:1200px;margin:0 auto;padding:16px;color:var(--muted);font-size:
       <span id="t-state"></span>
     </div>
     <div id="notice"></div>
+    <div id="notice2"></div>
     <div class="active-filters" id="count"></div>
   </div>
   <section id="view"></section>
@@ -379,7 +380,7 @@ footer{max-width:1200px;margin:0 auto;padding:16px;color:var(--muted);font-size:
     return { app:"agent-skill-catalog", v:1, name:META.name, base:META.base, kw:META.kw, deleted:META.deleted, edited:META.edited,
       categories:DATA.categories.slice(), skills:DATA.skills.map(s => { const c = {...s}; delete c._hay; return clone(c); }), savedAt:new Date().toISOString() };
   }
-  function persist(){ store(KEY_WORK, JSON.stringify(snapshot())); updateState(); }
+  function persist(noDirty){ store(KEY_WORK, JSON.stringify(snapshot())); if (noDirty !== true) { const c = syncCfg(); if (c.token) { c.dirty = true; saveCfg(c); scheduleAutoPush(); } } updateState(); }
   function useWork(w){
     META = { kw:w.kw||{}, deleted:w.deleted||[], edited:w.edited||[], base:w.base||OFFICIAL.updated, name:w.name||"我的版本" };
     DATA = { agents:OFFICIAL.agents, updated:OFFICIAL.updated, categories:w.categories.slice(), skills:clone(w.skills) };
@@ -417,7 +418,8 @@ footer{max-width:1200px;margin:0 auto;padding:16px;color:var(--muted);font-size:
   function updateState(){
     const official = JSON.stringify([DATA.categories, DATA.skills.map(s => { const c = {...s}; delete c._hay; return c; })]) ===
       JSON.stringify([OFFICIAL.categories, OFFICIAL.skills]);
-    $("#t-state").textContent = official ? "目前：官方版" : `目前：${META.name}（已存在這個瀏覽器）`;
+    $("#t-state").textContent = official ? "目前：官方版" : `目前：${META.name === "官方版" ? "我的版本" : META.name}（已存在這個瀏覽器）`;
+    if (syncMsg) $("#t-state").textContent += "　" + syncMsg;
     const newer = META.base && OFFICIAL.updated > META.base;
     $("#notice").innerHTML = newer ? `<div class="note">官方目錄已更新到 ${esc(OFFICIAL.updated)}（你的版本基於 ${esc(META.base)}）。<button class="btn small" id="n-merge" type="button">併入新技能與未改過的更新</button></div>` : "";
     const b = $("#n-merge"); if (b) b.addEventListener("click", mergeOfficial);
@@ -586,6 +588,7 @@ footer{max-width:1200px;margin:0 auto;padding:16px;color:var(--muted);font-size:
       <div style="display:flex;gap:6px"><input class="m-input" id="s-name" value="${esc(META.name === "官方版" ? "我的存檔" : META.name)}"><button class="btn primary" id="s-save" type="button">存成存檔</button></div>
       <div style="margin-top:14px">${names.length ? names.map(n => `<div class="save-row"><span><b>${esc(n)}</b><br><span class="muted">${esc((saves[n].savedAt||"").slice(0,16).replace("T"," "))}・${saves[n].skills.length} 個技能</span></span>
         <span><button class="btn small" data-n="${esc(n)}" data-a="load" type="button">載入</button> <button class="btn small" data-n="${esc(n)}" data-a="dl" type="button">下載</button> <button class="btn small danger" data-n="${esc(n)}" data-a="rm" type="button">刪除</button></span></div>`).join("") : `<p class="muted">還沒有存檔。</p>`}</div>
+      ${syncSectionHtml()}
       <div class="row-actions"><span><button class="btn" id="s-export" type="button">匯出目前版本</button> <label class="btn" style="margin:0;display:inline-block;font-weight:normal;color:inherit">匯入檔案<input type="file" id="s-import" accept=".json,application/json" hidden></label></span>
         <button class="btn danger" id="s-reset" type="button">還原成官方版</button></div>`);
     $("#s-save").addEventListener("click", () => {
@@ -611,11 +614,121 @@ footer{max-width:1200px;margin:0 auto;padding:16px;color:var(--muted);font-size:
         useWork(w); META.name = w.name || file.name.replace(/\.json$/i,""); closeModal(); changed();
       } catch (err) { alert("這個檔案不是技能目錄的存檔：" + err.message); }
     });
+    bindSync();
     $("#s-reset").addEventListener("click", () => {
       if (!confirm("還原成官方版？目前版本會先備份成「還原前備份」存檔。")) return;
       saves["還原前備份"] = snapshot(); store(KEY_SAVES, JSON.stringify(saves));
       useWork(officialWork()); closeModal(); changed();
     });
+  }
+
+  /* ----- 雲端同步（寫到 GitHub repo 的一個 JSON 檔，各台電腦讀同一份）----- */
+  const KEY_SYNC = "skillcat.sync.v1";
+  const syncCfg = () => Object.assign({ token:"", repo:"andice0107/agent-skill-catalog", path:"data/my-version.json", last:"", dirty:false }, readJSON(KEY_SYNC) || {});
+  const saveCfg = c => store(KEY_SYNC, JSON.stringify(c));
+  let syncMsg = "", pushTimer = null;
+  const b64enc = t => { const b = new TextEncoder().encode(t); let s = ""; for (let i = 0; i < b.length; i += 8192) s += String.fromCharCode(...b.subarray(i, i + 8192)); return btoa(s); };
+  const b64dec = t => { const s = atob(t.replace(/\s/g, "")); return new TextDecoder().decode(Uint8Array.from(s, c => c.charCodeAt(0))); };
+  const ghUrl = c => `https://api.github.com/repos/${c.repo}/contents/${c.path.split("/").map(encodeURIComponent).join("/")}`;
+  const ghHead = c => ({ "Authorization":"Bearer " + c.token, "Accept":"application/vnd.github+json", "X-GitHub-Api-Version":"2022-11-28" });
+  async function ghGet(c){
+    const r = await fetch(ghUrl(c) + "?t=" + Date.now(), { headers:ghHead(c), cache:"no-store" });
+    if (r.status === 404) return null;
+    if (!r.ok) throw new Error(r.status === 401 ? "金鑰無效或已過期" : r.status === 403 ? "金鑰沒有這個 repo 的權限" : "GitHub 回應 " + r.status);
+    const j = await r.json();
+    return { sha:j.sha, work:JSON.parse(b64dec(j.content)) };
+  }
+  async function ghPut(c, work, sha){
+    const body = { message:"同步我的技能目錄版本 " + work.savedAt, content:b64enc(JSON.stringify(work, null, 1)) };
+    if (sha) body.sha = sha;
+    const r = await fetch(ghUrl(c), { method:"PUT", headers:{ ...ghHead(c), "Content-Type":"application/json" }, body:JSON.stringify(body) });
+    if (!r.ok) throw new Error(r.status === 403 || r.status === 404 ? "金鑰沒有寫入權限（要 Contents: Read and write）" : r.status === 409 || r.status === 422 ? "雲端剛被另一台改過，請再試一次" : "GitHub 回應 " + r.status);
+  }
+  function setSync(msg){ syncMsg = msg; updateState(); }
+  function scheduleAutoPush(){
+    if (!syncCfg().token) return;
+    clearTimeout(pushTimer); pushTimer = setTimeout(() => pushCloud(false), 3000);
+  }
+  async function pushCloud(manual){
+    const c = syncCfg(); if (!c.token) return;
+    setSync("☁ 同步中…");
+    try {
+      const cur = await ghGet(c);
+      if (cur && cur.work.savedAt !== c.last) {
+        if (!manual) { setSync("☁ 雲端有另一台電腦的新版本，請到「我的存檔」選擇"); showSyncConflict(cur.work); return; }
+        if (!confirm("雲端版本比這台電腦上次同步的更新（可能是另一台電腦改的）。要用這台的版本覆蓋嗎？")) { setSync(""); return; }
+      }
+      const w = snapshot(); await ghPut(c, w, cur && cur.sha);
+      c.last = w.savedAt; c.dirty = false; saveCfg(c); setSync("☁ 已同步 " + new Date().toTimeString().slice(0,5));
+    } catch (e) { setSync("☁ 同步失敗：" + e.message); if (manual) alert("同步失敗：" + e.message); }
+  }
+  function loadCloudWork(w, why){
+    const saves = readJSON(KEY_SAVES) || {}; saves["雲端載入前備份"] = snapshot(); store(KEY_SAVES, JSON.stringify(saves));
+    useWork(w); const c = syncCfg(); c.last = w.savedAt; c.dirty = false; saveCfg(c);
+    persist(true); rebuildUI(); render(); setSync("☁ " + why);
+  }
+  async function pullCloud(){
+    const c = syncCfg(); if (!c.token) return;
+    setSync("☁ 讀取中…");
+    try {
+      const cur = await ghGet(c);
+      if (!cur) { setSync("☁ 雲端還沒有存檔，先在原本那台按「立即上傳」"); return; }
+      if (!validWork(cur.work)) throw new Error("雲端檔案格式不對");
+      loadCloudWork(cur.work, "已載入雲端版本");
+    } catch (e) { setSync("☁ 讀取失敗：" + e.message); }
+  }
+  function showSyncConflict(w){
+    $("#notice2").innerHTML = `<div class="note">雲端有另一台電腦存的版本（${esc((w.savedAt||"").slice(0,16).replace("T"," "))}），這台也有沒上傳的修改。
+      <button class="btn small" id="sc-pull" type="button">載入雲端版（這台目前的先備份）</button>
+      <button class="btn small" id="sc-push" type="button">用這台的覆蓋雲端</button></div>`;
+    $("#sc-pull").addEventListener("click", () => { $("#notice2").innerHTML = ""; loadCloudWork(w, "已載入雲端版本"); });
+    $("#sc-push").addEventListener("click", () => { const c = syncCfg(); c.last = w.savedAt; saveCfg(c); $("#notice2").innerHTML = ""; pushCloud(false); });
+  }
+  async function startSync(){
+    const c = syncCfg(); if (!c.token) return;
+    setSync("☁ 檢查雲端…");
+    try {
+      const cur = await ghGet(c);
+      if (!cur) { setSync(c.dirty ? "☁ 雲端還沒有存檔" : "☁ 已連線（雲端還沒有存檔）"); if (c.dirty) scheduleAutoPush(); return; }
+      if (cur.work.savedAt === c.last) { setSync("☁ 已與雲端同步"); if (c.dirty) scheduleAutoPush(); return; }
+      if (!validWork(cur.work)) throw new Error("雲端檔案格式不對");
+      if (!c.dirty) { loadCloudWork(cur.work, "已載入雲端最新版（來自另一台電腦）"); return; }
+      setSync("☁ 雲端有另一台電腦的新版本"); showSyncConflict(cur.work);
+    } catch (e) { setSync("☁ 同步失敗：" + e.message); }
+  }
+  function syncSectionHtml(){
+    const c = syncCfg();
+    return `<h4 style="margin:18px 0 4px;color:var(--accent)">☁ 雲端同步（各台電腦看到同一份）</h4>
+      <p class="muted" style="margin:0 0 6px">${c.token ? "已設定。你每次修改約 3 秒後會自動上傳；打開網站時會自動讀雲端最新版。" : "設定一次後，修改會自動存到你的 GitHub，其他電腦輸入同一把金鑰就能看到同樣的內容。"}</p>
+      <details${c.token ? "" : " open"}><summary class="muted">怎麼取得金鑰？</summary>
+        <ol class="muted" style="margin:6px 0;padding-left:20px">
+          <li>GitHub → 右上頭像 → Settings → Developer settings → Personal access tokens → <b>Fine-grained tokens</b> → Generate new token。</li>
+          <li>Repository access 選 <b>Only select repositories</b>，只選 <code>agent-skill-catalog</code>。</li>
+          <li>Permissions → Repository permissions → <b>Contents: Read and write</b>，其他都不開。</li>
+          <li>Expiration 選你能接受的期限（到期要換新的），建立後複製那串 <code>github_pat_…</code> 貼到下面。</li>
+          <li>每台電腦各貼一次。金鑰只存在那台電腦的瀏覽器，不會上傳。</li></ol></details>
+      <label class="muted">GitHub 金鑰</label><input class="m-input" id="y-token" type="password" value="${esc(c.token)}" placeholder="github_pat_…" autocomplete="off">
+      <label class="muted">存放的 repo</label><input class="m-input" id="y-repo" value="${esc(c.repo)}">
+      <label class="muted">檔案路徑</label><input class="m-input" id="y-path" value="${esc(c.path)}">
+      <p class="muted" style="margin:4px 0">注意：這個 repo 是公開的，存檔檔案內容（分類與技能敘述）別人也看得到。</p>
+      <div style="display:flex;gap:6px;flex-wrap:wrap"><button class="btn primary" id="y-save" type="button">儲存設定並同步</button>
+        <button class="btn" id="y-push" type="button">立即上傳</button><button class="btn" id="y-pull" type="button">從雲端載入</button>
+        <button class="btn danger" id="y-off" type="button">中斷同步</button></div>`;
+  }
+  function bindSync(){
+    const read = () => { const c = syncCfg(); c.token = $("#y-token").value.trim(); c.repo = $("#y-repo").value.trim(); c.path = $("#y-path").value.trim(); return c; };
+    $("#y-save").addEventListener("click", async () => {
+      const c = read(); if (!c.token || !/^[\w.-]+\/[\w.-]+$/.test(c.repo) || !c.path) { alert("請填金鑰、repo（格式：帳號/名稱）與路徑"); return; }
+      saveCfg(c); closeModal();
+      try { const cur = await ghGet(c);
+        if (!cur) { c.dirty = true; saveCfg(c); await pushCloud(true); }
+        else if (confirm("雲端已經有一份存檔。\n按「確定」＝載入雲端那份（這台目前的先備份）；\n按「取消」＝用這台目前的覆蓋雲端。")) { if (!validWork(cur.work)) throw new Error("雲端檔案格式不對"); loadCloudWork(cur.work, "已載入雲端版本"); }
+        else { c.last = cur.work.savedAt; saveCfg(c); await pushCloud(true); }
+      } catch (e) { setSync("☁ 設定失敗：" + e.message); alert("設定失敗：" + e.message); }
+    });
+    $("#y-push").addEventListener("click", () => { const c = read(); saveCfg(c); closeModal(); pushCloud(true); });
+    $("#y-pull").addEventListener("click", () => { const c = read(); saveCfg(c); closeModal(); pullCloud(); });
+    $("#y-off").addEventListener("click", () => { if (!confirm("中斷同步並從這台電腦清除金鑰？（雲端檔案不會刪。）")) return; saveCfg({ ...syncCfg(), token:"", last:"", dirty:false }); setSync(""); closeModal(); });
   }
 
   function bindTools(){
@@ -661,6 +774,7 @@ footer{max-width:1200px;margin:0 auto;padding:16px;color:var(--muted);font-size:
     const skill = readHash(); $("#q").value = state.q;
     render();
     if (skill) openSkill(skill);
+    startSync();
   }
   init();
 })();
