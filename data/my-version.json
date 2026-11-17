@@ -5,7 +5,9 @@
  "base": "2026-11-17",
  "kw": {},
  "deleted": [],
- "edited": [],
+ "edited": [
+  "guoyu-writing-practice-sheet"
+ ],
  "categories": [
   "國語生字與語詞學習單",
   "成語教學",
@@ -1617,7 +1619,7 @@
   },
   {
    "id": "guoyu-writing-practice-sheet",
-   "zh": "國小國語生字語詞習寫單技能",
+   "zh": "國小國語生字語詞習寫單技能（自製甲乙本）",
    "en": "guoyu-writing-practice-sheet",
    "category": "國語生字與語詞學習單",
    "functions": [
@@ -1657,5 +1659,5 @@
    "updated": "2026-11-17"
   }
  ],
- "savedAt": "2026-11-17T09:30:42.684Z"
+ "savedAt": "2026-11-17T09:32:05.070Z"
 }
