@@ -131,6 +131,15 @@
         "hanzi-hide-seek-worksheet"
       ],
       "summary": "新增生字躲貓貓學習單技能：依指定範圍從教材庫找生字語詞，產生遮蔽生字的 A4 PDF（學生版與解答版）。"
+    },
+    {
+      "date": "2026-11-17",
+      "agent": "claude-cloud-teaching-tools",
+      "action": "新增",
+      "skills": [
+        "hanzi-component-detective-worksheet"
+      ],
+      "summary": "新增字根偵探學習單技能：依老師自建網站工具改寫，從教材庫出看注音寫國字、挑部件的 PDF 學習單與教師解答版。"
     }
   ]
 }
