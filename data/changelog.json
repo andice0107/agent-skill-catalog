@@ -97,6 +97,15 @@
         "windows-system-optimize"
       ],
       "summary": "新增 Windows 系統優化技能（空間與效能診斷、低風險直接清理、需確認項目才詢問、啟動項目可還原管理），與系統更新、第三方更新分工。"
+    },
+    {
+      "date": "2026-11-17",
+      "agent": "claude-cloud-teaching-tools",
+      "action": "新增",
+      "skills": [
+        "guoyu-writing-practice-sheet"
+      ],
+      "summary": "新增國小國語生字語詞習寫單技能（四種 PDF 習寫單，描寫字為中心線圓點）。"
     }
   ]
 }
