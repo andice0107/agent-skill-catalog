@@ -6,7 +6,8 @@
  "kw": {},
  "deleted": [],
  "edited": [
-  "guoyu-writing-practice-sheet"
+  "guoyu-writing-practice-sheet",
+  "zhuyin-hanzi-tracing-pdf"
  ],
  "categories": [
   "國語生字與語詞學習單",
@@ -173,7 +174,7 @@
   },
   {
    "id": "zhuyin-hanzi-tracing-pdf",
-   "zh": "國字注音描寫字 PDF",
+   "zh": "國字注音描寫字 PDF（一年級寫「注音」描寫字）",
    "en": "zhuyin-hanzi-tracing-pdf",
    "category": "國語生字與語詞學習單",
    "functions": [
@@ -213,7 +214,7 @@
    ],
    "related": [],
    "status": "啟用",
-   "updated": "2026-11-10"
+   "updated": "2026-11-17"
   },
   {
    "id": "guoyu-review-worksheet",
@@ -1659,5 +1660,5 @@
    "updated": "2026-11-17"
   }
  ],
- "savedAt": "2026-11-17T09:32:05.070Z"
+ "savedAt": "2026-11-17T09:33:08.331Z"
 }
