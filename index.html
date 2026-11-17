@@ -420,21 +420,36 @@ footer{max-width:1200px;margin:0 auto;padding:16px;color:var(--muted);font-size:
       JSON.stringify([OFFICIAL.categories, OFFICIAL.skills]);
     $("#t-state").textContent = official ? "目前：官方版" : `目前：${META.name === "官方版" ? "我的版本" : META.name}（已存在這個瀏覽器）`;
     if (syncMsg) $("#t-state").textContent += "　" + syncMsg;
-    const newer = META.base && OFFICIAL.updated > META.base;
-    $("#notice").innerHTML = newer ? `<div class="note">官方目錄已更新到 ${esc(OFFICIAL.updated)}（你的版本基於 ${esc(META.base)}）。<button class="btn small" id="n-merge" type="button">併入新技能與未改過的更新</button></div>` : "";
+    const pm = pendingMerge(), newer = pm.add.length + pm.upd.length > 0;
+    $("#notice").innerHTML = newer ? `<div class="note">官方目錄有更新：${pm.add.length} 個新技能、${pm.upd.length} 個你沒改過的技能有新內容。<button class="btn small" id="n-merge" type="button">併入新技能與未改過的更新</button></div>` : "";
     const b = $("#n-merge"); if (b) b.addEventListener("click", mergeOfficial);
   }
-  function mergeOfficial(){
-    let add = 0, upd = 0;
+  // 官方有哪些技能是你的版本沒有的（新增），或你沒改過但官方內容不同的（更新）。你改過的技能一律不動。
+  function pendingMerge(){
+    const add = [], upd = [];
+    const strip = x => { const c = {...x}; delete c._hay; delete c.category; return JSON.stringify(c); };
     for (const o of OFFICIAL.skills) {
       if (META.deleted.includes(o.id)) continue;
-      const i = DATA.skills.findIndex(s => s.id === o.id);
-      if (i < 0) { DATA.skills.push(clone(o)); add++; }
-      else if (!META.edited.includes(o.id) && JSON.stringify({...DATA.skills[i], _hay:0}) !== JSON.stringify({...o, _hay:0})) { DATA.skills[i] = clone(o); upd++; }
+      const mine = DATA.skills.find(s => s.id === o.id);
+      if (!mine) add.push(o);
+      else if (!META.edited.includes(o.id) && strip(mine) !== strip(o)) upd.push(o);
     }
-    for (const c of OFFICIAL.categories.concat(DATA.skills.map(s => s.category))) if (c && !DATA.categories.includes(c)) DATA.categories.push(c);
+    return { add, upd };
+  }
+  // 官方的分類如果你已改名或刪除，就依你現有分類的關鍵字重新歸位，找不到線索再放「未分類」
+  function fitCategory(sk){
+    if (DATA.categories.includes(sk.category)) return sk;
+    const best = classify(sk);
+    sk.category = best.score >= MIN_SCORE ? best.cat : UNSORTED;
+    if (!DATA.categories.includes(sk.category)) DATA.categories.push(sk.category);
+    return sk;
+  }
+  function mergeOfficial(){
+    const { add, upd } = pendingMerge();
+    for (const o of add) DATA.skills.push(fitCategory(clone(o)));
+    for (const o of upd) { const i = DATA.skills.findIndex(s => s.id === o.id); const n = clone(o); n.category = DATA.skills[i].category; DATA.skills[i] = n; }
     META.base = OFFICIAL.updated; changed();
-    modal("已併入官方更新", `<p>新增 ${add} 個技能，更新 ${upd} 個沒改過的技能。你改過的技能都保留原樣。</p>`);
+    modal("已併入官方更新", `<p>新增 ${add.length} 個技能（${add.map(o => esc(o.zh)).join("、") || "無"}），更新 ${upd.length} 個沒改過的技能。你改過的技能都保留原樣。</p>`);
   }
 
   /* ----- 通用彈窗 ----- */
