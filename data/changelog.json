@@ -140,6 +140,15 @@
         "hanzi-component-detective-worksheet"
       ],
       "summary": "新增字根偵探學習單技能：依老師自建網站工具改寫，從教材庫出看注音寫國字、挑部件的 PDF 學習單與教師解答版。"
+    },
+    {
+      "date": "2026-11-17",
+      "agent": "claude-cloud",
+      "action": "新增",
+      "skills": [
+        "hanzi-trio-worksheet"
+      ],
+      "summary": "新增生字三合一學習單技能：把字形大小控制、找字、重新組字三個遊戲合成一份 A4 PDF（學生版與教師解答版），沿用字根偵探的部件庫與全字庫正楷體。"
     }
   ]
 }
