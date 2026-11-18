@@ -24,13 +24,13 @@
 }
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 "Microsoft JhengHei","PingFang TC","Noto Sans TC",system-ui,sans-serif}
-header{padding:20px 16px 8px;max-width:1200px;margin:0 auto}
+header{padding:20px clamp(16px,2vw,32px) 8px;max-width:1800px;margin:0 auto}
 h1{margin:0;font-size:1.6rem}
 .sub{color:var(--muted);font-size:.92rem}
 .stats{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
 .stat{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:6px 12px;font-size:.9rem}
 .stat b{font-size:1.1rem;color:var(--accent)}
-main{max-width:1200px;margin:0 auto;padding:0 16px 40px}
+main{max-width:1800px;margin:0 auto;padding:0 clamp(16px,2vw,32px) 40px}
 .bar{position:sticky;top:0;z-index:5;background:var(--bg);padding:10px 0;border-bottom:1px solid var(--line)}
 .search{display:flex;gap:8px;flex-wrap:wrap}
 .search input{flex:1;min-width:200px;padding:10px 12px;font-size:1rem;border:1px solid var(--line);border-radius:10px;background:var(--panel);color:var(--ink)}
@@ -82,7 +82,7 @@ dialog::backdrop{background:rgba(0,0,0,.45)}
 .finder button{padding:12px;text-align:left;border:1px solid var(--line);border-radius:12px;background:var(--panel);cursor:pointer}
 .finder button:hover{border-color:var(--accent)}
 .finder b{display:block}
-footer{max-width:1200px;margin:0 auto;padding:16px;color:var(--muted);font-size:.85rem}
+footer{max-width:1800px;margin:0 auto;padding:16px clamp(16px,2vw,32px);color:var(--muted);font-size:.85rem}
 .tools{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px;align-items:center}
 .btn.primary{background:var(--accent);color:#fff;border-color:var(--accent)}
 .btn.danger{color:var(--stop)}
