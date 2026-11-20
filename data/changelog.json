@@ -178,6 +178,15 @@
         "guoyu-vocab-animated-reader"
       ],
       "summary": "新增語詞點讀動畫教材（資源班版）：沿用陳東甫老師引擎，先問完資訊、用教材庫語詞，含降階模式與滿版。"
+    },
+    {
+      "date": "2026-11-21",
+      "agent": "claude-cloud",
+      "action": "更新",
+      "skills": [
+        "guoyu-vocab-animated-reader"
+      ],
+      "summary": "依使用者要求，名稱括號由「資源班版」改為「andice調整版」。"
     }
   ]
 }
