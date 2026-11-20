@@ -160,6 +160,15 @@
         "hanzi-trio-worksheet"
       ],
       "summary": "依使用者網站自訂版（my-version.json）寫回 3 個技能的中文名稱：習寫單加註「自製甲乙本」、描寫字加註「一年級寫『注音』描寫字」、三合一加註「部件組字遊戲學習單」；其餘欄位與 my-version.json 均未改動。"
+    },
+    {
+      "date": "2026-11-21",
+      "agent": "claude-cloud",
+      "action": "新增",
+      "skills": [
+        "vocab-picture-book-web"
+      ],
+      "summary": "登錄陳東甫老師分享的「搞笑動畫語詞教材」（語詞點讀繪本網頁，情境動畫插畫＋點讀＋小測驗＋作業單），標註 from陳東甫老師。"
     }
   ]
 }
