@@ -169,6 +169,15 @@
         "vocab-picture-book-web"
       ],
       "summary": "登錄陳東甫老師分享的「搞笑動畫語詞教材」（語詞點讀繪本網頁，情境動畫插畫＋點讀＋小測驗＋作業單），標註 from陳東甫老師。"
+    },
+    {
+      "date": "2026-11-21",
+      "agent": "claude-cloud",
+      "action": "新增",
+      "skills": [
+        "guoyu-vocab-animated-reader"
+      ],
+      "summary": "新增語詞點讀動畫教材（資源班版）：沿用陳東甫老師引擎，先問完資訊、用教材庫語詞，含降階模式與滿版。"
     }
   ]
 }
