@@ -187,6 +187,16 @@
         "guoyu-vocab-animated-reader"
       ],
       "summary": "依使用者要求，名稱括號由「資源班版」改為「andice調整版」。"
+    },
+    {
+      "date": "2026-11-21",
+      "agent": "claude-cloud",
+      "action": "新增",
+      "skills": [
+        "social-scenario-animated-reader",
+        "special-education-social-skills-interactive-generator"
+      ],
+      "summary": "新增社會技巧情境動畫教材（ADHD、ASD 情境動畫、題型可選、降階模式），並與社會技巧題組生成器互相加註搭配方式。"
     }
   ]
 }

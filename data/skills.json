@@ -744,10 +744,11 @@
         }
       ],
       "related": [
-        "special-education-communication-training-interactive-generator"
+        "special-education-communication-training-interactive-generator",
+        "social-scenario-animated-reader"
       ],
       "status": "啟用",
-      "updated": "2026-11-10"
+      "updated": "2026-11-21"
     },
     {
       "id": "special-education-communication-training-interactive-generator",
@@ -1937,6 +1938,52 @@
         "chinese-word-card-data"
       ],
       "notes": "沿用「搞笑動畫語詞教材（from陳東甫老師）」的引擎，不複製、不修改；與它的差別是先問完資訊、用教材庫語詞、降階模式、滿版、作業單抬頭。",
+      "status": "啟用",
+      "updated": "2026-11-21"
+    },
+    {
+      "id": "social-scenario-animated-reader",
+      "zh": "社會技巧情境動畫教材",
+      "en": "social-scenario-animated-reader",
+      "category": "特教：社會技巧、溝通訓練與 IEP",
+      "functions": [
+        "單檔 HTML 網頁",
+        "情境動畫",
+        "逐句點讀",
+        "情境練習（題型可選）",
+        "A4 情境作業單",
+        "降階模式"
+      ],
+      "scenarios": [
+        "社會技巧教學",
+        "ADHD、ASD 情境教學",
+        "資源班個別化教學",
+        "跨年級彈性使用"
+      ],
+      "purpose": "為國小 ADHD、ASD 等特殊需求學生，把生活情境（處己、處人、處環境）做成搞笑動畫、可點讀的做法、可彈性選題型的情境練習與作業單。",
+      "when": "老師要「看動畫、學做法」的社會技巧教材時；技能一開始就把學生年級與能力、情境範圍、題型、作業單、校名班名問完，情境清單確認後才生成。要純出題遊戲請用題組生成器，兩者可接力。",
+      "effect": "單檔 HTML（螢幕滿版；看情境、情境練習［怎麼做比較好、對不對、技巧、心情、排步驟、說說看，可多選］、作業單產生器；降階模式為免設定、2 選 1、不顯示分數、無倒數、答錯即提示）＋ A4 情境作業單 PDF（含解答）。",
+      "audience": "國小 ADHD、ASD 等特殊需求學生（跨年級）；教師製作教材使用",
+      "triggers": [
+        "社會技巧動畫",
+        "情境動畫教材",
+        "社會技巧情境練習",
+        "看動畫學做法"
+      ],
+      "agents": [
+        {
+          "agent": "shared",
+          "name": "social-scenario-animated-reader",
+          "status": "啟用"
+        }
+      ],
+      "related": [
+        "special-education-social-skills-interactive-generator",
+        "special-education-communication-training-interactive-generator",
+        "vocab-picture-book-web",
+        "guoyu-vocab-animated-reader"
+      ],
+      "notes": "沿用「搞笑動畫語詞教材（from陳東甫老師）」引擎，不複製、不修改；內含 ADHD／ASD 情境題庫參考。與題組生成器互相加註、可接力使用。",
       "status": "啟用",
       "updated": "2026-11-21"
     }
