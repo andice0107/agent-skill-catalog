@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-11-17",
+  "updated": "2026-11-21",
   "agents": {
     "shared": {
       "label": "共用庫（Codex／OpenCode）",
@@ -1850,6 +1850,50 @@
       ],
       "status": "啟用",
       "updated": "2026-11-17"
+    },
+    {
+      "id": "vocab-picture-book-web",
+      "zh": "搞笑動畫語詞教材（語詞點讀繪本）（from陳東甫老師）",
+      "en": "vocab-picture-book-web",
+      "category": "國語生字與語詞學習單",
+      "functions": [
+        "單檔 HTML 網頁",
+        "情境動畫插畫",
+        "語詞點讀",
+        "小測驗",
+        "A4 作業單"
+      ],
+      "scenarios": [
+        "語詞教學",
+        "成語教學",
+        "資源班個別化教學",
+        "課堂點讀與自我練習"
+      ],
+      "purpose": "老師給一課的語詞（可附解釋與例句），先簡化成資源班版，再為每個語詞畫一張搞笑情境動畫插畫，做成可點讀、可小測驗、可產生 A4 作業單的單檔網頁。",
+      "when": "老師要為一課語詞或成語製作有圖、有動畫、能逐句點讀的互動教材時；需連網取得注音字型。原作者：陳東甫老師。",
+      "effect": "單檔 HTML（語詞卡片點讀、逐句標黃、小測驗、作業單產生器，內嵌注音標楷與破音字選擇、可修改文字）＋ A4 作業單 PDF（含解答）。",
+      "audience": "國小國語（資源班）學生；教師製作教材使用",
+      "triggers": [
+        "/vocab",
+        "語詞點讀繪本",
+        "搞笑動畫語詞教材",
+        "語詞情境插畫",
+        "成語點讀"
+      ],
+      "agents": [
+        {
+          "agent": "shared",
+          "name": "vocab-picture-book-web",
+          "status": "啟用"
+        }
+      ],
+      "related": [
+        "chinese-word-card-data",
+        "guoyu-game-builder"
+      ],
+      "notes": "來源：陳東甫老師分享（2026-11-21 登錄），技能原文原樣收錄於共用庫，只在標題與 description 加註來源。選配的「角色庫」zip 尚未收錄。",
+      "status": "啟用",
+      "updated": "2026-11-21"
     }
   ]
 }
