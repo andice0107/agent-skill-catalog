@@ -17,6 +17,7 @@
 | `scripts/validate.mjs` | 格式檢查：`node scripts/validate.mjs` |
 | `scripts/check_sync.mjs` | 漏登檢查：比對共用庫（codex-worklogs）的技能資料夾與本目錄，有缺就報錯：`node scripts/check_sync.mjs [共用庫路徑]` |
 | `UPDATE_RULES.md` | **所有 agent 更新本目錄的原則** |
+| `AGENT_GUIDE.md` | 給所有 agent 的說明：目錄是什麼、怎麼讀資料、何時更新 |
 
 ## 本機預覽
 
