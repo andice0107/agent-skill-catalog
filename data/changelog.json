@@ -197,6 +197,15 @@
         "special-education-social-skills-interactive-generator"
       ],
       "summary": "新增社會技巧情境動畫教材（ADHD、ASD 情境動畫、題型可選、降階模式），並與社會技巧題組生成器互相加註搭配方式。"
+    },
+    {
+      "date": "2026-11-21",
+      "agent": "claude-local",
+      "action": "新增",
+      "skills": [
+        "animate"
+      ],
+      "summary": "新增程式化動畫短片技能 animate（cth9191/animate 的 fork），含中文用法、安裝、發動方式與範例提示詞。"
     }
   ]
 }
