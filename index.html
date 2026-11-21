@@ -179,6 +179,8 @@ footer{max-width:1800px;margin:0 auto;padding:16px clamp(16px,2vw,32px);color:va
   let DATA = null, LOG = [], state = { q:"", view:"cards", category:"", function:"", scenario:"", agent:"", status:"", sort:"category" };
   const $ = s => document.querySelector(s);
   const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+  // 把已跳脫的文字裡的 http(s) 網址變成可點連結（只用在備註，遇到中文或空白就結束）
+  const linkify = t => esc(t).replace(/https?:\/\/[A-Za-z0-9\-._~:\/?#\[\]@!$&'()*+,;=%]+/g, u => `<a href="${u}" target="_blank" rel="noopener noreferrer">${u}</a>`);
   const agentLabel = k => (DATA.agents[k] && DATA.agents[k].label) || k;
 
   function store(key, val){ try{ localStorage.setItem(key, val); }catch(e){} }
@@ -330,7 +332,7 @@ footer{max-width:1800px;margin:0 auto;padding:16px clamp(16px,2vw,32px);color:va
       <div class="table-wrap"><table><thead><tr><th>agent</th><th>名稱</th><th>狀態</th><th>說明</th></tr></thead><tbody>${
         s.agents.map(a => `<tr><td>${esc(agentLabel(a.agent))}</td><td class="en">${esc(a.name)}</td><td>${badge(a.status)}</td><td>${esc(a.note||"")}</td></tr>`).join("")
       }</tbody></table></div>
-      ${s.notes ? `<h4>備註</h4><p>${esc(s.notes)}</p>` : ""}
+      ${s.notes ? `<h4>備註</h4><p>${linkify(s.notes)}</p>` : ""}
       ${rel.length ? `<h4>相關技能</h4><div>${rel.map(r => `<span class="chip" data-skill="${esc(r.id)}">${esc(r.zh)}</span>`).join("")}</div>` : ""}
       <h4>最後更新</h4><p>${esc(s.updated)}</p>`;
     writeHash(s.id);
