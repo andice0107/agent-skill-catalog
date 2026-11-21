@@ -1986,6 +1986,46 @@
       "notes": "沿用「搞笑動畫語詞教材（from陳東甫老師）」引擎，不複製、不修改；內含 ADHD／ASD 情境題庫參考。與題組生成器互相加註、可接力使用。",
       "status": "啟用",
       "updated": "2026-11-21"
+    },
+    {
+      "id": "animate",
+      "zh": "程式化動畫短片（animate）",
+      "en": "animate",
+      "category": "圖片生成",
+      "functions": [
+        "AI 影片生成",
+        "情境動畫"
+      ],
+      "scenarios": [
+        "成語教學",
+        "上課簡報",
+        "家庭生活"
+      ],
+      "purpose": "用程式（單一 canvas）畫出短動畫影片，不靠 AI 生圖：先問主題、格式、風格，再讓使用者確認故事拍點、畫面風格、分鏡三關，通過後才動畫、渲染成 MP4，最後附量測檢查（卡拍點、音量、字幕是否被切）。內建剪紙、墨線、孔版印刷、素描本、數學風、像素、等角線稿七種風格，也能依使用者提供的參考圖仿出新風格；可配自備音樂、旁白（ElevenLabs）或放入真實產品截圖，一件作品可輸出直式、方形、橫式。",
+      "when": "使用者要做動畫短片、說明動畫、歷史年表動畫、產品宣傳短片，或想照參考圖做出同一種畫風時。需要本機有 Node 18 以上、Playwright（Chromium）與 ffmpeg；雲端版 Claude 沒有這些環境，不適用。",
+      "effect": "單檔 HTML 動畫（可在瀏覽器預覽）與 MP4 影片（9:16、1:1、4:5、16:9），另有分鏡圖、審片接觸表與量測報告。",
+      "audience": "教師與使用者；做給學生看的說明動畫、給家人朋友的短片",
+      "triggers": [
+        "動畫",
+        "動畫短片",
+        "說明動畫",
+        "年表動畫",
+        "/animate"
+      ],
+      "agents": [
+        {
+          "agent": "claude-local",
+          "name": "animate（外掛 animate@animate，位置 ~/.claude/skills/animate/）",
+          "status": "啟用"
+        }
+      ],
+      "related": [
+        "colab-video-gen",
+        "social-scenario-animated-reader"
+      ],
+      "status": "啟用",
+      "notes": "【來源】GitHub cth9191/animate（MIT 授權），使用者已 fork 為 andice0107/animate。【安裝（每台電腦各裝一次）】在 Claude Code 輸入 /plugin marketplace add andice0107/animate，再輸入 /plugin install animate@animate；或把 plugins/animate/skills/animate/ 複製到 ~/.claude/skills/animate/。環境：Node 18 以上、ffmpeg、npm i -g playwright && npx playwright install chromium；要旁白再裝 Python 的 faster-whisper。【發動】開新 session，輸入 /animate 加上需求。技能會先問答，再依序請使用者確認故事、畫面、分鏡，通過才渲染。自己跑工具時要設 NODE_PATH=$(npm root -g)。【範例提示詞】/animate 45 秒的腳踏車歷史，剪紙風；/animate 解釋雜湊表怎麼運作，數學風；/animate 照 ./refs/ 裡的截圖風格做一支介紹我們 API 的短片；/animate 20 秒新品預告，配 ./audio/song.mp3，直式加方形。【換電腦或換 agent】只貼提示詞無法使用，每台電腦都要先裝外掛與環境；僅支援 Claude Code 技能格式的 agent 能用，雲端版與 Gemini、ChatGPT 無法渲染。【已知狀況】2026-11-21 實測內建 history-of-ai 範例渲染正常；riso 風格 demo 在 2 秒處出現 createRadialGradient 錯誤，尚未查明。",
+      "updated": "2026-11-21"
     }
   ]
 }
