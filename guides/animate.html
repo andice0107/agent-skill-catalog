@@ -77,6 +77,8 @@ footer{margin-top:50px;color:var(--muted);font-size:14px;border-top:1px solid va
   <a href="#l3">進階：animate 工具包</a>
   <a href="#combo">組合技</a>
   <a href="#prompts">提示詞範本</a>
+  <a href="#res">外國資源簡介</a>
+  <a href="#hot">熱門提示詞選讀</a>
   <a href="#cross">換電腦與疑難排解</a>
 </nav>
 
@@ -227,8 +229,64 @@ footer{margin-top:50px;color:var(--muted);font-size:14px;border-top:1px solid va
   <div class="prompt" data-copy>用 [60] 秒解釋 [概念]，給 [國小三年級] 的學生看，畫面文字用繁體中文。
 先給我看分鏡（每一段演什麼、幾秒），我確認之後再開始做，最後給我 MP4 檔。</div>
   <p class="meta">第③張的「先給我看分鏡」這句，讓你就算沒裝工具包，也能先看過再讓它動手。</p>
-  <h3>更多靈感</h3>
-  <p>GitHub 上有網友整理的 Claude 動畫作品與提示詞合集：<a href="https://github.com/yihui-dev/awesome-opus5-5-videos" target="_blank" rel="noopener">yihui-dev/awesome-opus5-5-videos</a>（影片提到收了七百多則）。看到喜歡的作品，把它的提示詞換成你的題目，是最快的上手方法。</p>
+  <p class="meta">更多現成提示詞見下方「外國資源簡介」與「熱門提示詞選讀」。</p>
+</section>
+
+<section id="res">
+  <h2>影片提到的外國資源（中文簡介）</h2>
+  <p>下面的網站都是英文，我先用中文講清楚它是什麼、你該不該點進去。</p>
+  <div class="grid">
+    <div class="card"><h3 style="margin-top:0"><a href="https://github.com/cth9191/animate" target="_blank" rel="noopener">cth9191/animate</a></h3>
+      <p><b>是什麼：</b>本頁主角，Claude Code 的動畫工具包（技能），內建七種畫風和固定的製作流程。</p>
+      <p><b>要不要點：</b>要。看 README 的畫風總覽圖，並照上面的安裝步驟裝。MIT 授權，可免費使用。</p></div>
+    <div class="card"><h3 style="margin-top:0"><a href="https://github.com/yihui-dev/awesome-opus5-5-videos" target="_blank" rel="noopener">yihui-dev/awesome-opus5-5-videos</a></h3>
+      <p><b>是什麼：</b>網友整理的「用 Claude Opus 5.5 做出來的爆紅影片」合集，附上作者當初公開的提示詞。分動態圖形、說明動畫、3D 場景、遊戲互動四類，提示詞資料夾有 700 多則。MIT 授權。</p>
+      <p><b>怎麼用：</b>開 <code>prompts/</code> 裡的檔案，複製 Prompt 區塊貼給 Claude，再說「輸出成單一 HTML 檔」。每則都連到作者的 X（推特）原文。</p>
+      <p><b>注意：</b>提示詞多半是英文；有些作者只公開一部分，檔案裡會註明。每則作品版權屬於原作者。</p></div>
+    <div class="card"><h3 style="margin-top:0"><a href="https://skillry.dev/ai-videos/opus-5-5" target="_blank" rel="noopener">skillry.dev</a></h3>
+      <p><b>是什麼：</b>上面那份合集的配套網站，可以把原作影片和「即時重製版」並排觀看，看提示詞做出來的樣子（合集說明有 400 多則）。</p>
+      <p><b>注意：</b>這是第三方網站，我只讀過合集對它的說明，沒有深入測試。要不要登入、有沒有收費請自己看清楚再決定。</p></div>
+    <div class="card"><h3 style="margin-top:0">Claude Motion（官方）</h3>
+      <p><b>是什麼：</b>Anthropic 官方的 AI 動畫製作功能，影片說目前只開放給團隊與企業方案，一般人用不到，所以影片才教用自己的訂閱或免費版做。</p></div>
+    <div class="card"><h3 style="margin-top:0">OiiOii（影片的廣告合作）</h3>
+      <p><b>是什麼：</b>影片中段示範的 AI 影片平台，整合多種生圖與生影片模型，用商品照做廣告片、短劇。說明欄附有影片作者的推廣連結，屬於合作內容。</p>
+      <p><b>與本技能的關係：</b>不需要它。它做的是 AI 生成影片（可做真人、實拍感），和用程式畫動畫是不同方向。</p></div>
+  </div>
+</section>
+
+<section id="hot">
+  <h2>熱門提示詞選讀（中文翻譯）</h2>
+  <p>以下從上面的合集挑出短、好改、適合教學或簡報的幾則，我翻成中文並標示作者，原文在作者的 X 貼文，點「原文」可看影片與英文提示詞。貼給 Claude 時，建議加上你要的秒數與尺寸，並要求輸出 MP4 或單一 HTML。</p>
+
+  <div class="card">
+    <h3 style="margin-top:0">① 步驟式說明動畫（調酒食譜）</h3>
+    <p class="meta">作者 @Ror_Fly｜類別：說明動畫｜<a href="https://github.com/yihui-dev/awesome-opus5-5-videos/blob/main/prompts/ror-fly-880547.md" target="_blank" rel="noopener">原文</a></p>
+    <p>重點：用「從空杯到完成」的順序，邊做邊顯示材料與份量。很適合改成<b>食譜、實驗步驟、洗手七步驟、課堂流程</b>。</p>
+    <div class="prompt" data-copy>請用 JavaScript 或 HTML 做一支說明動畫，呈現 [料理／實驗名稱] 從開始到完成的全部步驟（從 [空杯] 到 [成品]），風格像說明影片，每個步驟出現時同時顯示材料與份量。長度 30 秒，畫面文字用繁體中文，最後給我 MP4。</div>
+  </div>
+
+  <div class="card">
+    <h3 style="margin-top:0">② 可以拉動的互動簡報（網路效應）</h3>
+    <p class="meta">作者 @Drake5112｜類別：遊戲與互動｜<a href="https://github.com/yihui-dev/awesome-opus5-5-videos/blob/main/prompts/drake5112-661428.md" target="_blank" rel="noopener">原文</a></p>
+    <p>重點：一個<b>滑桿</b>讓觀看者自己調數字，畫面即時變化，並有旁白同步。適合<b>數學規律、人口成長、複利、倍數關係</b>等概念教學。只用 HTML 和 JavaScript，不需要圖片檔。</p>
+    <div class="prompt" data-copy>做一份互動式 HTML 簡報，說明「[概念]」。畫面要有一個滑桿，讓觀看者自己調整 [數量]，並即時看到 [結果] 的變化（例如 5 倍的 [數量] 會變成約 27 倍的 [結果]）。只用 HTML 和 JavaScript，不要外部圖片。加入旁白，並與畫面變化同步。畫面文字用繁體中文。</div>
+  </div>
+
+  <div class="card">
+    <h3 style="margin-top:0">③ 把標誌做成短片（動態設計師）</h3>
+    <p class="meta">作者 @0xValure｜類別：說明動畫｜<a href="https://github.com/yihui-dev/awesome-opus5-5-videos/blob/main/prompts/0xvalure-331584.md" target="_blank" rel="noopener">原文</a></p>
+    <p>重點：附上標誌圖，叫 Claude「扮演頂尖動態設計師」，做 10 秒、有節奏的短片。適合<b>班級或社團標誌、活動開場</b>。</p>
+    <div class="prompt" data-copy>請把附件這個 [標誌] 做成一支短片。你是頂尖的動態設計師，做一支 10 秒、節奏明快的動態影片。尺寸 [1080×1920]，不要新增標誌以外的文字，最後給我 MP4。</div>
+  </div>
+
+  <div class="card">
+    <h3 style="margin-top:0">④ 完全用程式做的歷史動畫（AI 發展史）</h3>
+    <p class="meta">作者 @btcup99｜類別：3D 場景｜<a href="https://github.com/yihui-dev/awesome-opus5-5-videos/blob/main/prompts/btcup99-311469.md" target="_blank" rel="noopener">原文</a>（原提示詞是中文）</p>
+    <p>重點：明講「每一幀都是程式渲染，不使用任何影片生成模型」，連打字聲也用程式合成。作者用了 HyperFrames（動效工具）與 Three.js（3D 函式庫）。把主題換成歷史單元，就是<b>年表動畫</b>。</p>
+    <div class="prompt" data-copy>做一支 2 分鐘的動效影片，主題是 [歷史單元／主題]。用程式做動效，需要時用 Three.js 搭 3D 鏡頭，連音效也用程式合成。每一幀都由程式渲染，不使用任何影片生成模型。最後給我 MP4。</div>
+  </div>
+
+  <div class="note">以上提示詞是我依原作者的想法<b>翻譯並改寫成通用版本</b>，不是逐字照搬。要看作者原樣的提示詞和影片，請點各自的「原文」連結。合集裡每則作品和提示詞的權利都屬於原作者，轉載請標示作者。</div>
 </section>
 
 <section id="cross">
