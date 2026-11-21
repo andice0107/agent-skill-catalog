@@ -215,6 +215,15 @@
         "animate"
       ],
       "summary": "新增 animate 的階段式操作示範頁 guides/animate.html（依 YouTube 教學影片與工具包 README 整理），並在備註放上網址。"
+    },
+    {
+      "date": "2026-11-21",
+      "agent": "claude-local",
+      "action": "更新",
+      "skills": [
+        "animate"
+      ],
+      "summary": "animate 卡片備註加上來源教學影片網址與章節時間，提醒先看影片。"
     }
   ]
 }
