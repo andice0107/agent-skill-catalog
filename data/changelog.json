@@ -206,6 +206,15 @@
         "animate"
       ],
       "summary": "新增程式化動畫短片技能 animate（cth9191/animate 的 fork），含中文用法、安裝、發動方式與範例提示詞。"
+    },
+    {
+      "date": "2026-11-21",
+      "agent": "claude-local",
+      "action": "更新",
+      "skills": [
+        "animate"
+      ],
+      "summary": "新增 animate 的階段式操作示範頁 guides/animate.html（依 YouTube 教學影片與工具包 README 整理），並在備註放上網址。"
     }
   ]
 }

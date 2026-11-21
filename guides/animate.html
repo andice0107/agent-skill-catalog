@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>animate 技能操作示範</title>
+<meta name="description" content="用 Claude 寫程式做動畫短片：入門、中階、進階三階段示範，含範例提示詞、安裝步驟與組合技。">
+<style>
+:root{
+  --bg:#faf8f4; --card:#ffffff; --ink:#23211d; --muted:#6a655c; --line:#e4dfd5;
+  --accent:#c8501e; --accent-soft:#fbe9df; --ok:#2f7d4f; --warn:#a15c00; --warn-soft:#fff3dc;
+  --code-bg:#f2eee6;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#17150f; --card:#201d16; --ink:#efeadf; --muted:#a49d8f; --line:#38332a;
+    --accent:#f08a5b; --accent-soft:#3a2418; --ok:#6cc08c; --warn:#f0b35c; --warn-soft:#37290f;
+    --code-bg:#2a261d;
+  }
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font:16px/1.75 -apple-system,BlinkMacSystemFont,"PingFang TC","Noto Sans TC","Microsoft JhengHei",sans-serif}
+.wrap{max-width:860px;margin:0 auto;padding:0 16px 80px}
+header{padding:40px 0 16px}
+header .tag{display:inline-block;background:var(--accent-soft);color:var(--accent);border-radius:99px;padding:2px 12px;font-size:13px;font-weight:600}
+h1{font-size:30px;line-height:1.3;margin:12px 0 8px}
+h2{font-size:23px;margin:0 0 4px;line-height:1.35}
+h3{font-size:17px;margin:22px 0 6px}
+p{margin:8px 0}
+.lead{color:var(--muted);font-size:17px}
+nav{position:sticky;top:0;z-index:5;background:var(--bg);border-bottom:1px solid var(--line);margin:0 -16px;padding:8px 16px;
+  display:flex;gap:6px;overflow-x:auto;white-space:nowrap}
+nav a{color:var(--ink);text-decoration:none;font-size:14px;padding:5px 12px;border-radius:99px;border:1px solid var(--line);background:var(--card)}
+nav a:hover{border-color:var(--accent);color:var(--accent)}
+section{margin-top:40px;scroll-margin-top:60px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 20px;margin:14px 0}
+.stage{display:flex;align-items:center;gap:10px;margin-bottom:6px}
+.badge{flex:none;width:34px;height:34px;border-radius:50%;background:var(--accent);color:#fff;font-weight:700;display:grid;place-items:center}
+.meta{font-size:14px;color:var(--muted)}
+.grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+.grid .card{margin:0}
+ol.steps{counter-reset:s;list-style:none;padding:0;margin:10px 0}
+ol.steps>li{counter-increment:s;position:relative;padding:6px 0 6px 40px}
+ol.steps>li::before{content:counter(s);position:absolute;left:0;top:7px;width:26px;height:26px;border-radius:50%;
+  border:2px solid var(--accent);color:var(--accent);font-weight:700;font-size:14px;display:grid;place-items:center}
+.prompt{position:relative;background:var(--code-bg);border:1px solid var(--line);border-radius:10px;padding:12px 84px 12px 14px;margin:8px 0;
+  font-size:15px;white-space:pre-wrap;word-break:break-word}
+.prompt button{position:absolute;right:8px;top:8px;border:1px solid var(--line);background:var(--card);color:var(--ink);
+  border-radius:8px;padding:4px 10px;font-size:13px;cursor:pointer}
+.prompt button:hover{border-color:var(--accent);color:var(--accent)}
+code{background:var(--code-bg);border-radius:5px;padding:1px 6px;font-size:.92em;font-family:ui-monospace,Menlo,Consolas,monospace}
+.note{border-left:4px solid var(--warn);background:var(--warn-soft);border-radius:0 10px 10px 0;padding:10px 14px;margin:12px 0}
+.good{border-left:4px solid var(--ok);background:var(--card);border-radius:0 10px 10px 0;padding:10px 14px;margin:12px 0;border-top:1px solid var(--line);border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
+table{width:100%;border-collapse:collapse;font-size:15px;margin:10px 0;background:var(--card);border-radius:10px;overflow:hidden}
+th,td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+th{background:var(--code-bg);font-weight:600}
+.scroll{overflow-x:auto}
+a{color:var(--accent)}
+footer{margin-top:50px;color:var(--muted);font-size:14px;border-top:1px solid var(--line);padding-top:16px}
+@media (max-width:520px){h1{font-size:25px}.prompt{padding-right:14px;padding-top:44px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <span class="tag">技能操作示範</span>
+  <h1>animate：用 Claude 寫程式做動畫短片</h1>
+  <p class="lead">不用 AI 生影片、不用動畫軟體。Claude 把每個字、每根長條都寫成程式，一格一格畫出來，最後輸出 MP4。文字清楚、數字準確，哪裡不對只改那一處。</p>
+</header>
+
+<nav>
+  <a href="#why">為什麼這樣做</a>
+  <a href="#l1">入門：免費網頁版</a>
+  <a href="#l2">中階：桌面版</a>
+  <a href="#l3">進階：animate 工具包</a>
+  <a href="#combo">組合技</a>
+  <a href="#prompts">提示詞範本</a>
+  <a href="#cross">換電腦與疑難排解</a>
+</nav>
+
+<section id="why">
+  <h2>先搞懂：這跟「AI 生成影片」差在哪</h2>
+  <div class="grid">
+    <div class="card"><h3 style="margin-top:0">AI 生成影片</h3>
+      <p>模型直接生出整段畫面，像真的，但畫面上的字常常模糊、數字可能對不上。適合真人、實拍感的場景。</p></div>
+    <div class="card"><h3 style="margin-top:0">Claude 寫程式做動畫</h3>
+      <p>字、數字、圖形都是程式畫的，你給什麼數字就是什麼數字，改一處不會牽動其他處。做不到真人與實拍場景。</p></div>
+  </div>
+  <p>適合：簡報動態圖表、行銷短片、概念說明、年表與歷史、教學說明動畫。</p>
+  <div class="note">官方的 Claude Motion 目前只開放給團隊與企業方案。下面三種做法不需要它，三個階段的難度與需求逐級增加。</div>
+
+  <div class="scroll"><table>
+    <tr><th></th><th>入門</th><th>中階</th><th>進階</th></tr>
+    <tr><th>用什麼</th><td>Claude 網頁版</td><td>Claude 桌面版的 Code 分頁</td><td>桌面版＋animate 工具包</td></tr>
+    <tr><th>費用</th><td>免費帳號即可</td><td>Code 需付費方案</td><td>需付費方案</td></tr>
+    <tr><th>要安裝嗎</th><td>不用</td><td>裝桌面版</td><td>再裝外掛與 Node、ffmpeg、Playwright</td></tr>
+    <tr><th>適合</th><td>一次性的簡報動畫</td><td>要用電腦裡的檔案、要改多版</td><td>要特定畫風、有故事的作品</td></tr>
+    <tr><th>約需時間</th><td>約 3 分鐘</td><td>數分鐘到十數分鐘</td><td>約 40 分鐘（可離開做別的事）</td></tr>
+  </table></div>
+</section>
+
+<section id="l1">
+  <div class="stage"><div class="badge">1</div><h2>入門：免費網頁版，一句話拿到 MP4</h2></div>
+  <p class="meta">對應影片 2:35–5:40｜不用安裝任何東西</p>
+  <div class="card">
+    <ol class="steps">
+      <li><b>登入網頁版 Claude。</b>免費帳號即可，預設模型就能做。</li>
+      <li><b>把資料交給它。</b>把表格檔拖進對話框，或按左下角「＋」選上傳檔案。資料直接附檔，比叫它上網找更不容易出錯。</li>
+      <li><b>打一句話，講清楚三件事：</b>給它什麼資料、影片幾秒、畫面尺寸；最後加一句「給我 MP4 檔」。</li>
+      <li><b>等它做。</b>它會讀表格、算數字、寫程式、畫畫面，畫完還會自己檢查（影片示範中它自己發現大數字太靠邊並修好）。示範約 3 分鐘。</li>
+      <li><b>下載。</b>對話框右側出現播放器，右上角有下載鍵，得到一般 MP4。</li>
+      <li><b>放進簡報。</b>PowerPoint：插入 → 視訊。Google 簡報：先傳到 Google 雲端硬碟，再插入 → 影片。</li>
+    </ol>
+    <h3>範例提示詞（改成你的資料）</h3>
+    <div class="prompt" data-copy>把附件這份營收表做成一支 30 秒的動態報告影片，長條圖一根一根長出來，最後停在最新一季的數字並標出成長倍數。
+尺寸 1920×1080，畫面文字用繁體中文，最後給我 MP4 檔。</div>
+    <div class="note">網頁版附件有大小限制（影片示範提到單檔不超過 30MB），要處理一堆檔案請改用中階。</div>
+  </div>
+</section>
+
+<section id="l2">
+  <div class="stage"><div class="badge">2</div><h2>中階：桌面版，直接讀你的資料夾</h2></div>
+  <p class="meta">對應影片 5:41–10:20｜用資料夾工作，做好的檔案直接存回去</p>
+  <div class="card">
+    <p>跟網頁版最大的差別：不用一個一個上傳下載，它直接讀資料夾，成品也存回同一個資料夾。幾天後想改，開同一個資料夾再說一次就好。</p>
+    <ol class="steps">
+      <li><b>安裝桌面版 Claude。</b>官網下載，Mac、Windows 都有，用平常的帳號登入。Code 分頁需要付費方案。</li>
+      <li><b>準備一個資料夾。</b>放進這次要用的資料（營收表、商品照、標誌、參考設計）。</li>
+      <li><b>開新對話：</b>點上方「Code」→ 新對話 → 對話框左邊「＋」→ <code>Add folder</code> → 選剛才的資料夾。對話框下方出現資料夾名稱，代表它看得到檔案。</li>
+      <li><b>打需求。</b>第一次它讀寫檔案、執行程式前會詢問，看清楚它要做什麼再按允許。</li>
+      <li><b>不滿意就在同一個對話指定修改處。</b>它改的是資料夾裡同一份程式，改完重新輸出，不用從頭來。</li>
+    </ol>
+    <h3>範例提示詞：15 秒 IG 限時動態</h3>
+    <div class="prompt" data-copy>做一支 15 秒的直式 IG 限時動態（1080×1920）。
+資料只有這四項：品名「桂花烏龍拿鐵」、「秋季新品」、「11/1 上市」、「第二杯半價」。
+畫面上的文字只能用這四項，不要自己增加任何文字。要有配樂，最後給我 MP4。</div>
+    <div class="note"><b>一定要加「文字只能用這四項」。</b>影片作者第一次試時，AI 自己多寫了沒給的內容，沒注意就發出去會出事。</div>
+    <h3>修改範例</h3>
+    <div class="prompt" data-copy>優惠那行字再大一點，背景換成暖一點的顏色，改完重新輸出 MP4。</div>
+    <div class="good">小技巧：有想要的感覺，就把喜歡的海報、以前做過的設計存進同一個資料夾，跟它說「參考這些的風格」，成品會更接近。</div>
+  </div>
+</section>
+
+<section id="l3">
+  <div class="stage"><div class="badge">3</div><h2>進階：animate 工具包，換出特定畫風</h2></div>
+  <p class="meta">對應影片 10:55–16:30｜原作者 cth9191，GitHub：<a href="https://github.com/cth9191/animate" target="_blank" rel="noopener">cth9191/animate</a>（MIT）</p>
+  <div class="card">
+    <p>只給一句話，Claude 通常做出「會動的投影片」。animate 把七種畫風的畫法與一套固定製作流程寫成技能，Claude 照著做，就能做出剪紙、版畫、像素那種有風格的作品。</p>
+    <h3>七種內建畫風</h3>
+    <div class="scroll"><table>
+      <tr><th>畫風</th><th>長相</th></tr>
+      <tr><td>剪紙（cut paper）</td><td>撕紙、陰影、蠟筆、有臉的角色</td></tr>
+      <tr><td>交叉線墨水（crosshatch）</td><td>版畫插圖感，線條會抖動，暖紙色</td></tr>
+      <tr><td>孔版印刷（riso）</td><td>三色油墨、網點、套色偏移</td></tr>
+      <tr><td>素描本（sketchbook）</td><td>鉛筆灰加一個重點色，手寫字</td></tr>
+      <tr><td>數學風（math）</td><td>黑底、座標圖形、顏色對應變數</td></tr>
+      <tr><td>像素（pixel）</td><td>低解析度，不同年代的畫面</td></tr>
+      <tr><td>等角線稿（isometric）</td><td>精準的等角線條，一個深色重點</td></tr>
+    </table></div>
+    <p>也可以給它參考圖（影片、截圖、網頁），它會量出配色、線條粗細、質感與節奏，先畫一兩張跟參考圖並排比對，你點頭後存成自己的畫風。</p>
+
+    <h3>步驟一：安裝（每台電腦各一次）</h3>
+    <div class="note"><b>安裝前請先確認安全。</b>外掛可以讓 Claude 在你的電腦上做事，只加信任的來源。最簡單的方法：請 Claude Code「幫我看一下這個工具包有沒有可疑或危險的動作」，確認沒問題再同步。原作者隨時可能更新內容，所以每次安裝前都建議再確認。</div>
+    <p><b>方法 A：桌面版畫面操作（影片示範的做法）</b></p>
+    <ol class="steps">
+      <li>桌面版切到 Code，按對話框左邊「＋」→ <code>Plugins</code> → <code>Browse plugins</code>。</li>
+      <li>右上角 <code>Add</code> → <code>Add marketplace</code> → <code>Add from a repository</code>。</li>
+      <li>網址欄輸入 <code>cth9191/animate</code>（要用自己的備份版就輸入 <code>andice0107/animate</code>）。</li>
+      <li>看完安全提醒、檢查沒問題後按 <code>Sync</code>。清單出現 Animate，右下角跳出「已安裝」提示。</li>
+      <li>回到對話框輸入 <code>/</code>，清單看得到 <code>animate</code> 就成功了，之後每個新對話都能用。</li>
+    </ol>
+    <p><b>方法 B：指令</b></p>
+    <div class="prompt" data-copy>/plugin marketplace add andice0107/animate
+/plugin install animate@animate</div>
+    <p><b>方法 C：手動複製</b>：把 repo 裡 <code>plugins/animate/skills/animate/</code> 整個資料夾複製到 <code>~/.claude/skills/animate/</code>。</p>
+    <h3>步驟二：補齊環境</h3>
+    <p>工具包要靠幾個小程式把畫面輸出成影片：<b>Node 18 以上</b>、<b>ffmpeg</b>、<b>Playwright 與 Chromium</b>。第一次用時如果它說少了什麼，直接跟它說「幫我裝好」，跳出詢問時按允許。要自己裝：</p>
+    <div class="prompt" data-copy>npm i -g playwright && npx playwright install chromium</div>
+    <p>要做旁白才需要另外裝 Python 的 <code>faster-whisper</code>（算每個字的時間），聲音可用 ElevenLabs 連接器，或用自己的錄音。</p>
+
+    <h3>步驟三：發動</h3>
+    <p>開新對話、選好資料夾，輸入 <code>/animate</code> 加上題目：</p>
+    <div class="prompt" data-copy>/animate 用 30 秒講完 4 萬年藝術史，從洞穴壁畫一路到今天，中間穿插一隻黃金獵犬出現在每個時代的畫裡，畫風用交叉線墨水</div>
+    <p>它不會馬上開工，流程是：</p>
+    <div class="scroll"><table>
+      <tr><th>關卡</th><th>你會看到</th><th>你要做的</th></tr>
+      <tr><td>0 問答</td><td>題目、格式、旁白、畫風、主角、音樂、是否放產品圖，附畫風選項與推薦</td><td>回答；不知道怎麼選就選它推薦的</td></tr>
+      <tr><td>1 故事大綱</td><td>編號的拍點表（每幾秒演什麼），事實會上網核對</td><td>同意或修改</td></tr>
+      <tr><td>2 畫風樣張</td><td>2–4 張全尺寸靜態畫面</td><td>每張點頭或要求調整</td></tr>
+      <tr><td>3 分鏡</td><td>整支片排成一張大圖，含聲音與轉場</td><td>依面板編號回覆好或不好</td></tr>
+      <tr><td>4 製作</td><td>寫程式、畫畫面、自己做配樂</td><td>不用盯著，可離開做別的事</td></tr>
+      <tr><td>5 交付</td><td>影片＋量測檢查：切換有沒有對準節拍、字有沒有被切掉、音量、旁白速度</td><td>看完給意見，會再修一輪</td></tr>
+    </table></div>
+    <div class="good">這三關（故事、畫風、分鏡）最值得認真看，在這裡改，比做完再改省事很多。影片示範的 4 萬年藝術史大約 40 分鐘完成，用掉 Max 帳號一週額度約 1%。</div>
+    <p>作品會建立在你的專案資料夾 <code>pieces/作品名/</code> 底下，可輸出 9:16、1:1、4:5、16:9，每種版面是重新排版而不是裁切。</p>
+  </div>
+</section>
+
+<section id="combo">
+  <h2>組合技：搭配目錄裡其他技能</h2>
+  <p>animate 負責「動起來」，其他技能負責「內容正確」。下面是幾種搭法（技能名稱都能在目錄查到）。</p>
+  <div class="scroll"><table>
+    <tr><th>想做的事</th><th>搭法</th></tr>
+    <tr><td>成語說明動畫</td><td>先用成語教學類技能確認成語意思與例句，再把確認過的文字交給 animate，並要求「畫面文字只用我給的這些」。</td></tr>
+    <tr><td>課文或單元複習短片</td><td>把課本截圖或整理好的重點放進資料夾，請 animate 依重點排拍點，配 <code>guoyu-vocab-animated-reader</code> 之類的點讀教材當課後練習。</td></tr>
+    <tr><td>社會技巧情境</td><td>情境與題目由 <code>social-scenario-animated-reader</code> 這類技能產出，需要影片版時再交給 animate 做成短片。</td></tr>
+    <tr><td>簡報裡的動態圖表</td><td>入門做法產出 MP4，再請 Claude 把影片插進指定頁的標題下方。檔案太大時，改成自己插。</td></tr>
+    <tr><td>要真人或實拍感</td><td>animate 做不到，改用目錄裡的 <code>colab-video-gen</code> 之類 AI 生成影片，兩者可剪在一起。</td></tr>
+    <tr><td>多尺寸發布</td><td>同一個作品一次輸出直式、方形、橫式，貼到不同平台。</td></tr>
+  </table></div>
+  <div class="note">做給學生看的教材，請先把事實、字詞、注音再核對一次，AI 的自我檢查不能取代老師把關。</div>
+</section>
+
+<section id="prompts">
+  <h2>三張可直接改的提示詞範本</h2>
+  <p>原則都一樣：資料、秒數、尺寸講清楚，最後要 MP4。下列是依影片提出的原則改寫的版本，把方括號換成你自己的內容。</p>
+  <h3>① 簡報數據</h3>
+  <div class="prompt" data-copy>把附件的 [資料名稱] 做成一支 [30] 秒的動態報告影片，[長條圖／折線圖] 依序出現，結尾標出 [重點數字]。
+尺寸 [1920×1080]，畫面文字用繁體中文，數字必須與附件完全一致，最後給我 MP4 檔。</div>
+  <h3>② 行銷短片</h3>
+  <div class="prompt" data-copy>做一支 [15] 秒的 [直式 1080×1920] 短片，宣傳 [產品名稱]。
+畫面文字只能用這幾項：[品名]、[賣點]、[日期]、[優惠]，不要自己增加文字。
+風格參考資料夾裡的 [參考圖]，要有配樂，最後給我 MP4 檔。</div>
+  <h3>③ 概念解說（先看分鏡再動手）</h3>
+  <div class="prompt" data-copy>用 [60] 秒解釋 [概念]，給 [國小三年級] 的學生看，畫面文字用繁體中文。
+先給我看分鏡（每一段演什麼、幾秒），我確認之後再開始做，最後給我 MP4 檔。</div>
+  <p class="meta">第③張的「先給我看分鏡」這句，讓你就算沒裝工具包，也能先看過再讓它動手。</p>
+  <h3>更多靈感</h3>
+  <p>GitHub 上有網友整理的 Claude 動畫作品與提示詞合集：<a href="https://github.com/yihui-dev/awesome-opus5-5-videos" target="_blank" rel="noopener">yihui-dev/awesome-opus5-5-videos</a>（影片提到收了七百多則）。看到喜歡的作品，把它的提示詞換成你的題目，是最快的上手方法。</p>
+</section>
+
+<section id="cross">
+  <h2>換電腦、換 agent 能用嗎？疑難排解</h2>
+  <div class="card">
+    <h3 style="margin-top:0">只貼提示詞行不行？</h3>
+    <p><b>入門與中階可以</b>：提示詞是一般文字，任何有 Claude 的地方都能貼。<b>進階不行</b>：<code>/animate</code> 是安裝在電腦上的技能，每台電腦都要各裝一次外掛與環境（Node、ffmpeg、Playwright）。</p>
+    <ul>
+      <li>只有支援 Claude Code 技能格式的 agent 能用；Gemini、ChatGPT 與雲端版 Claude 沒有本機的瀏覽器與 ffmpeg，無法渲染。</li>
+      <li>其他 agent 若要借用，可把技能資料夾整份交給它讀 <code>SKILL.md</code>，但渲染環境仍然要有。</li>
+    </ul>
+    <h3>常見問題</h3>
+    <ul>
+      <li><b>說找不到 playwright：</b>跑工具時加上 <code>NODE_PATH=$(npm root -g)</code>，或請 Claude 代為處理。</li>
+      <li><b>工具參數順序：</b>截圖工具 <code>still.mjs</code> 的順序是「作品資料夾、時間點、輸出檔」。</li>
+      <li><b>riso（孔版印刷）範例在 2 秒處報錯 <code>createRadialGradient</code>：</b>2026-11-21 實測內建 riso demo 會出現，尚未查明原因；其他風格的範例（如剪紙的 history-of-ai）渲染正常，遇到可先換畫風。</li>
+      <li><b>它自己多寫了不該有的文字：</b>在提示詞明講「畫面文字只能用我給的這些」。</li>
+      <li><b>做出來像會動的投影片：</b>沒有用到工具包，或沒有指定畫風，改用 <code>/animate</code> 並選畫風。</li>
+    </ul>
+    <h3>三個心得</h3>
+    <ol>
+      <li>真正花時間的是把需求講清楚。資料、秒數、尺寸都講好，常常一次就過。</li>
+      <li>第一版不用太在意，在同一個對話叫它改，通常兩三輪就會是你要的樣子。</li>
+      <li>它會自己檢查，但最後一關要你把關，放進正式簡報或教材前，數字與文字務必自己再對一次。</li>
+    </ol>
+  </div>
+</section>
+
+<footer>
+  <p>資料來源：影片〈Claude 做動畫一分錢都沒花！從零做爆紅短片流程全公開〉（頻道：可波 AI 白話），<a href="https://www.youtube.com/watch?v=R5uGmkJnNYw&t=926s" target="_blank" rel="noopener">在 YouTube 觀看</a>；工具包 <a href="https://github.com/cth9191/animate" target="_blank" rel="noopener">cth9191/animate</a>（MIT 授權）的 README。本頁為依其內容整理改寫的中文操作說明，並加入本目錄的搭配建議。</p>
+  <p><a href="../">← 回到 Agent 技能總覽目錄</a></p>
+</footer>
+</div>
+<script>
+document.querySelectorAll('.prompt[data-copy], .prompt').forEach(function(box){
+  var btn=document.createElement('button'); btn.type='button'; btn.textContent='複製';
+  btn.addEventListener('click',function(){
+    var text=box.childNodes[0].textContent.trim();
+    var done=function(){btn.textContent='已複製';setTimeout(function(){btn.textContent='複製'},1500)};
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(done,function(){})}
+    else{var t=document.createElement('textarea');t.value=text;document.body.appendChild(t);t.select();try{document.execCommand('copy');done()}catch(e){}t.remove()}
+  });
+  box.appendChild(btn);
+});
+</script>
+</body>
+</html>
