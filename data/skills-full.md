@@ -1,15 +1,15 @@
 # 技能總覽：目錄 ＋ 全文合併
 
 - 來源庫：`andice0107/codex-worklogs`（私有）＋ `andice0107/agent-skill-catalog`（公開目錄）
-- 來源版本：a351ee9485613c6e7ebb8d17922afcdfc142acc8
-- 產生時間：2026-11-24 15:28
-- 目錄技能數：56 筆
-- 全文收錄：63 份 SKILL.md（共用庫＋Agent 專區＋備份）
+- 來源版本：e710f9ee312a2c39e7761e7341106bb7aef34044
+- 產生時間：2026-11-24 20:16
+- 目錄技能數：57 筆
+- 全文收錄：64 份 SKILL.md（共用庫＋Agent 專區＋備份）
 - 注意：個人信箱與帳號路徑已遮蔽；技能原作者署名保留
 
 ---
 
-# 第一部分：技能目錄（56 筆）
+# 第一部分：技能目錄（57 筆）
 
 | # | 中文名稱 | 分類 | 有版本的 Agent | 英文／識別名 |
 |---|---|---|---|---|
@@ -61,14 +61,15 @@
 | 46 | 生字躲貓貓學習單 | 國語生字與語詞學習單 | shared、claude-cloud | hanzi-hide-seek-worksheet |
 | 47 | 字根偵探學習單 | 國語生字與語詞學習單 | shared、claude-cloud | hanzi-component-detective-worksheet |
 | 48 | 生字三合一學習單（部件組字遊戲學習單） | 國語生字與語詞學習單 | shared、claude-cloud | hanzi-trio-worksheet |
-| 49 | 搞笑動畫語詞教材（語詞點讀繪本）（from陳東甫老師） | 國語生字與語詞學習單 | shared | vocab-picture-book-web |
-| 50 | 語詞點讀動畫教材（andice調整版） | 國語生字與語詞學習單 | shared | guoyu-vocab-animated-reader |
-| 51 | 社會技巧情境動畫教材 | 特教：社會技巧、溝通訓練與 IEP | shared | social-scenario-animated-reader |
-| 52 | 程式化動畫短片（animate） | 圖片生成 | claude-local | animate |
-| 53 | 漢字部件筆畫繪圖（打不出來的部件用畫的） | 國語生字與語詞學習單 | shared | hanzi-part-drawing-from-strokes |
-| 54 | 共用畫板教材生成通則 | 考試與題庫 | shared | whiteboard-material-common |
-| 55 | 共用畫板國語學習策略生成技能 | 國語生字與語詞學習單 | shared | whiteboard-guoyu-strategy |
-| 56 | 共用畫板數學學習策略生成技能 | 考試與題庫 | shared | whiteboard-math-strategy |
+| 49 | 生字形近字習寫及短文選字學習單 | 國語生字與語詞學習單 | shared、claude-cloud | hanzi-similar-cloze-worksheet |
+| 50 | 搞笑動畫語詞教材（語詞點讀繪本）（from陳東甫老師） | 國語生字與語詞學習單 | shared | vocab-picture-book-web |
+| 51 | 語詞點讀動畫教材（andice調整版） | 國語生字與語詞學習單 | shared | guoyu-vocab-animated-reader |
+| 52 | 社會技巧情境動畫教材 | 特教：社會技巧、溝通訓練與 IEP | shared | social-scenario-animated-reader |
+| 53 | 程式化動畫短片（animate） | 圖片生成 | claude-local | animate |
+| 54 | 漢字部件筆畫繪圖（打不出來的部件用畫的） | 國語生字與語詞學習單 | shared | hanzi-part-drawing-from-strokes |
+| 55 | 共用畫板教材生成通則 | 考試與題庫 | shared | whiteboard-material-common |
+| 56 | 共用畫板國語學習策略生成技能 | 國語生字與語詞學習單 | shared | whiteboard-guoyu-strategy |
+| 57 | 共用畫板數學學習策略生成技能 | 考試與題庫 | shared | whiteboard-math-strategy |
 
 ## 只有特定 Agent 有、共用庫沒有檔案的技能（文件缺口）
 
@@ -150,7 +151,7 @@
 - 寫完要告訴使用者「已記入待更新清單」；有寫入權限的 agent 會依 `UPDATE_RULES.md` 補登，你不要自行修改網站資料。
 - 動之前先查目錄是否已有該技能，避免重複新增。
 
-## 尚未標記 gemini 的 42 筆（候選，需你自己判斷）
+## 尚未標記 gemini 的 43 筆（候選，需你自己判斷）
 
 「初步判斷」依 SKILL.md 內容自動標記，是參考值，**你仍要自己複核**：標「本機檔案／PowerShell／Python／Node」代表步驟需要本機環境，通常不適合 Gemini；標「可用文字作業」代表看起來能靠文字與檔案上傳完成。
 
@@ -190,6 +191,7 @@
 | 生字躲貓貓學習單 | 國語生字與語詞學習單 | Python、Node、本機檔案 |  |
 | 字根偵探學習單 | 國語生字與語詞學習單 | Python、Node、本機檔案 |  |
 | 生字三合一學習單（部件組字遊戲學習單） | 國語生字與語詞學習單 | Python、Node |  |
+| 生字形近字習寫及短文選字學習單 | 國語生字與語詞學習單 | Python、Node |  |
 | 搞笑動畫語詞教材（語詞點讀繪本）（from陳東甫老師） | 國語生字與語詞學習單 | Python、Node、本機檔案 |  |
 | 語詞點讀動畫教材（andice調整版） | 國語生字與語詞學習單 | Python、Node、本機檔案 |  |
 | 社會技巧情境動畫教材 | 特教：社會技巧、溝通訓練與 IEP | Python、Node、本機檔案 |  |
@@ -201,7 +203,7 @@
 
 ---
 
-# 第三部分：SKILL.md 全文（63 份）
+# 第三部分：SKILL.md 全文（64 份）
 
 依「共用庫 → Agent 專區 → 備份」排序；備份為歷史副本，內容可能較舊。
 
@@ -5004,9 +5006,77 @@ description: 為國小特殊需求學生（ASD、ADHD、情障等）生成社會
 
 ---
 
+### 50. 生字形近字習寫及短文選字學習單
+
+> 檔案：`skills/生字形近字習寫及短文選字學習單/SKILL.md`
+
+---
+name: 生字形近字習寫及短文選字學習單
+description: 國小資源班國語學習單：挑 8 組「生字＋形近字」，第一大題在田字格寫生字（或寫注音和造詞），第二大題把同組生字與形近字放進同一篇短文，括號內附直式注音讓學生寫出國字；行距、括號特別寬，適合書寫障礙學生，輸出 A4 直式 2 頁 PDF 並附教師解答。提到生字形近字習寫、短文選字、短文填字學習單時使用。
+---
+
+# 生字形近字習寫及短文選字學習單（只出 PDF）
+
+給書寫困難的資源班學生用：先在大田字格練寫生字與它的形近字，再在短文裡分辨同一組的兩個字。
+這和「填入正確的國字學習單」（correct-hanzi-worksheet，Word、待選框、題組造句）是**不同的技能**，不要混用。
+
+## 學習單長什麼樣子（老師定案版，115上六年級第8課樣張 v5）
+
+- **主標題**：「〈校名〉〈資源班名稱〉〈年級〉國語〈課次〉〈課名〉生字習寫與短文填字學習單」，字放大、左右對齊塞滿整列。
+- 標題下一列：右側「姓名：＿＿＿＿」（底線約 62mm，夠學生寫）。課程資訊（學期、版本）**不重複印**；教師版此列左側印紅字【教師解答】。
+- **第一大題**：8 組共 16 欄，生字與它的形近字相鄰，組的順序打亂。每欄最上面一格是田字格大字＋右側直式注音，下面是空白田字格，**每一格右側都印該字直式注音**。一排 8 欄（4 組），共兩排；最右側框線必須完整。
+  - 格式 B（標題「請寫出生字。」）：每欄寫 `times` 次（老師常用 2 次）。
+  - 格式 A（標題「請寫出注音和造詞。」）：每欄每列兩小格，第一列造詞、第二列注音。
+- **第二大題「填入國字。」**：四篇短文，每篇放 2 組（4 字），生字和它的形近字一定在同一篇。目標字處為「（　　　注音）」：括號寬約 5.2 字寬，直式注音靠右，學生在左邊空白寫字；行距 2.6 倍、字級 20pt。
+- 頁尾「〈校名〉〈資源班名稱〉專用」。全卷控制在 **A4 直式 2 頁**：第 1 頁＝標題＋第一大題＋第 1 篇，第 2 頁＝第 2～4 篇。
+- 教師解答版：第一大題第一個空格與短文括號內以紅字填答案。
+
+## 步驟
+
+### 1. 一次問完所有資訊（確認後才可生成）
+- 課程：學年度學期、書商、年級、課次、課名。
+- 校名、資源班名稱：**每次都要問**，不可沿用或猜。
+- 第一大題格式：A「請寫出注音和造詞」或 B「請寫出生字」；每欄寫幾次（B 預設 2）。
+- 版面設定（列出預設請老師確認）：A4 直式、短文 20pt、行距 2.6 倍、括號約 5.2 字寬、姓名欄要、短文篇數與每篇字數（預設 4 篇各 4 字，最多 6 字）。
+
+### 2. 從教材庫挑 8 組「生字＋形近字」
+- 教材找法同 `hanzi-hide-seek-worksheet/references/material-library.md`：生字以課本「我會寫字」／生字詞語解釋為準，形近字以教材《字音字形》的辨析為準。
+- 每課生字通常 10 字以上，一份學習單挑 **8 組**：
+  1. 先選教材字音字形有列形近字的生字；一個生字有多個形近字時，挑字形最像、最常用的一個。
+  2. 不足 8 組，從沒有形近字的生字中挑，再到教育部網站（《重編國語辭典修訂本》、《國語辭典簡編本》、《成語典》）找一個生活常用的形近字與語詞，`source` 標「自補」與出處。雲端連不到教育部網站時，用老師電腦的內建瀏覽器查。
+  3. 生字少於 8 個時，問老師怎麼調整，不要自己湊。
+- **把 8 組（生字、形近字、各自用的語詞與注音、來源）列表給老師確認**；老師可換字。形近字也是學生要寫的目標字。
+
+### 3. 分組寫短文
+- 8 組先隨機打亂，再平均分到各篇（預設 4 篇 × 2 組）；每篇最多 6 字，同組的生字與形近字放同一篇。
+- 每篇約 80～100 字（不含標點），兼顧 2 頁限制；語意自然、符合年級，語詞優先用教材生字語詞，教材沒有的才用教育部辭典查到的生活常用詞。
+- 目標字在短文中只出現一次，短文其他地方不可再出現同一個字。
+- 注音照教材；教材沒有時依整個語詞查教育部辭典（共用庫 `guoyu-game-builder/zhuyin-dict.json`），多音字依語境判斷，不確定就問老師。
+
+### 4. 產生 PDF
+資料格式見 `references/data-format.md`，範例 `references/example.json`。
+
+```bash
+S=skills/生字形近字習寫及短文選字學習單/scripts
+python3 $S/build_html.py data.json 學生版.html
+node    $S/render_pdf.js 學生版.html 短文填字_115上六年級第8課_學生版.pdf
+python3 $S/build_html.py data.json 解答.html --answer
+node    $S/render_pdf.js 解答.html 短文填字_115上六年級第8課_教師解答.pdf
+```
+- 腳本會檢查：每組只在一篇、每篇最多 6 字、`{字}` 標記與目標字一致、目標字不在短文他處洩漏、篇幅提醒。
+- 字型：共用 `hanzi-component-detective-worksheet/assets/fonts/TW-Kai-subset.woff2`（全字庫正楷體，OFL-1.1），所以要整個 `codex-worklogs` 一起拉；也可 `--font` 指定別的楷書字型。
+- 需要 Python 3、Node 與 playwright（chromium）。
+
+### 5. 檢查後交付
+- `pdfinfo` 確認 2 頁；`pdftoppm -r 80 -png` 逐頁看：最右側框線在、聲調與輕聲位置正確（輕聲在注音正上方）、括號沒有被切到下一行、無缺字。
+- 超過 2 頁時，先縮短短文字數，**不要縮行距或括號**（書寫空間優先）。
+- 交付學生版與教師解答版 PDF，附步驟 2 的 8 組清單；改版加 `_v2`，不覆蓋舊檔。
+
+---
+
 ## 【Agent 專區】
 
-### 50. family-pet-sticker-generator-OPENCODE版-v1
+### 51. family-pet-sticker-generator-OPENCODE版-v1
 
 > 檔案：`agents/opencode/skills/family-pet-sticker-generator-OPENCODE版-v1/SKILL.md`
 
@@ -5174,7 +5244,7 @@ Start-Process $exe -ArgumentList @(
 
 ## 【Agent 備份（可能為舊版）】
 
-### 51. chengyu-four-panel-comic
+### 52. chengyu-four-panel-comic
 
 > 檔案：`agents/claude-cloud-teaching-tools/backups/skills/chengyu-four-panel-comic/SKILL.md`
 
@@ -5295,7 +5365,7 @@ python assets/build_sheet.py comic.json --pdf
 
 ---
 
-### 52. exam-board-html
+### 53. exam-board-html
 
 > 檔案：`agents/claude-cloud-teaching-tools/backups/skills/exam-board-html/SKILL.md`
 
@@ -5369,7 +5439,7 @@ description: 使用者上傳學校的考試資訊／考程公告（定期評量�
 
 ---
 
-### 53. zhuyin-hanzi-tracing-pdf
+### 54. zhuyin-hanzi-tracing-pdf
 
 > 檔案：`agents/claude-cloud-teaching-tools/backups/skills/zhuyin-hanzi-tracing-pdf/SKILL.md`
 
@@ -5435,7 +5505,7 @@ description: 把國字／注音習作（PDF、JPG、PNG）指定的頁數或檔�
 
 ---
 
-### 54. 國小國語期中期末複習學習單生成技能
+### 55. 國小國語期中期末複習學習單生成技能
 
 > 檔案：`agents/claude-cloud-teaching-tools/backups/skills/國小國語期中期末複習學習單生成技能/SKILL.md`
 
@@ -5514,7 +5584,7 @@ description: 為國小（特別是資源班、識字與理解較弱的學生）�
 
 ---
 
-### 55. 國小國語期中期末試卷命題技能
+### 56. 國小國語期中期末試卷命題技能
 
 > 檔案：`agents/claude-cloud-teaching-tools/backups/skills/國小國語期中期末試卷命題技能/SKILL.md`
 
@@ -5713,7 +5783,7 @@ description: 為國小國語資源班／個學學生出期中、期末評量試�
 
 ---
 
-### 56. 國小國語生字語詞習寫單技能
+### 57. 國小國語生字語詞習寫單技能
 
 > 檔案：`agents/claude-cloud-teaching-tools/backups/skills/國小國語生字語詞習寫單技能/SKILL.md`
 
@@ -5778,7 +5848,7 @@ description: 依指定課次的生字與語詞，產生國小國語「生字語�
 
 ## 【其他】
 
-### 57. chinese-word-card-data
+### 58. chinese-word-card-data
 
 > 檔案：`backups/20260915-before-full-skill-sync/skills/chinese-word-card-data/SKILL.md`
 
@@ -5849,7 +5919,7 @@ description: "Create fixed-format Traditional Chinese word-card data files from 
 
 ---
 
-### 58. cross-device-worklog
+### 59. cross-device-worklog
 
 > 檔案：`backups/20260915-before-full-skill-sync/skills/cross-device-worklog/SKILL.md`
 
@@ -5906,7 +5976,7 @@ With the account-level custom instruction enabled, the full remote skill collect
 
 ---
 
-### 59. idiom-layered-teaching-presentation
+### 60. idiom-layered-teaching-presentation
 
 > 檔案：`backups/20260915-before-full-skill-sync/skills/idiom-layered-teaching-presentation/SKILL.md`
 
@@ -5994,7 +6064,7 @@ description: 為國小國語成語製作大型圖像、逐字釋義配圖與三�
 
 ---
 
-### 60. kahoot-quiz-creator
+### 61. kahoot-quiz-creator
 
 > 檔案：`backups/20260915-before-full-skill-sync/skills/kahoot-quiz-creator/SKILL.md`
 
@@ -6049,7 +6119,7 @@ metadata:
 
 ---
 
-### 61. kahoot-cli
+### 62. kahoot-cli
 
 > 檔案：`backups/20260915-before-full-skill-sync/skills/kahoot-quiz-creator/tools/kahoot-cli/SKILL.md`
 
@@ -6134,7 +6204,7 @@ description: 當使用者要求「到 Kahoot 出題」、「建立 Kahoot 遊戲
 
 ---
 
-### 62. shutdown-sync
+### 63. shutdown-sync
 
 > 檔案：`backups/20260915-before-full-skill-sync/skills/shutdown-sync/SKILL.md`
 
@@ -6167,7 +6237,7 @@ description: 整理、備份並推送工作日誌，準備安全交接。使用�
 
 ---
 
-### 63. startup-sync
+### 64. startup-sync
 
 > 檔案：`backups/20260915-before-full-skill-sync/skills/startup-sync/SKILL.md`
 
