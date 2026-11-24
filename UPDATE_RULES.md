@@ -37,6 +37,7 @@
 5. 開分支 `update/<agent識別名>/<YYYYMMDD>-<簡述>`，提交並開 PR。
 6. 向使用者回報改了哪些技能與 PR 連結，請使用者合併；使用者在對話中同意後，agent 才可以代為合併。
 7. 合併後 GitHub Pages 約 1～2 分鐘更新。
+8. 技能有新增、改版、改名、暫停或移除時，同一輪重產 `data/skills-full.md`（見第四節）。
 
 修改 `index.html`、`scripts/`、`.github/` 或本原則，先跟使用者討論再動手。
 
@@ -46,9 +47,20 @@
 2. 告訴使用者已記入待更新清單。
 3. 有 GitHub 權限的 agent 開工時讀這份清單，依上面步驟提出更新；完成後在該列註明「已提出更新 YYYY-MM-DD（識別名）」，不刪除該列。
 
-## 四、注意事項
+## 四、技能全文合併檔 `data/skills-full.md`
+
+`data/skills-full.md` 是「技能本體不放本 repo」的**唯一例外**，用途是讓無法登入私有庫的 AI（例如 Gemini）也能讀到完整技能內容。
+
+- **內容**：技能目錄表（全部條目）＋「repo 沒有檔案」的缺口清單＋所有 `SKILL.md` 全文（共用庫、Agent 專區、Agent 備份）。來源版號與產生時間寫在檔頭。
+- **什麼時候重產**：共用庫 `skills/` 或任一 agent 專區的技能有新增、改版、改名、暫停、移除時，在同一輪更新目錄時一併重產，不要讓它落後。
+- **怎麼產生**：取 `andice0107/codex-worklogs` 的全部 `SKILL.md`（`skills/`、`agents/`、`backups/`），依「共用庫 → Agent 專區 → Agent 備份」排序；備份要標示「可能為舊版」。
+- **隱私**：一律遮蔽個人信箱與帳號路徑（例如 `/Users/<使用者>`）；**技能原作者署名與公開授權來源連結要保留**，不可改成匿名寫法。
+- **不含**：`scripts/`、素材檔、教材原檔、學生資料。
+- **網址**：只能提供 raw 連結 `https://raw.githubusercontent.com/andice0107/agent-skill-catalog/main/data/skills-full.md`；GitHub Pages 不服務 `.md`（會 404）。
+
+## 五、注意事項
 
 - 這是公開網站：不寫學生姓名、家人姓名、學校名稱、帳密、Token、Google Drive 連結或檔案 ID、私人照片位置。
 - 不刪除條目或更新紀錄；移除技能用「已移除」狀態。
 - 不改別人的版本列；共用欄位依技能實際內容修改，有衝突先問使用者。
-- 技能本體（SKILL.md、腳本）不放進本 repo，仍放在原本的位置。
+- 技能本體（SKILL.md、腳本）不放進本 repo，仍放在原本的位置；唯一例外是供外部 AI 讀取的 `data/skills-full.md`（只放文字，不含腳本，見第四節）。
