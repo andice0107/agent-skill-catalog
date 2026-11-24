@@ -244,6 +244,15 @@
         "whiteboard-math-strategy"
       ],
       "summary": "新增共用畫板教材生成通則，以及共用畫板國語、數學學習策略生成技能（作答空間要大、至少20題、亂序出題、題組分頁、題目不重複）。"
+    },
+    {
+      "date": "2026-11-24",
+      "agent": "opencode",
+      "action": "更新",
+      "skills": [
+        "skill-catalog-update"
+      ],
+      "summary": "skill-catalog-update 擴充：技能有變動時同輪用腳本重產 data/skills-full.md（含 Gemini 適用性判斷指引），並補觸發詞「重產全文檔」「更新 skills-full」。"
     }
   ]
 }
