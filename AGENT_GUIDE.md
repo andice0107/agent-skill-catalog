@@ -19,13 +19,14 @@
 | 有哪些技能、各自用途與使用時機、哪個 agent 有 | https://raw.githubusercontent.com/andice0107/agent-skill-catalog/main/data/skills.json |
 | 最近誰改了什麼 | https://raw.githubusercontent.com/andice0107/agent-skill-catalog/main/data/changelog.json |
 | 使用者自己改過的版本 | `data/my-version.json`（同一個 repo；**只讀，不要改**） |
+| 完整技能內容（各技能的 SKILL.md 全文） | `data/skills-full.md`（raw 連結：`https://raw.githubusercontent.com/andice0107/agent-skill-catalog/main/data/skills-full.md`） |
 | 更新規則 | `UPDATE_RULES.md`（同一個 repo） |
 
 `skills.json` 結構：最上方 `agents`（各 agent 代號與位置）、`categories`（分類清單）、`skills`（技能陣列）。技能欄位：`id`、`zh`、`en`、`category`、`functions`、`scenarios`、`purpose`、`when`、`effect`、`audience`、`triggers`、`agents`、`related`、`status`、`updated`。
 
 agent 代號：`shared`（共用庫 Codex／OpenCode）、`opencode`、`claude-cloud`、`claude-local`、`gemini`、`codex-local`。
 
-使用方式：使用者提到某類需求（例如「出期中考卷」「成語漫畫」）時，先到目錄用 `purpose`、`when`、`triggers` 找最合適的技能，再確認自己的 agent 是否在該技能的 `agents` 裡、狀態是否「啟用」，然後用該技能原本的位置去啟動它。目錄只是索引，技能本體（SKILL.md、腳本）不在這個 repo。
+使用方式：使用者提到某類需求（例如「出期中考卷」「成語漫畫」）時，先到目錄用 `purpose`、`when`、`triggers` 找最合適的技能，再確認自己的 agent 是否在該技能的 `agents` 裡、狀態是否「啟用」，然後用該技能原本的位置去啟動它。目錄只是索引，技能本體（SKILL.md、腳本）不在這個 repo；唯一例外是 `data/skills-full.md`（只放 SKILL.md 全文文字、不含腳本，給無法登入私有庫的 AI 讀）。
 
 ## 三、什麼時候要更新目錄
 
