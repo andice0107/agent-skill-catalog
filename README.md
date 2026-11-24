@@ -13,6 +13,7 @@
 |---|---|
 | `data/skills.json` | 技能資料（網站內容都從這裡來） |
 | `data/changelog.json` | 更新紀錄 |
+| `data/skills-full.md` | 各技能 `SKILL.md` 全文合併（供無法登入私有庫的 AI 讀取；個人信箱與帳號路徑已遮蔽） |
 | `index.html` | 網站本體 |
 | `scripts/validate.mjs` | 格式檢查：`node scripts/validate.mjs` |
 | `scripts/check_sync.mjs` | 漏登檢查：比對共用庫（codex-worklogs）的技能資料夾與本目錄，有缺就報錯：`node scripts/check_sync.mjs [共用庫路徑]` |
