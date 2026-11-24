@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-11-21",
+  "updated": "2026-11-24",
   "agents": {
     "shared": {
       "label": "共用庫（Codex／OpenCode）",
@@ -236,7 +236,7 @@
     },
     {
       "id": "guoyu-review-worksheet",
-      "zh": "國小國語期中期末複習學習單生成技能",
+      "zh": "guoyu-review-worksheet",
       "en": "guoyu-review-worksheet",
       "enNote": "原無英文名，此為建議英文名",
       "category": "考試與題庫",
@@ -258,12 +258,12 @@
       "agents": [
         {
           "agent": "shared",
-          "name": "國小國語期中期末複習學習單生成技能",
+          "name": "guoyu-review-worksheet",
           "status": "啟用"
         },
         {
           "agent": "claude-cloud",
-          "name": "國小國語期中期末複習學習單生成技能",
+          "name": "guoyu-review-worksheet",
           "status": "啟用"
         }
       ],
@@ -2026,6 +2026,161 @@
       "status": "啟用",
       "notes": "【教學影片，值得先看】YouTube「Claude 做動畫一分錢都沒花！從零做爆紅短片流程全公開」（可波 AI 白話，18 分鐘）https://www.youtube.com/watch?v=R5uGmkJnNYw 。章節：2:35 入門（免費網頁版）、5:41 中階（桌面版）、10:55 進階（animate 工具包）、16:32 提示詞範本。【圖文操作示範頁（階段式教學、範例提示詞、組合技）】https://andice0107.github.io/agent-skill-catalog/guides/animate.html 。【來源】GitHub cth9191/animate（MIT 授權），使用者已 fork 為 andice0107/animate。【安裝（每台電腦各裝一次）】在 Claude Code 輸入 /plugin marketplace add andice0107/animate，再輸入 /plugin install animate@animate；或把 plugins/animate/skills/animate/ 複製到 ~/.claude/skills/animate/。環境：Node 18 以上、ffmpeg、npm i -g playwright && npx playwright install chromium；要旁白再裝 Python 的 faster-whisper。【發動】開新 session，輸入 /animate 加上需求。技能會先問答，再依序請使用者確認故事、畫面、分鏡，通過才渲染。自己跑工具時要設 NODE_PATH=$(npm root -g)。【範例提示詞】/animate 45 秒的腳踏車歷史，剪紙風；/animate 解釋雜湊表怎麼運作，數學風；/animate 照 ./refs/ 裡的截圖風格做一支介紹我們 API 的短片；/animate 20 秒新品預告，配 ./audio/song.mp3，直式加方形。【換電腦或換 agent】只貼提示詞無法使用，每台電腦都要先裝外掛與環境；僅支援 Claude Code 技能格式的 agent 能用，雲端版與 Gemini、ChatGPT 無法渲染。【已知狀況】2026-11-21 實測內建 history-of-ai 範例渲染正常；riso 風格 demo 在 2 秒處出現 createRadialGradient 錯誤，尚未查明。",
       "updated": "2026-11-21"
+    },
+    {
+      "id": "hanzi-part-drawing-from-strokes",
+      "zh": "漢字部件筆畫繪圖（打不出來的部件用畫的）",
+      "en": "hanzi-part-drawing-from-strokes",
+      "category": "國語生字與語詞學習單",
+      "functions": [
+        "漢字部件",
+        "圖片生成",
+        "部件提示"
+      ],
+      "scenarios": [
+        "生字教學",
+        "部件拼字",
+        "形近字辨析"
+      ],
+      "purpose": "用教育部標準筆順資料（g0v/zh-stroke-data）只取某個部件的筆畫，畫成圖放進學習單、共用畫板或簡報；含看筆畫編號、取部件、挑干擾部件的做法與程式。",
+      "when": "部件打不出來、字型缺字，或字型裡的樣子和字裡的部件不一樣（例如臨裡面的𠂉不是人）時；要在學習單或共用畫板放「部件線索」與干擾部件時。",
+      "effect": "部件 PNG／可直接嵌入的圖片（data URL），可放進共用畫板專案檔、Word、PDF 或簡報；新拆法需先出核對圖給老師確認。",
+      "audience": "國小國語（資源班）學生；教師出題使用",
+      "triggers": [
+        "部件用畫的",
+        "部件打不出來",
+        "部件線索",
+        "筆畫畫部件",
+        "干擾部件"
+      ],
+      "agents": [
+        {
+          "agent": "shared",
+          "name": "hanzi-part-drawing-from-strokes",
+          "status": "啟用"
+        }
+      ],
+      "related": [
+        "hanzi-component-detective-worksheet",
+        "guoyu-review-worksheet"
+      ],
+      "status": "啟用",
+      "updated": "2026-11-24",
+      "notes": "需要 Python 3、cairosvg、Pillow，並能連到 raw.githubusercontent.com；其他能跑 Python 的 agent 也能照做。說明內列的 10 個字拆法尚待老師核對。"
+    },
+    {
+      "id": "whiteboard-material-common",
+      "zh": "共用畫板教材生成通則",
+      "en": "whiteboard-material-common",
+      "category": "考試與題庫",
+      "functions": [
+        "共用畫板",
+        "專案檔"
+      ],
+      "scenarios": [
+        "課堂闖關",
+        "學生作答"
+      ],
+      "purpose": "用「Andice的共用畫板」出教材專案檔的共通規則：專案檔格式、滿版、學生作答空間要夠大、題數至少20、亂序出題、題組分頁、解答縮小、題目不重複，附產生程式工具。",
+      "when": "要用共用畫板做任何教材專案（國語、數學、特教領域）時，先讀這份。",
+      "effect": "符合老師要求的 .wbproj.json 專案檔與逐頁截圖檢查流程。",
+      "audience": "國小（資源班）學生；教師出題使用",
+      "triggers": [
+        "共用畫板",
+        "專案檔",
+        "作答空間",
+        "亂序出題"
+      ],
+      "agents": [
+        {
+          "agent": "shared",
+          "name": "共用畫板教材生成通則",
+          "status": "啟用"
+        }
+      ],
+      "related": [
+        "whiteboard-guoyu-strategy",
+        "whiteboard-math-strategy"
+      ],
+      "status": "啟用",
+      "updated": "2026-11-24",
+      "notes": "國語、數學技能都以本技能為底；日後特教領域技能也照此結構新增。"
+    },
+    {
+      "id": "whiteboard-guoyu-strategy",
+      "zh": "共用畫板國語學習策略生成技能",
+      "en": "whiteboard-guoyu-strategy",
+      "category": "國語生字與語詞學習單",
+      "functions": [
+        "共用畫板",
+        "國語題型"
+      ],
+      "scenarios": [
+        "國語闖關",
+        "生字教學",
+        "造句"
+      ],
+      "purpose": "為國小國語做共用畫板專案：國字注音田字格（部件線索）、造詞、各種選擇題、改錯題、文字雲選詞（字／詞／成語）、相似／相反詞、造句、接寫句子與題組，亂序、至少20題、作答框夠大；不出學習地圖等單元間補充。",
+      "when": "老師說要用共用畫板出國語闖關或練習專案時。",
+      "effect": "可直接在畫板開啟的國語 .wbproj.json，含黃色遮板答案。",
+      "audience": "國小（資源班）學生；教師出題使用",
+      "triggers": [
+        "國語畫板專案",
+        "國語闖關",
+        "共用畫板國語"
+      ],
+      "agents": [
+        {
+          "agent": "shared",
+          "name": "共用畫板國語學習策略生成技能",
+          "status": "啟用"
+        }
+      ],
+      "related": [
+        "whiteboard-material-common",
+        "hanzi-part-drawing-from-strokes",
+        "idiom-word-cloud-worksheet"
+      ],
+      "status": "啟用",
+      "updated": "2026-11-24",
+      "notes": "題目要換情境、不與題庫或前次相同。"
+    },
+    {
+      "id": "whiteboard-math-strategy",
+      "zh": "共用畫板數學學習策略生成技能",
+      "en": "whiteboard-math-strategy",
+      "category": "考試與題庫",
+      "functions": [
+        "共用畫板",
+        "數學題型"
+      ],
+      "scenarios": [
+        "數學闖關",
+        "計算",
+        "應用題"
+      ],
+      "purpose": "為國小數學做共用畫板專案：依題庫的數學概念改情境重新設計各種題型，亂序、至少20題、作答與計算空間足夠、題組分頁、解答縮小；不出各書商單元間補充（如綜合與應用、數學吧）。",
+      "when": "老師說要用共用畫板出數學闖關或練習專案時。",
+      "effect": "可直接在畫板開啟的數學 .wbproj.json，含計算區與黃色遮板答案。",
+      "audience": "國小（資源班）學生；教師出題使用",
+      "triggers": [
+        "數學畫板專案",
+        "數學闖關",
+        "共用畫板數學"
+      ],
+      "agents": [
+        {
+          "agent": "shared",
+          "name": "共用畫板數學學習策略生成技能",
+          "status": "啟用"
+        }
+      ],
+      "related": [
+        "whiteboard-material-common"
+      ],
+      "status": "啟用",
+      "updated": "2026-11-24",
+      "notes": "與國語分開成一份，是因為題型與計算空間規則不同；共通規則在通則。"
     }
   ]
 }
