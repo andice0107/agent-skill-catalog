@@ -8,7 +8,8 @@
  "edited": [
   "guoyu-writing-practice-sheet",
   "zhuyin-hanzi-tracing-pdf",
-  "hanzi-trio-worksheet"
+  "hanzi-trio-worksheet",
+  "guoyu-review-worksheet"
  ],
  "categories": [
   "國語生字與語詞學習單",
@@ -219,7 +220,7 @@
   },
   {
    "id": "guoyu-review-worksheet",
-   "zh": "guoyu-review-worksheet",
+   "zh": "期中、期末複習學習單",
    "en": "guoyu-review-worksheet",
    "enNote": "原無英文名，此為建議英文名",
    "category": "考試與題庫",
@@ -254,7 +255,7 @@
     "guoyu-exam-paper"
    ],
    "status": "啟用",
-   "updated": "2026-11-10"
+   "updated": "2026-11-24"
   },
   {
    "id": "guoyu-exam-paper",
@@ -2166,5 +2167,5 @@
    "notes": "與國語分開成一份，是因為題型與計算空間規則不同；共通規則在通則。"
   }
  ],
- "savedAt": "2026-11-24T01:39:46.534Z"
+ "savedAt": "2026-11-24T01:41:21.543Z"
 }
