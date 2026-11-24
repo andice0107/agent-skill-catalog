@@ -233,6 +233,17 @@
         "hanzi-part-drawing-from-strokes"
       ],
       "summary": "新增「漢字部件筆畫繪圖」技能：用教育部筆順資料把打不出來的部件畫成圖，放進學習單或共用畫板（共用庫 PR #205 已合併）。"
+    },
+    {
+      "date": "2026-11-24",
+      "agent": "claude-cloud",
+      "action": "新增",
+      "skills": [
+        "whiteboard-material-common",
+        "whiteboard-guoyu-strategy",
+        "whiteboard-math-strategy"
+      ],
+      "summary": "新增共用畫板教材生成通則，以及共用畫板國語、數學學習策略生成技能（作答空間要大、至少20題、亂序出題、題組分頁、題目不重複）。"
     }
   ]
 }
