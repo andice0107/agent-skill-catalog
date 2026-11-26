@@ -2264,7 +2264,7 @@
         {
           "agent": "shared",
           "name": "共用畫板-國語生字字音字形成語教材專案",
-          "status": "待確認"
+          "status": "啟用"
         }
       ],
       "related": [
@@ -2274,7 +2274,7 @@
       ],
       "status": "啟用",
       "updated": "2026-11-27",
-      "notes": "2026-11-27 建立，GitHub 目前放在 agents/claude-setup-msi/skills/（PR 223 已合併），尚未晉升到共用庫 skills/，所以共用庫那一列暫標待確認；晉升後改為啟用。底層格式先讀「共用畫板教材生成通則」，生圖用 web-image-gen。"
+      "notes": "2026-11-27 建立並上架共用庫 skills/（codex-worklogs PR 225）。底層格式先讀「共用畫板教材生成通則」，生圖用 web-image-gen。"
     }
   ]
 }
