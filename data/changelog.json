@@ -289,6 +289,15 @@
         "whiteboard-guoyu-hanzi-idiom"
       ],
       "summary": "新增「共用畫板-國語生字字音字形成語教材專案」：照生字表順序的句子情境圖教學頁＋精選選代號題，含成語單元。"
+    },
+    {
+      "date": "2026-11-27",
+      "agent": "claude-setup-msi",
+      "action": "更新",
+      "skills": [
+        "whiteboard-guoyu-hanzi-idiom"
+      ],
+      "summary": "「共用畫板-國語生字字音字形成語教材專案」已上架共用庫 skills/，共用庫版本由「待確認」改為「啟用」。"
     }
   ]
 }
