@@ -298,6 +298,24 @@
         "whiteboard-guoyu-hanzi-idiom"
       ],
       "summary": "「共用畫板-國語生字字音字形成語教材專案」已上架共用庫 skills/，共用庫版本由「待確認」改為「啟用」。"
+    },
+    {
+      "date": "2026-11-27",
+      "agent": "opencode",
+      "action": "新增",
+      "skills": [
+        "draw-free"
+      ],
+      "summary": "補登本機免費生圖技能 draw-free（Pollinations.ai，無需 API Key、無需登入），先前目錄漏收這筆。"
+    },
+    {
+      "date": "2026-11-27",
+      "agent": "opencode",
+      "action": "新增版本",
+      "skills": [
+        "animate"
+      ],
+      "summary": "animate 補 OpenCode 版本列：OpenCode 會讀取 ~/.claude/skills/animate/，2026-11-27 實測可正常載入。"
     }
   ]
 }
