@@ -2,14 +2,14 @@
 
 - 來源庫：`andice0107/codex-worklogs`（私有）＋ `andice0107/agent-skill-catalog`（公開目錄）
 - 來源版本：0a733b81fea65c239359c83a897536b5442f4201
-- 產生時間：2026-11-27 00:40
-- 目錄技能數：58 筆
+- 產生時間：2026-11-27 01:14
+- 目錄技能數：59 筆
 - 全文收錄：65 份 SKILL.md（共用庫＋Agent 專區＋備份）
 - 注意：個人信箱與帳號路徑已遮蔽；技能原作者署名保留
 
 ---
 
-# 第一部分：技能目錄（58 筆）
+# 第一部分：技能目錄（59 筆）
 
 | # | 中文名稱 | 分類 | 有版本的 Agent | 英文／識別名 |
 |---|---|---|---|---|
@@ -65,16 +65,17 @@
 | 50 | 搞笑動畫語詞教材（語詞點讀繪本）（from陳東甫老師） | 國語生字與語詞學習單 | shared | vocab-picture-book-web |
 | 51 | 語詞點讀動畫教材（andice調整版） | 國語生字與語詞學習單 | shared | guoyu-vocab-animated-reader |
 | 52 | 社會技巧情境動畫教材 | 特教：社會技巧、溝通訓練與 IEP | shared | social-scenario-animated-reader |
-| 53 | 程式化動畫短片（animate） | 圖片生成 | claude-local | animate |
-| 54 | 漢字部件筆畫繪圖（打不出來的部件用畫的） | 國語生字與語詞學習單 | shared | hanzi-part-drawing-from-strokes |
-| 55 | 共用畫板教材生成通則 | 考試與題庫 | shared | whiteboard-material-common |
-| 56 | 共用畫板國語學習策略生成技能 | 國語生字與語詞學習單 | shared | whiteboard-guoyu-strategy |
-| 57 | 共用畫板數學學習策略生成技能 | 考試與題庫 | shared | whiteboard-math-strategy |
-| 58 | 共用畫板-國語生字字音字形成語教材專案 | 國語生字與語詞學習單 | shared | whiteboard-guoyu-hanzi-idiom |
+| 53 | 程式化動畫短片（animate） | 圖片生成 | claude-local、opencode | animate |
+| 54 | 免費生圖（draw-free） | 圖片生成 | opencode | draw-free |
+| 55 | 漢字部件筆畫繪圖（打不出來的部件用畫的） | 國語生字與語詞學習單 | shared | hanzi-part-drawing-from-strokes |
+| 56 | 共用畫板教材生成通則 | 考試與題庫 | shared | whiteboard-material-common |
+| 57 | 共用畫板國語學習策略生成技能 | 國語生字與語詞學習單 | shared | whiteboard-guoyu-strategy |
+| 58 | 共用畫板數學學習策略生成技能 | 考試與題庫 | shared | whiteboard-math-strategy |
+| 59 | 共用畫板-國語生字字音字形成語教材專案 | 國語生字與語詞學習單 | shared | whiteboard-guoyu-hanzi-idiom |
 
 ## 只有特定 Agent 有、共用庫沒有檔案的技能（文件缺口）
 
-共 8 筆。這些技能的完整內容不在本檔，遇到時不可假裝讀過。
+共 9 筆。這些技能的完整內容不在本檔，遇到時不可假裝讀過。
 
 | 技能 | 持有 Agent |
 |---|---|
@@ -85,7 +86,8 @@
 | 旅遊行程日曆同步 | gemini |
 | 模仿我的寫作風格 | gemini |
 | 本機檔案整理 | codex-local |
-| 程式化動畫短片（animate） | claude-local |
+| 程式化動畫短片（animate） | claude-local、opencode |
+| 免費生圖（draw-free） | opencode |
 
 ## 目錄 shared 名稱與 repo 資料夾不一致（待對齊，共 1 筆）
 
@@ -152,7 +154,7 @@
 - 寫完要告訴使用者「已記入待更新清單」；有寫入權限的 agent 會依 `UPDATE_RULES.md` 補登，你不要自行修改網站資料。
 - 動之前先查目錄是否已有該技能，避免重複新增。
 
-## 尚未標記 gemini 的 44 筆（候選，需你自己判斷）
+## 尚未標記 gemini 的 45 筆（候選，需你自己判斷）
 
 「初步判斷」依 SKILL.md 內容自動標記，是參考值，**你仍要自己複核**：標「本機檔案／PowerShell／Python／Node」代表步驟需要本機環境，通常不適合 Gemini；標「可用文字作業」代表看起來能靠文字與檔案上傳完成。
 
@@ -197,6 +199,7 @@
 | 語詞點讀動畫教材（andice調整版） | 國語生字與語詞學習單 | Python、Node、本機檔案 |  |
 | 社會技巧情境動畫教材 | 特教：社會技巧、溝通訓練與 IEP | Python、Node、本機檔案 |  |
 | 程式化動畫短片（animate） | 圖片生成 | （無共用庫檔案，見缺口清單） |  |
+| 免費生圖（draw-free） | 圖片生成 | （無共用庫檔案，見缺口清單） |  |
 | 漢字部件筆畫繪圖（打不出來的部件用畫的） | 國語生字與語詞學習單 | Python |  |
 | 共用畫板教材生成通則 | 考試與題庫 | Python、本機檔案 |  |
 | 共用畫板國語學習策略生成技能 | 國語生字與語詞學習單 | Python、本機檔案 |  |
