@@ -336,6 +336,16 @@
         "whiteboard-guoyu-hanzi-idiom"
       ],
       "summary": "兩個共用畫板國語技能補上字型 id（全字庫正楷體、書法中楷（注音一））與附注音字型實測結果。"
+    },
+    {
+      "date": "2026-11-28",
+      "agent": "claude-setup-msi",
+      "action": "更新",
+      "skills": [
+        "whiteboard-guoyu-lesson-text",
+        "whiteboard-guoyu-hanzi-idiom"
+      ],
+      "summary": "兩個共用畫板國語技能的字型規則改為：每次建新專案都問，預設全字庫正楷體。"
     }
   ]
 }
