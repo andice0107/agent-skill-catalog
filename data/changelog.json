@@ -316,6 +316,16 @@
         "animate"
       ],
       "summary": "animate 補 OpenCode 版本列：OpenCode 會讀取 ~/.claude/skills/animate/，2026-11-27 實測可正常載入。"
+    },
+    {
+      "date": "2026-11-28",
+      "agent": "claude-setup-msi",
+      "action": "新增",
+      "skills": [
+        "whiteboard-guoyu-lesson-text",
+        "whiteboard-guoyu-hanzi-idiom"
+      ],
+      "summary": "新增「共用畫板-國語課文講解教材專案」；「生字字音字形成語教材專案」補上字型設定規則。"
     }
   ]
 }
