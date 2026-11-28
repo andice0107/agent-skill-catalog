@@ -355,6 +355,16 @@
         "whiteboard-guoyu-lesson-text"
       ],
       "summary": "課文講解技能改版：四種切分模式、依文體的版型（文言文、格言、詩）、背景與賞析頁、唸讀符號設定與專案內讀音修正。"
+    },
+    {
+      "date": "2026-11-28",
+      "agent": "claude-setup-msi",
+      "action": "更新",
+      "skills": [
+        "whiteboard-guoyu-lesson-text",
+        "whiteboard-guoyu-hanzi-idiom"
+      ],
+      "summary": "兩個共用畫板國語技能新增學生程度規則（照實際年級、綜合評估、最多下調一個年段）；課文講解新增文體小卡。"
     }
   ]
 }
