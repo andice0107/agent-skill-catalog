@@ -385,6 +385,16 @@
         "whiteboard-guoyu-hanzi-idiom"
       ],
       "summary": "兩個共用畫板國語技能新增「選生圖管道」：agent 有自己的生圖模組時先問老師用哪一種，沒有就用預設 Gemini 圖片生成器網站。"
+    },
+    {
+      "date": "2026-11-28",
+      "agent": "claude-setup-msi",
+      "action": "更新",
+      "skills": [
+        "whiteboard-guoyu-lesson-text",
+        "whiteboard-guoyu-hanzi-idiom"
+      ],
+      "summary": "兩個共用畫板國語技能的選生圖管道補上 AI 額度不足的處理：讓老師選 Gemini 網站或 Canva，Canva 額度也不足就直接用 Gemini 網站。"
     }
   ]
 }
