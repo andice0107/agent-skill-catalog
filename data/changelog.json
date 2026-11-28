@@ -375,6 +375,16 @@
         "whiteboard-guoyu-lesson-text"
       ],
       "summary": "生圖技能新增角色一致性（設定圖＋參考圖，只在同角色跨圖時用）與 --ref/--use-ref、預設重整分頁防殘留圖；課文講解技能情境圖段落同步。"
+    },
+    {
+      "date": "2026-11-28",
+      "agent": "claude-setup-msi",
+      "action": "更新",
+      "skills": [
+        "whiteboard-guoyu-lesson-text",
+        "whiteboard-guoyu-hanzi-idiom"
+      ],
+      "summary": "兩個共用畫板國語技能新增「選生圖管道」：agent 有自己的生圖模組時先問老師用哪一種，沒有就用預設 Gemini 圖片生成器網站。"
     }
   ]
 }
