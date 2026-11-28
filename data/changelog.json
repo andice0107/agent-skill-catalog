@@ -365,6 +365,16 @@
         "whiteboard-guoyu-hanzi-idiom"
       ],
       "summary": "兩個共用畫板國語技能新增學生程度規則（照實際年級、綜合評估、最多下調一個年段）；課文講解新增文體小卡。"
+    },
+    {
+      "date": "2026-11-28",
+      "agent": "claude-setup-msi",
+      "action": "更新",
+      "skills": [
+        "web-image-gen",
+        "whiteboard-guoyu-lesson-text"
+      ],
+      "summary": "生圖技能新增角色一致性（設定圖＋參考圖，只在同角色跨圖時用）與 --ref/--use-ref、預設重整分頁防殘留圖；課文講解技能情境圖段落同步。"
     }
   ]
 }
