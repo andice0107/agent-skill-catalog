@@ -346,6 +346,15 @@
         "whiteboard-guoyu-hanzi-idiom"
       ],
       "summary": "兩個共用畫板國語技能的字型規則改為：每次建新專案都問，預設全字庫正楷體。"
+    },
+    {
+      "date": "2026-11-28",
+      "agent": "claude-setup-msi",
+      "action": "更新",
+      "skills": [
+        "whiteboard-guoyu-lesson-text"
+      ],
+      "summary": "課文講解技能改版：四種切分模式、依文體的版型（文言文、格言、詩）、背景與賞析頁、唸讀符號設定與專案內讀音修正。"
     }
   ]
 }
